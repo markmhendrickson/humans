@@ -1,0 +1,177 @@
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+blockquote {
+  .standard-selection;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  color: rgba(0,0,0,0.75);
+  font-style: italic;
+  margin: 2em 0;
+  padding: 1em;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @media (min-width: 40em) {
+    background: rgba(0,0,0,0.02);
+    border: none;
+    margin: 2em 0 3em 0;
+    padding: 2em;
+  }
+
+  p {
+    text-align: left;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+body {
+  .standard-font-family;
+  backface-visibility: hidden;
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  min-width: 320px;
+  cursor: default;
+  text-rendering: geometricPrecision;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  .standard-button;
+}
+
+div {
+  box-sizing: border-box;
+  position: relative;
+}
+
+h1 {
+  .standard-h1;
+}
+
+h2 {
+  .standard-h2;
+}
+
+h3 {
+  .standard-font-family-bold;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 48px 0 0 0;
+}
+
+h4 {
+  .standard-font-family-bold;
+  font-size: 1.125em;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+h5 {
+  .standard-font-family;
+  color: rgba(0,0,0,0.25);
+  font-size: 1em;
+  letter-spacing: 1px;
+  line-height: 1.2em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+header {
+  .standard-font-family;
+  color: #79828B;
+  text-transform: uppercase;
+}
+
+p {
+  .standard-paragraph;
+
+  &.placeholder {
+    background: rgba(0,0,0,0.1);
+    height: 1em;
+    position: relative;
+
+    &:nth-of-type(3) {
+      margin-top: 2em;
+    }
+  }
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+ul, ol, li {
+  box-sizing: border-box;
+  line-height: 1em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 64px 0;
+  position: relative;
+
+  @media (min-width: 50em) {
+    padding: 96px;
+  }
+
+  &.empty {
+    display: none !important;
+  }
+}
+
+small {
+  color: rgba(0,0,0,0.5);
+  font-size: 0.875em;
+}
+
+code {
+  .standard-monospace-font-family;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+pre {
+  background: rgba(0,0,0,0.03);
+  box-sizing: border-box;
+  font-size: 0.8em;
+  margin: 3em 0;
+  padding: 2em;
+  overflow: auto;
+  width: 100%;
+}
+
+textarea, input[type=email] {
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 1px 40px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  font-size: 18px;
+  margin-top: 32px;
+  outline: none;
+  padding: 32px;
+  resize: none;
+  width: 100%;
+}
+
+textarea {
+  height: 256px;
+}
