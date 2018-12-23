@@ -27,7 +27,6 @@
   font-weight: 100;
 }
 
-
 .standard-drop-caps {
   p:first-of-type::first-letter {
     .standard-font-family-bold;
@@ -60,7 +59,7 @@
   padding: 1em 4em 1em 4em;
   position: relative;
   text-transform: uppercase;
-  transition: box-shadow 0.25s, color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
   width: ~"calc(100% - 64px)";
 
   @media (min-width: 40em) {
@@ -182,7 +181,6 @@
   font-size: 26px;
   margin: auto;
   padding: 0 16px;
-  max-width: 800px;
 
   @media (min-width: 40em) {
     font-size: 32px;
@@ -204,5 +202,29 @@
 
   @media (min-width: 40em) {
     font-size: 2em;
+  }
+}
+
+.standard-hero {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.standard-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+
+.standard-subheader {
+  color: rgba(0,0,0,0.8);
+  font-size: 24px;
+  line-height: 1.5em;
+  margin-top: 24px;
+
+  @media (max-width: 65em) {
+    font-size: 20px;
+    margin: 16px 16px 0 16px;
   }
 }

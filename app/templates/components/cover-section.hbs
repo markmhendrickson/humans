@@ -1,4 +1,4 @@
 <div>
-  {{input type="text" name="full-name" placeholder="Full name" spellcheck=false}}
-  {{input type="text" name="description" placeholder="Description" spellcheck=false}}
+  {{editable-view tagName="h1" model=human name="full-name" placeholder="Name" spellcheck=false value=human.name}}
+  {{editable-view class="subheader" model=human name="description" placeholder="Description" spellcheck=false value=human.description}}
 </div>

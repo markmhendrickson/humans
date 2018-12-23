@@ -1,46 +1,31 @@
 section.cover {
-  align-items: center;
-  border-bottom: none;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  height: 100vh;
+  .standard-hero;
 
-  &.hidden {
-    visibility: hidden;
-  }
-
-  input {
-    border: none;
-    display: block;
-    font: inherit;
-    line-height: 1em;
-    outline: none;
-    padding: 0;
-    text-align: center;
+  >div {
     width: 100%;
   }
 
-  h1,input[name=full-name] {
+  h1 {
     .standard-h1;
     font-family: "Libre Baskerville", serif;
-    line-height: 1em;
 
     @media (max-width: 65em) {
       padding: 0 16px;
     }
   }
 
-  div.subheader, input[name=description] {
-    color: rgba(0,0,0,0.8);
-    font-size: 24px;
-    line-height: 1em;
-    margin-top: 24px;
+  div.subheader {
+    .standard-subheader;
+  }
 
-    @media (max-width: 65em) {
-      font-size: 20px;
-      line-height: 1.2em;
-      margin: 16px 16px 0 16px;
+  h1, div.subheader {
+    .standard-selection;
+    outline: none;
+
+    &[contenteditable=true]:empty:before {
+      .standard-placeholder;
+      content: attr(placeholder);
+      display: block;
     }
   }
 

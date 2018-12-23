@@ -46,6 +46,10 @@ body {
   cursor: default;
   text-rendering: geometricPrecision;
   -webkit-tap-highlight-color: transparent;
+
+  &::selection, *::selection {
+    background: none;
+  }
 }
 
 button {
@@ -126,12 +130,15 @@ ul, ol, li {
 }
 
 section {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 64px 0;
   position: relative;
 
   @media (min-width: 50em) {
     padding: 96px;
+  }
+
+  &:not(:first-child) {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   &.empty {
@@ -160,9 +167,9 @@ pre {
   width: 100%;
 }
 
-textarea, input[type=email] {
+input, textarea {
+  .standard-selection;
   border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 1px 40px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   font-size: 18px;
   margin-top: 32px;
@@ -170,8 +177,4 @@ textarea, input[type=email] {
   padding: 32px;
   resize: none;
   width: 100%;
-}
-
-textarea {
-  height: 256px;
 }
