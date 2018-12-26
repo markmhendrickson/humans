@@ -44,6 +44,8 @@ body {
   margin: 0;
   min-width: 320px;
   cursor: default;
+  overscroll-behavior: none;
+  padding-top: 4em;
   text-rendering: geometricPrecision;
   -webkit-tap-highlight-color: transparent;
 
@@ -137,7 +139,7 @@ section {
     padding: 96px;
   }
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 

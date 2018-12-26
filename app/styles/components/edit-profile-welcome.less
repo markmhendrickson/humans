@@ -1,0 +1,61 @@
+@keyframes tooltipAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tooltipDisappear {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+div.edit-profile-welcome {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: tooltipAppear;
+  background: white;
+  box-shadow: 0 24px 40px 0 #F2F2F2;
+  box-sizing: border-box;
+  left: 4em;
+  padding: 4em;
+  position: fixed;
+  text-align: left;
+  top: 8em;
+  max-width: 26em;
+  z-index: 100;
+
+  &.hidden {
+    visibility: hidden;
+  }
+
+  h2 {
+    .standard-font-family-bold;
+    margin: 0;
+    margin-bottom: 1em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  button {
+    .standard-button-primary;
+    margin-top: 2em;
+
+    @media (min-width: 40em) {
+      width: 100%;
+    }
+  }
+}

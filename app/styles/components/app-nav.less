@@ -1,4 +1,8 @@
 nav.app {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  background: white;
   border-bottom: 1px solid @border-color;
   box-sizing: border-box;
   display: flex;
@@ -10,8 +14,20 @@ nav.app {
   z-index: 10;
   width: 100%;
 
-  >span {
+  >a {
+    .standard-highlight;
     font-family: "Libre Baskerville", serif;
+    outline: none;
+
+    &:focus {
+      .standard-highlight-hover;
+    }
+
+    @media (hover: hover) {
+      &:active, &:focus, &:hover {
+        .standard-highlight-hover;
+      }
+    }
   }
 
   div {
@@ -20,18 +36,19 @@ nav.app {
     a, span {
       .standard-link;
       .standard-font-family;
+      color: black;
+
+      &:hover {
+        color: @standard-color-link;
+      }
 
       &:not(:last-child) {
         margin-right: 2em;
       }
-
-      &:not(:first-child) {
-        color: rgba(0,0,0,0.5);
-
-        &:hover {
-          color: @standard-color-link;
-        }
-      }
     }
   }
+}
+
+nav.app ~ section.hero {
+  min-height: ~"calc(100vh - 8em)";
 }

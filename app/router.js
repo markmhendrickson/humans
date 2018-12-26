@@ -9,7 +9,6 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('human', { path: '/:blockstack_name' }); // :blockstack_name indicates Blockstack name that maps to Blockstack identity address that serves as human ID
   this.route('create-profile');
-  this.route('edit-profile');
   this.route('customize-url');
 });
 

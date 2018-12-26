@@ -62,6 +62,13 @@
   transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
   width: ~"calc(100% - 64px)";
 
+  &:focus {
+    outline: none;
+    border-color: @standard-color-link;
+    color: @standard-color-link !important;
+    transform: scale(1.05);
+  }
+
   @media (min-width: 40em) {
     font-size: 1em;
     width: auto;
@@ -74,6 +81,12 @@
       transform: scale(1.05);
     }
   }
+}
+
+.standard-button-primary {
+  .standard-button;
+  border-color: rgb(1,73,255);
+  color: rgb(1,73,255);
 }
 
 .standard-http-status-code-before {
@@ -239,10 +252,8 @@
     }
 
     >a, button {
-      .standard-button;
-      border-color: rgb(1,73,255);
-      color: rgb(1,73,255);
-      margin-top: 2.5em;
+      .standard-button-primary;
+      margin-top: 3.5em;
     }
   }
 }
