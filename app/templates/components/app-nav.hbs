@@ -1,0 +1,10 @@
+<span>Humans.</span>
+<div>
+  {{#if session.unauthenticated}}
+    <span onclick={{action "authenticate"}}>Manage existing profile</span>
+  {{else}}
+    {{#link-to "human" session.human.blockstackName}}View public profile{{/link-to}}
+    {{#link-to "customize-url"}}Customize URL{{/link-to}}
+    <span onclick={{action "deauthenticate"}}>Sign out</span>
+  {{/if}}
+</div>

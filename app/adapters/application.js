@@ -25,7 +25,8 @@ export default DS.JSONAPIAdapter.extend({
       let path = `${Ember.Inflector.inflector.pluralize(type.modelName)}/${id}`;
 
       blockstack.getFile(path, {
-        decrypt: false
+        decrypt: false,
+        //username: store.blockstackName
       }).then((file) => {
         resolve(JSON.parse(file));
       }).catch(reject);

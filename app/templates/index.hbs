@@ -1,5 +1,7 @@
-{{#unless session.authenticated}}
-  {{authentication-section}}
+{{app-nav}}
+
+{{#if session.authenticated}}
+  {{cover-section human=model}}
 {{else}}
-  {{cover-section human=model.human}}
-{{/unless}}
+  {{app-intro-section}}
+{{/if}}

@@ -1,0 +1,79 @@
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes laptopAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) translateY(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-15%) translateY(-50%);
+  }
+}
+
+@keyframes mobileAppear {
+  from {
+    opacity: 0;
+    transform: translateX(150%) translateY(-20%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(150%) translateY(-30%);
+  }
+}
+
+section.app-intro {
+  .standard-hero;
+
+  div {
+    &.content {
+      animation-delay: 0.75s;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-name: contentAppear;
+      opacity: 0;
+    }
+
+    img {
+      position: absolute;
+      left: 0;
+      max-height: 90vh;
+      max-width: 100%;
+      transform: translateY(-50%);
+      top: 50%;
+    }
+
+    &:first-child {
+      img.laptop-preview {
+        animation-duration: 0.75s;
+        animation-fill-mode: forwards;
+        animation-name: laptopAppear;
+        transform: translateX(-15%) translateY(-50%);
+      }
+
+      img.mobile-preview {
+        animation-delay: 0.75s;
+        animation-duration: 0.75s;
+        animation-fill-mode: forwards;
+        animation-name: mobileAppear;
+        opacity: 0;
+        transform: translateX(150%) translateY(-30%);
+        width: 25%;
+      }
+    }
+
+    &:last-child {
+      padding-left: 0;
+    }
+  }
+}

@@ -4,9 +4,9 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
   session: service(),
 
-  model() {
+  beforeModel() {
     if (this.get('session.authenticated')) {
-      return this.get('session.human');
+      this.transitionTo('index');
     }
   }
 });

@@ -4,7 +4,7 @@
 @orange-color: #FF7F00;
 @subheader-color: #97A3AF;
 @border-color: #E8E8E8;
-@standard-color-link: rgba(1,73,255,0.75);
+@standard-color-link: rgb(1,73,255);
 
 /* Widths */
 
@@ -150,7 +150,8 @@
   font-size: 17px;
   letter-spacing: 0.5px;
   line-height: 1.5em;
-  margin: 0 0 1em 0;
+  margin: 0;
+  margin-top: 1em;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -175,6 +176,7 @@
 }
 
 .standard-h1 {
+  .standard-selection;
   font-family: "Libre Baskerville", serif;
   font-weight: normal;
   box-sizing: border-box;
@@ -184,7 +186,7 @@
 
   @media (min-width: 40em) {
     font-size: 32px;
-    padding: 0 32px;
+    padding: 0;
   }
 
   @media (min-width: 60em) {
@@ -211,6 +213,38 @@
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  padding: 0;
+
+  >div {
+    box-sizing: border-box;
+    position: relative;
+    width: 50%;
+
+    &.content {
+      padding: 0 96px;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 2em;
+      line-height: 1.5em;
+    }
+
+    p {
+      font-size: 22px;
+
+      &:first-of-type {
+        margin-top: 2em;
+      }
+    }
+
+    >a, button {
+      .standard-button;
+      border-color: rgb(1,73,255);
+      color: rgb(1,73,255);
+      margin-top: 2.5em;
+    }
+  }
 }
 
 .standard-placeholder {
@@ -227,4 +261,11 @@
     font-size: 20px;
     margin: 16px 16px 0 16px;
   }
+}
+
+.standard-fadein {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  opacity: 0;
 }
