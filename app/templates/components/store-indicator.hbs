@@ -1,0 +1,5 @@
+{{#if store.saving}}
+  Saving changes...
+{{else if store.savedAt}}
+  Last saved {{moment-from-now store.savedAt interval=1000}}
+{{/if}}

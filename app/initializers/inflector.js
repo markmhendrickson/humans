@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Inflector from 'ember-inflector';
 
 export function initialize(/* application */) {
-  Ember.Inflector.inflector = new Ember.Inflector({
+  Inflector.inflector = new Inflector({
     irregularPairs: [
       ['human', 'humans']
     ]

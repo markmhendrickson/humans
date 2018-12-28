@@ -1,25 +1,15 @@
 import Component from '@ember/component';
-import blockstack from 'npm:blockstack';
+import { inject as service } from '@ember/service';
 
-// Adapted from https://github.com/KasperTidemann/ember-contenteditable-view/blob/master/ember-contenteditable-view.js
+/**
+ * Component adapted from https://github.com/KasperTidemann/ember-contenteditable-view/blob/master/ember-contenteditable-view.js
+ */
 export default Component.extend({
   attributeBindings: ['contenteditable', 'placeholder', 'spellcheck'],
   contenteditable: 'true',
   isUserTyping: false,
+  store: service(),
 
-  // Processors:
-  processValue: function() {
-    if (!this.get('isUserTyping') && this.get('value')) {
-      return this.setContent();
-    }
-  },
-
-  // Observers:
-  valueObserver: (function() {
-    Ember.run.once(this, 'processValue');
-  }).observes('value', 'isUserTyping'),
-
-  // Events:
   didInsertElement: function() {
     return this.setContent();
   },
@@ -38,11 +28,21 @@ export default Component.extend({
     this.set('value', this.$().text());
 
     if (this.get('model')) {
-      this.get('model').save();
+      this.get('store').queueSave(this.get('model'));
+    }
+  },
+
+  processValue: function() {
+    if (!this.get('isUserTyping') && this.get('value')) {
+      return this.setContent();
     }
   },
 
   setContent: function() {
     return this.$().html(Ember.Handlebars.Utils.escapeExpression(this.get('value')));
-  }
+  },
+
+  valueObserver: (function() {
+    Ember.run.once(this, 'processValue');
+  }).observes('value', 'isUserTyping')
 });

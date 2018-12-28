@@ -1,10 +1,11 @@
 import DS from 'ember-data';
 import blockstack from 'npm:blockstack';
 import Ember from 'ember';
+import Inflector from 'ember-inflector';
 
 export default DS.JSONAPIAdapter.extend({
   createRecord(store, type, snapshot) {
-    let path = `${Ember.Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`;
+    let path = `${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`;
     let data = {};
     let serializer = store.serializerFor(type.modelName);
     let url = this.buildURL(type.modelName, null, snapshot, 'createRecord');
@@ -22,7 +23,7 @@ export default DS.JSONAPIAdapter.extend({
 
   findRecord(store, type, id, snapshot) {
     return new Promise((resolve, reject) => {
-      let path = `${Ember.Inflector.inflector.pluralize(type.modelName)}/${id}`;
+      let path = `${Inflector.inflector.pluralize(type.modelName)}/${id}`;
 
       blockstack.getFile(path, {
         decrypt: false,
@@ -34,6 +35,6 @@ export default DS.JSONAPIAdapter.extend({
   },
 
   updateRecord(store, type, snapshot) {
-    this.createRecord(store, type, snapshot);
+    return this.createRecord(store, type, snapshot);
   }
 });
