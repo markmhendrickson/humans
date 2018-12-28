@@ -1,7 +1,8 @@
 {{#if session.authenticated}}
   {{store-indicator}}
   {{edit-profile-welcome}}
-  {{cover-section human=model}}
+  {{cover-section human=session.human}}
+  {{session.human.blockstackName}}
 {{else}}
   {{app-intro-section}}
 {{/if}}

@@ -1,0 +1,37 @@
+<div>
+  <h1>Customize your profile URL</h1>
+  <p>Your profile is always available publicly at this address:</p>
+  <pre>{{human.profileUrl}}</pre>
+  <p>However, if you'd like to make your profile available on your own domain as well, simply add the following <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts">DNS records</a> to the account with which you manage the domain (e.g. Domain.com, GoDaddy, Namecheap):</p>
+  <ul>
+    <li>"A" record should contain <code>{{ipAddress}}</code></li>
+    <li>"TXT" record should contain <code>blockstack={{human.blockstackName}}</code></li>
+    <li>"CNAME" record for <code>www</code> should contain <code>{{domain}}</code> (optional)</li>
+  </ul>
+  <p>For example, to make your profile available at <code>example.com</code> and <code>www.example.com</code>, add the following records:</p>
+  <table>
+    <thead>
+      <th>Type</th>
+      <th>Hostname</th>
+      <th>Value</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A</td>
+        <td>example.com</td>
+        <td>{{ipAddress}}</td>
+      </tr>
+      <tr>
+        <td>TXT</td>
+        <td>example.com</td>
+        <td>blockstack={{human.blockstackName}}</td>
+      </tr>
+      <tr>
+        <td>CNAME</td>
+        <td>www</td>
+        <td>{{domain}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Once making these changes, please wait up to 24 hours for them to take effect.</p>
+</div>

@@ -146,6 +146,19 @@ section {
   &.empty {
     display: none !important;
   }
+
+  &.hero {
+    .standard-hero;
+  }
+
+  &.page {
+    margin: auto;
+    max-width: 50em;
+
+    h1 {
+      margin-bottom: 1em;
+    }
+  }
 }
 
 small {
@@ -160,12 +173,16 @@ code {
 }
 
 pre {
-  background: rgba(0,0,0,0.03);
+  .standard-selection;
+  .standard-font-family;
+  border: 1px solid rgba(0,0,0,0.1);
   box-sizing: border-box;
-  font-size: 0.8em;
-  margin: 3em 0;
-  padding: 2em;
+  font-size: 0.9em;
+  letter-spacing: inherit;
+  margin: 48px 0;
+  padding: 16px;
   overflow: auto;
+  text-align: center;
   width: 100%;
 }
 

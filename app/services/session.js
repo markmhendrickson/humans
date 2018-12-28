@@ -1,3 +1,4 @@
+import DS from 'ember-data';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 import blockstack from 'npm:blockstack';
@@ -21,14 +22,16 @@ export default Service.extend({
   human: computed('authenticated', function() {
     if (!this.get('authenticated')) { return; }
 
-    return new Promise((resolve, reject) => {
-      this.get('store').findRecord('human', this.get('userId')).then(resolve).catch((error) => {
-        this.get('store').unloadRecord(this.get('store').getReference('human', this.get('userId')).internalModel); // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
+    return DS.PromiseObject.create({
+      promise: new Promise((resolve, reject) => {
+        this.get('store').findRecord('human', this.get('userId')).then(resolve).catch((error) => {
+          this.get('store').unloadRecord(this.get('store').getReference('human', this.get('userId')).internalModel); // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
 
-        resolve(this.get('store').createRecord('human', {
-          id: this.get('userId')
-        }));
-      });
+          resolve(this.get('store').createRecord('human', {
+            id: this.get('userId')
+          }));
+        });
+      })
     });
   }),
 
