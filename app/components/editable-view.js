@@ -1,6 +1,8 @@
 import Component from '@ember/component';
+import Ember from 'ember';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { once } from '@ember/runloop';
 
 /**
  * Component adapted from https://github.com/KasperTidemann/ember-contenteditable-view/blob/master/ember-contenteditable-view.js
@@ -29,7 +31,7 @@ export default Component.extend({
     }
   },
 
-  keyUp: function(event) {
+  keyUp: function() {
     this.set('value', this.$().text());
 
     if (this.get('model')) {
@@ -48,6 +50,6 @@ export default Component.extend({
   },
 
   valueObserver: (function() {
-    Ember.run.once(this, 'processValue');
+    once(this, 'processValue');
   }).observes('value', 'isUserTyping')
 });

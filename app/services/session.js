@@ -24,11 +24,11 @@ export default Service.extend({
   }),
 
   findOrCreateHuman: computed('authenticated', function() {
-    if (!this.get('authenticated')) { return; }
+    if (!this.get('authenticated')) { return; }
 
     return DS.PromiseObject.create({
-      promise: new Promise((resolve, reject) => {
-        this.get('store').findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch((error) => {
+      promise: new Promise((resolve) => {
+        this.get('store').findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch(() => {
           this.get('store').unloadRecord(this.get('store').getReference('human', this.get('userId')).internalModel); // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
 
           resolve(this.get('store').createRecord('human', {

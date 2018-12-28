@@ -1,12 +1,10 @@
-import AppAdapter from 'humans/adapters/application';
-import { computed } from '@ember/object';
 import DS from 'ember-data';
 import PQueue from 'npm:p-queue';
 
 export default DS.Store.extend({
   init: function() {
     this.set('queue', new PQueue());
-    return this._super.apply(this, arguments);
+    return this._super(arguments);
   },
 
   queueSave: function(record) {

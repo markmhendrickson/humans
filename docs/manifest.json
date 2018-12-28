@@ -1,6 +1,6 @@
 {
   "name": "Humans",
-  "start_url": "https://humans.name",
+  "start_url": "127.0.0.1:4200",
   "description": "Create an independent profile on the web within minutes",
   "icons": [{
     "src": "https://s3-us-west-1.amazonaws.com/humans-app/humans-icon.svg",
