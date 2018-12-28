@@ -1,0 +1,1220 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0ISg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(https://fonts.gstatic.com/s/ubuntumono/v7/KFOjCneDtsqEr0keqCMhbCc6CsE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Libre Baskerville'), local('LibreBaskerville-Regular'), url(https://fonts.gstatic.com/s/librebaskerville/v5/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxY.ttf) format('truetype');
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.subheader {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 24px;
+  line-height: 1.5em;
+  margin-top: 24px;
+}
+@media (max-width: 65em) {
+  .subheader {
+    font-size: 20px;
+    margin: 16px 16px 0 16px;
+  }
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+blockquote {
+  cursor: text;
+  user-select: text;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+  font-style: italic;
+  margin: 2em 0;
+  padding: 1em;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+blockquote::selection,
+blockquote *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+blockquote:first-child {
+  margin-top: 0;
+}
+@media (min-width: 40em) {
+  blockquote {
+    background: rgba(0, 0, 0, 0.02);
+    border: none;
+    margin: 2em 0 3em 0;
+    padding: 2em;
+  }
+}
+blockquote p {
+  text-align: left;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+body {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  backface-visibility: hidden;
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  min-width: 320px;
+  cursor: default;
+  overscroll-behavior: none;
+  padding-top: 4em;
+  text-rendering: geometricPrecision;
+  -webkit-tap-highlight-color: transparent;
+}
+body::selection,
+body *::selection {
+  background: none;
+}
+button {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 1em 4em 1em 4em;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  width: calc(100% - 64px);
+}
+button:focus {
+  outline: none;
+  border-color: #0149ff;
+  color: #0149ff !important;
+  transform: scale(1.05);
+}
+@media (min-width: 40em) {
+  button {
+    font-size: 1em;
+    width: auto;
+  }
+}
+@media (hover: hover) {
+  button:hover {
+    border-color: #0149ff;
+    color: #0149ff !important;
+    transform: scale(1.05);
+  }
+}
+div {
+  box-sizing: border-box;
+  position: relative;
+}
+h1 {
+  cursor: text;
+  user-select: text;
+  font-family: "Libre Baskerville", serif;
+  font-weight: normal;
+  box-sizing: border-box;
+  font-size: 26px;
+  margin: auto;
+  padding: 0 16px;
+}
+h1::selection,
+h1 *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+@media (min-width: 40em) {
+  h1 {
+    font-size: 32px;
+    padding: 0;
+  }
+}
+@media (min-width: 60em) {
+  h1 {
+    font-size: 40px;
+  }
+}
+h2 {
+  font-family: "Libre Baskerville", serif;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 26px;
+  line-height: 1.2em;
+  margin: 0 32px;
+}
+@media (min-width: 40em) {
+  h2 {
+    font-size: 2em;
+  }
+}
+h3 {
+  font-family: "Avenir Medium", Avenir-Medium, "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 48px 0 0 0;
+}
+h4 {
+  font-family: "Avenir Medium", Avenir-Medium, "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 1.125em;
+  line-height: 1.2em;
+  margin: 0;
+}
+h5 {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 1em;
+  letter-spacing: 1px;
+  line-height: 1.2em;
+  margin: 0;
+  text-transform: uppercase;
+}
+header {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  color: #79828B;
+  text-transform: uppercase;
+}
+p {
+  cursor: text;
+  user-select: text;
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  line-height: 1.5em;
+  margin: 0;
+  margin-top: 1em;
+}
+p::selection,
+p *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+p:last-of-type {
+  margin-bottom: 0;
+}
+@media (min-width: 40em) {
+  p {
+    font-size: 20px;
+  }
+}
+@media (min-width: 70em) {
+  p {
+    font-size: 22px;
+  }
+}
+p.placeholder {
+  background: rgba(0, 0, 0, 0.1);
+  height: 1em;
+  position: relative;
+}
+p.placeholder:nth-of-type(3) {
+  margin-top: 2em;
+}
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+ul,
+ol,
+li {
+  box-sizing: border-box;
+  line-height: 1em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+section {
+  padding: 64px 0;
+  position: relative;
+}
+@media (min-width: 50em) {
+  section {
+    padding: 96px;
+  }
+}
+section:not(:first-of-type) {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+section.empty {
+  display: none !important;
+}
+section.hero {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+}
+section.hero > div {
+  box-sizing: border-box;
+  position: relative;
+  width: 50%;
+}
+section.hero > div.content {
+  padding: 0 96px;
+  text-align: left;
+}
+section.hero > div h1 {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+section.hero > div p {
+  font-size: 22px;
+}
+section.hero > div p:first-of-type {
+  margin-top: 2em;
+}
+section.hero > div > a,
+section.hero > div button {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 1em 4em 1em 4em;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  width: calc(100% - 64px);
+  border-color: #0149ff;
+  color: #0149ff;
+  margin-top: 3.5em;
+}
+section.hero > div > a:focus,
+section.hero > div button:focus {
+  outline: none;
+  border-color: #0149ff;
+  color: #0149ff !important;
+  transform: scale(1.05);
+}
+@media (min-width: 40em) {
+  section.hero > div > a,
+  section.hero > div button {
+    font-size: 1em;
+    width: auto;
+  }
+}
+@media (hover: hover) {
+  section.hero > div > a:hover,
+  section.hero > div button:hover {
+    border-color: #0149ff;
+    color: #0149ff !important;
+    transform: scale(1.05);
+  }
+}
+section.page {
+  margin: auto;
+  max-width: 50em;
+}
+section.page h1 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+section.page p {
+  font-size: 1.2em;
+}
+small {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.875em;
+}
+code {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 100;
+  box-sizing: border-box;
+  width: 100%;
+}
+pre {
+  cursor: text;
+  user-select: text;
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  font-size: 0.9em;
+  letter-spacing: inherit;
+  margin: 48px 0 56px 0;
+  padding: 16px;
+  overflow: auto;
+  text-align: center;
+  width: 100%;
+}
+pre::selection,
+pre *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+input,
+textarea {
+  cursor: text;
+  user-select: text;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  font-size: 18px;
+  margin-top: 32px;
+  outline: none;
+  padding: 32px;
+  resize: none;
+  width: 100%;
+}
+input::selection,
+textarea::selection,
+input *::selection,
+textarea *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes laptopAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-15%) translateY(-50%);
+  }
+}
+@keyframes mobileAppear {
+  from {
+    opacity: 0;
+    transform: translateX(150%) translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(150%) translateY(-30%);
+  }
+}
+section.app-intro {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+}
+section.app-intro > div {
+  box-sizing: border-box;
+  position: relative;
+  width: 50%;
+}
+section.app-intro > div.content {
+  padding: 0 96px;
+  text-align: left;
+}
+section.app-intro > div h1 {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+section.app-intro > div p {
+  font-size: 22px;
+}
+section.app-intro > div p:first-of-type {
+  margin-top: 2em;
+}
+section.app-intro > div > a,
+section.app-intro > div button {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 1em 4em 1em 4em;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  width: calc(100% - 64px);
+  border-color: #0149ff;
+  color: #0149ff;
+  margin-top: 3.5em;
+}
+section.app-intro > div > a:focus,
+section.app-intro > div button:focus {
+  outline: none;
+  border-color: #0149ff;
+  color: #0149ff !important;
+  transform: scale(1.05);
+}
+@media (min-width: 40em) {
+  section.app-intro > div > a,
+  section.app-intro > div button {
+    font-size: 1em;
+    width: auto;
+  }
+}
+@media (hover: hover) {
+  section.app-intro > div > a:hover,
+  section.app-intro > div button:hover {
+    border-color: #0149ff;
+    color: #0149ff !important;
+    transform: scale(1.05);
+  }
+}
+section.app-intro div.content {
+  animation-delay: 0.75s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: contentAppear;
+  opacity: 0;
+}
+section.app-intro div img {
+  position: absolute;
+  left: 0;
+  max-height: 90vh;
+  max-width: 100%;
+  transform: translateY(-50%);
+  top: 50%;
+}
+section.app-intro div:first-child img.laptop-preview {
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  animation-name: laptopAppear;
+  transform: translateX(-15%) translateY(-50%);
+}
+section.app-intro div:first-child img.mobile-preview {
+  animation-delay: 0.75s;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  animation-name: mobileAppear;
+  opacity: 0;
+  transform: translateX(150%) translateY(-30%);
+  width: 25%;
+}
+section.app-intro div:last-child {
+  padding-left: 0;
+}
+nav.app {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  background: white;
+  border-bottom: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  left: 0;
+  padding: 1em;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+nav.app.hidden {
+  display: none;
+}
+nav.app > a {
+  position: relative;
+  font-family: "Libre Baskerville", serif;
+  outline: none;
+}
+nav.app > a:before {
+  background-color: rgba(1, 73, 255, 0.75);
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.25s ease-in-out;
+}
+nav.app > a:focus {
+  color: #0149ff;
+  outline: none;
+}
+nav.app > a:focus:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+@media (hover: hover) {
+  nav.app > a:active,
+  nav.app > a:focus,
+  nav.app > a:hover {
+    color: #0149ff;
+    outline: none;
+  }
+  nav.app > a:active:before,
+  nav.app > a:focus:before,
+  nav.app > a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+}
+nav.app div {
+  margin-left: auto;
+}
+nav.app div a,
+nav.app div span {
+  font-family: "Avenir Medium", Avenir-Medium, "Raleway", sans-serif;
+  font-weight: 500;
+  color: #0149ff;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  color: black;
+}
+nav.app div a:before,
+nav.app div span:before {
+  background-color: rgba(1, 73, 255, 0.75);
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.25s ease-in-out;
+}
+@media (hover: hover) {
+  nav.app div a:active,
+  nav.app div span:active,
+  nav.app div a:focus,
+  nav.app div span:focus,
+  nav.app div a:hover,
+  nav.app div span:hover {
+    color: #0149ff;
+    outline: none;
+  }
+  nav.app div a:active:before,
+  nav.app div span:active:before,
+  nav.app div a:focus:before,
+  nav.app div span:focus:before,
+  nav.app div a:hover:before,
+  nav.app div span:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+}
+nav.app div a:hover,
+nav.app div span:hover {
+  color: #0149ff;
+}
+nav.app div a:not(:last-child),
+nav.app div span:not(:last-child) {
+  margin-right: 2em;
+}
+nav.app ~ section.hero {
+  min-height: calc(100vh - 8em);
+}
+@keyframes contentAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes blockstackAppear1 {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-70%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-60%);
+  }
+}
+@keyframes blockstackAppear2 {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-30%);
+  }
+}
+section.blockstack-intro {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+}
+section.blockstack-intro > div {
+  box-sizing: border-box;
+  position: relative;
+  width: 50%;
+}
+section.blockstack-intro > div.content {
+  padding: 0 96px;
+  text-align: left;
+}
+section.blockstack-intro > div h1 {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+section.blockstack-intro > div p {
+  font-size: 22px;
+}
+section.blockstack-intro > div p:first-of-type {
+  margin-top: 2em;
+}
+section.blockstack-intro > div > a,
+section.blockstack-intro > div button {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 1em 4em 1em 4em;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  width: calc(100% - 64px);
+  border-color: #0149ff;
+  color: #0149ff;
+  margin-top: 3.5em;
+}
+section.blockstack-intro > div > a:focus,
+section.blockstack-intro > div button:focus {
+  outline: none;
+  border-color: #0149ff;
+  color: #0149ff !important;
+  transform: scale(1.05);
+}
+@media (min-width: 40em) {
+  section.blockstack-intro > div > a,
+  section.blockstack-intro > div button {
+    font-size: 1em;
+    width: auto;
+  }
+}
+@media (hover: hover) {
+  section.blockstack-intro > div > a:hover,
+  section.blockstack-intro > div button:hover {
+    border-color: #0149ff;
+    color: #0149ff !important;
+    transform: scale(1.05);
+  }
+}
+section.blockstack-intro div.content {
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: contentAppear;
+  opacity: 0;
+}
+section.blockstack-intro div img {
+  position: absolute;
+  right: 0;
+  max-height: 90vh;
+  max-width: 100%;
+  transform: translateY(-50%);
+  top: 50%;
+}
+section.blockstack-intro div:last-child img:first-child {
+  animation-delay: 0.25s;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  animation-name: blockstackAppear1;
+  max-width: 450px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-60%);
+  z-index: 10;
+}
+section.blockstack-intro div:last-child img:last-child {
+  animation-delay: 1.25s;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+  animation-name: blockstackAppear2;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-30%);
+  max-width: 371px;
+  z-index: 11;
+}
+section.blockstack-intro div:last-child {
+  padding-left: 0;
+}
+section.cover {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  opacity: 0;
+}
+section.cover > div {
+  box-sizing: border-box;
+  position: relative;
+  width: 50%;
+}
+section.cover > div.content {
+  padding: 0 96px;
+  text-align: left;
+}
+section.cover > div h1 {
+  font-size: 2em;
+  line-height: 1.5em;
+}
+section.cover > div p {
+  font-size: 22px;
+}
+section.cover > div p:first-of-type {
+  margin-top: 2em;
+}
+section.cover > div > a,
+section.cover > div button {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 1em 4em 1em 4em;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  width: calc(100% - 64px);
+  border-color: #0149ff;
+  color: #0149ff;
+  margin-top: 3.5em;
+}
+section.cover > div > a:focus,
+section.cover > div button:focus {
+  outline: none;
+  border-color: #0149ff;
+  color: #0149ff !important;
+  transform: scale(1.05);
+}
+@media (min-width: 40em) {
+  section.cover > div > a,
+  section.cover > div button {
+    font-size: 1em;
+    width: auto;
+  }
+}
+@media (hover: hover) {
+  section.cover > div > a:hover,
+  section.cover > div button:hover {
+    border-color: #0149ff;
+    color: #0149ff !important;
+    transform: scale(1.05);
+  }
+}
+section.cover > div {
+  width: 100%;
+}
+section.cover h1 {
+  cursor: text;
+  user-select: text;
+  font-weight: normal;
+  box-sizing: border-box;
+  font-size: 26px;
+  margin: auto;
+  padding: 0 16px;
+  font-family: "Libre Baskerville", serif;
+}
+section.cover h1::selection,
+section.cover h1 *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+@media (min-width: 40em) {
+  section.cover h1 {
+    font-size: 32px;
+    padding: 0;
+  }
+}
+@media (min-width: 60em) {
+  section.cover h1 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 65em) {
+  section.cover h1 {
+    padding: 0 16px;
+  }
+}
+section.cover div.subheader {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 24px;
+  line-height: 1.5em;
+  margin-top: 24px;
+}
+@media (max-width: 65em) {
+  section.cover div.subheader {
+    font-size: 20px;
+    margin: 16px 16px 0 16px;
+  }
+}
+section.cover h1,
+section.cover div.subheader {
+  cursor: text;
+  user-select: text;
+  outline: none;
+}
+section.cover h1::selection,
+section.cover div.subheader::selection,
+section.cover h1 *::selection,
+section.cover div.subheader *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+section.cover h1[contenteditable=true]:empty:before,
+section.cover div.subheader[contenteditable=true]:empty:before {
+  color: rgba(0, 0, 0, 0.5);
+  content: attr(placeholder);
+  display: block;
+}
+section.cover img {
+  display: none;
+  max-height: 850px;
+  margin: auto;
+  margin-top: -1px;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+  z-index: 1;
+}
+@media (max-width: 65em) {
+  section.cover img {
+    margin-top: 48px;
+  }
+}
+@media (min-width: 1600px) {
+  section.cover img {
+    height: 850px;
+    width: 1400px;
+  }
+}
+section.cover.hasImage img {
+  display: block;
+}
+@media (max-width: 69.9em) {
+  section.cover.hasNoImage img {
+    display: block;
+  }
+}
+section.cover nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  margin-top: 56px;
+  overflow: hidden;
+}
+@media (max-width: 65em) {
+  section.cover nav {
+    display: none;
+  }
+}
+section.cover nav a {
+  font-family: "Avenir Medium", Avenir-Medium, "Raleway", sans-serif;
+  font-weight: 500;
+  color: #0149ff;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  color: black;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 32px;
+  text-transform: uppercase;
+  transition: color 0.25s, transform 0.25s;
+}
+section.cover nav a:before {
+  background-color: rgba(1, 73, 255, 0.75);
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.25s ease-in-out;
+}
+@media (hover: hover) {
+  section.cover nav a:active,
+  section.cover nav a:focus,
+  section.cover nav a:hover {
+    color: #0149ff;
+    outline: none;
+  }
+  section.cover nav a:active:before,
+  section.cover nav a:focus:before,
+  section.cover nav a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+}
+section.customize-url-section {
+  padding: 4em;
+  text-align: left;
+}
+section.customize-url-section a {
+  font-family: "Avenir Medium", Avenir-Medium, "Raleway", sans-serif;
+  font-weight: 500;
+  color: #0149ff;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+}
+section.customize-url-section a:before {
+  background-color: rgba(1, 73, 255, 0.75);
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.25s ease-in-out;
+}
+@media (hover: hover) {
+  section.customize-url-section a:active,
+  section.customize-url-section a:focus,
+  section.customize-url-section a:hover {
+    color: #0149ff;
+    outline: none;
+  }
+  section.customize-url-section a:active:before,
+  section.customize-url-section a:focus:before,
+  section.customize-url-section a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+}
+section.customize-url-section code {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 0.25em;
+  padding: 0.25em 0.75em;
+}
+section.customize-url-section h1 {
+  margin-bottom: 1.5em;
+}
+section.customize-url-section pre {
+  font-size: 1.1em;
+}
+section.customize-url-section table {
+  cursor: text;
+  user-select: text;
+  background: rgba(0, 0, 0, 0.1);
+  border-spacing: 1px;
+  font-size: 1.1em;
+  margin: 40px 0 56px 0;
+  width: 100%;
+}
+section.customize-url-section table::selection,
+section.customize-url-section table *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+section.customize-url-section table th,
+section.customize-url-section table td {
+  background: white;
+  padding: 0.5em 1em;
+}
+section.customize-url-section ul {
+  margin: 2em 4em 3em 2em;
+}
+section.customize-url-section ul li {
+  cursor: text;
+  user-select: text;
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  line-height: 1.5em;
+  margin: 0;
+  margin-top: 1em;
+  font-size: inherit;
+  list-style: square;
+  margin-top: 2em;
+}
+section.customize-url-section ul li::selection,
+section.customize-url-section ul li *::selection {
+  background: rgba(22, 104, 185, 0.25);
+}
+section.customize-url-section ul li:last-of-type {
+  margin-bottom: 0;
+}
+@media (min-width: 40em) {
+  section.customize-url-section ul li {
+    font-size: 20px;
+  }
+}
+@media (min-width: 70em) {
+  section.customize-url-section ul li {
+    font-size: 22px;
+  }
+}
+@media (min-width: 70em) {
+  section.customize-url-section ul li {
+    font-size: 1.2em;
+  }
+}
+@keyframes tooltipAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes tooltipDisappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+div.edit-profile-welcome {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: tooltipAppear;
+  background: white;
+  box-shadow: 0 24px 40px 0 #F2F2F2;
+  box-sizing: border-box;
+  left: 4em;
+  padding: 4em;
+  position: fixed;
+  text-align: left;
+  top: 8em;
+  max-width: 26em;
+  z-index: 100;
+}
+div.edit-profile-welcome.hidden {
+  visibility: hidden;
+}
+div.edit-profile-welcome h2 {
+  font-family: "Avenir Medium", Avenir-Medium, "Raleway", sans-serif;
+  font-weight: 500;
+  margin: 0;
+  margin-bottom: 1em;
+}
+div.edit-profile-welcome p {
+  font-size: 1em;
+}
+div.edit-profile-welcome button {
+  font-family: "Avenir Light", Avenir-Light, "Raleway", sans-serif;
+  font-weight: 100;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 1em 4em 1em 4em;
+  position: relative;
+  text-transform: uppercase;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  width: calc(100% - 64px);
+  border-color: #0149ff;
+  color: #0149ff;
+  margin-top: 2em;
+}
+div.edit-profile-welcome button:focus {
+  outline: none;
+  border-color: #0149ff;
+  color: #0149ff !important;
+  transform: scale(1.05);
+}
+@media (min-width: 40em) {
+  div.edit-profile-welcome button {
+    font-size: 1em;
+    width: auto;
+  }
+}
+@media (hover: hover) {
+  div.edit-profile-welcome button:hover {
+    border-color: #0149ff;
+    color: #0149ff !important;
+    transform: scale(1.05);
+  }
+}
+@media (min-width: 40em) {
+  div.edit-profile-welcome button {
+    width: 100%;
+  }
+}
+div.store-indicator {
+  bottom: 1em;
+  display: none;
+  opacity: 0.5;
+  position: fixed;
+  right: 1em;
+  z-index: 100;
+}
+div.store-indicator.hasContent {
+  display: block;
+}
+/*# sourceMappingURL=/assets/humans.css.map */

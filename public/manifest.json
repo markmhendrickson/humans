@@ -1,9 +1,9 @@
 {
   "name": "Humans",
   "start_url": "127.0.0.1:4200",
-  "description": "Not Gods, nor animals, nor machines",
+  "description": "Create an independent profile on the web within minutes",
   "icons": [{
-    "src": "https://s3-us-west-1.amazonaws.com/blockstack-sandbox/blockstack-bucket.svg",
+    "src": "https://s3-us-west-1.amazonaws.com/humans-app/humans-icon.svg",
     "sizes": "192x192",
     "type": "image/png"
   }]

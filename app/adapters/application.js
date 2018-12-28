@@ -23,14 +23,15 @@ export default DS.JSONAPIAdapter.extend({
 
   findRecord(store, type, id, snapshot) {
     return new Promise((resolve, reject) => {
-      let path = `${Inflector.inflector.pluralize(type.modelName)}/${id}`;
-
-      blockstack.getFile(path, {
+      blockstack.getFile(`${Inflector.inflector.pluralize(type.modelName)}/${id}`, {
         decrypt: false,
-        //username: store.blockstackName
+        username: store.blockstackName
       }).then((file) => {
         resolve(JSON.parse(file));
-      }).catch(reject);
+      }).catch((error) => {
+        console.error(error);
+        reject();
+      });
     });
   },
 

@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 /**
@@ -6,9 +7,13 @@ import { inject as service } from '@ember/service';
  */
 export default Component.extend({
   attributeBindings: ['contenteditable', 'placeholder', 'spellcheck'],
-  contenteditable: 'true',
+  editable: false,
   isUserTyping: false,
   store: service(),
+
+  contenteditable: computed(function() {
+    return this.get('editable') ? 'true' : 'false';
+  }),
 
   didInsertElement: function() {
     return this.setContent();

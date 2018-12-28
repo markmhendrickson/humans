@@ -16,15 +16,19 @@ export default Service.extend({
   }),
 
   deauthenticate() {
-    blockstack.signUserOut(window ? window.location.host : null);
+    blockstack.signUserOut(window ? window.location.origin : null);
   },
 
-  human: computed('authenticated', function() {
+  human: computed('findOrCreateHuman', function() {
+    return this.get('findOrCreateHuman.content') ? this.get('findOrCreateHuman.content') : this.get('findOrCreateHuman');
+  }),
+
+  findOrCreateHuman: computed('authenticated', function() {
     if (!this.get('authenticated')) { return; }
 
     return DS.PromiseObject.create({
       promise: new Promise((resolve, reject) => {
-        this.get('store').findRecord('human', this.get('userId')).then(resolve).catch((error) => {
+        this.get('store').findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch((error) => {
           this.get('store').unloadRecord(this.get('store').getReference('human', this.get('userId')).internalModel); // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
 
           resolve(this.get('store').createRecord('human', {
@@ -43,7 +47,11 @@ export default Service.extend({
     return blockstack.loadUserData();
   }),
 
-  userId: computed(function() {
+  userId: computed('userData', function() {
     return this.get('userData.identityAddress');
+  }),
+
+  blockstackName: computed('userData', function() {
+    return this.get('userData.username');
   })
 });
