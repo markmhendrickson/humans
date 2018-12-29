@@ -8,7 +8,31 @@
   }
 }
 
-@keyframes laptopAppear {
+@keyframes laptopAppearNarrow {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) translateY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes mobileAppearNarrow {
+  from {
+    opacity: 0;
+    transform: translateX(25%) translateY(65%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(25%) translateY(45%);
+  }
+}
+
+@keyframes laptopAppearWide {
   from {
     opacity: 0;
     transform: translateX(-100%) translateY(-50%);
@@ -16,64 +40,83 @@
 
   to {
     opacity: 1;
-    transform: translateX(-15%) translateY(-50%);
+    transform: translateX(0) translateY(-50%);
   }
 }
 
-@keyframes mobileAppear {
+@keyframes mobileAppearWide {
   from {
     opacity: 0;
-    transform: translateX(150%) translateY(-20%);
+    transform: translateX(220%) translateY(-20%);
   }
 
   to {
     opacity: 1;
-    transform: translateX(150%) translateY(-30%);
+    transform: translateX(220%) translateY(-30%);
   }
 }
 
 section.app-intro {
   .standard-hero;
 
-  div {
-    &.content {
-      animation-delay: 0.75s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-      animation-name: contentAppear;
-      opacity: 0;
+  div.content {
+    animation-delay: 0.75s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: contentAppear;
+    padding: 2em;
+    opacity: 0;
+
+    @media (min-width: 900px) {
+      padding: 0;
+    }
+  }
+
+  div.images {
+    height: 24vh;
+
+    @media (min-width: 900px) {
+      height: auto;
     }
 
     img {
       position: absolute;
-      left: 0;
-      max-height: 90vh;
+      left: 50%;
+      top: 0;
       max-width: 100%;
-      transform: translateY(-50%);
-      top: 50%;
-    }
 
-    &:first-child {
-      img.laptop-preview {
-        animation-duration: 0.75s;
-        animation-fill-mode: forwards;
-        animation-name: laptopAppear;
-        transform: translateX(-15%) translateY(-50%);
+      @media (min-width: 900px) {
+        left: 0;
+        transform: translateY(-50%);
+        top: 50%;
       }
 
-      img.mobile-preview {
+      &.laptop-preview {
+        animation-duration: 0.75s;
+        animation-fill-mode: forwards;
+        animation-name: laptopAppearNarrow;
+        height: 100%;
+
+        @media (min-width: 900px) {
+          animation-name: laptopAppearWide;
+          height: auto;
+        }
+      }
+
+      &.mobile-preview {
         animation-delay: 0.75s;
         animation-duration: 0.75s;
         animation-fill-mode: forwards;
-        animation-name: mobileAppear;
+        animation-name: mobileAppearNarrow;
+        height: 75%;
         opacity: 0;
-        transform: translateX(150%) translateY(-30%);
-        width: 25%;
-      }
-    }
 
-    &:last-child {
-      padding-left: 0;
+        @media (min-width: 900px) {
+          animation-name: mobileAppearWide;
+          height: auto;
+          width: 25%;
+        }
+      }
     }
   }
 }

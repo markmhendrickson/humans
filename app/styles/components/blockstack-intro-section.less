@@ -35,50 +35,63 @@
 section.blockstack-intro {
   .standard-hero;
 
-  div {
-    &.content {
-      animation-delay: 1s;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-      animation-name: contentAppear;
-      opacity: 0;
+  div.content {
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: contentAppear;
+    opacity: 0;
+
+    p {
+      margin-top: 1em;
+    }
+  }
+
+  div.images {
+    height: 24vh;
+
+    @media (min-width: 900px) {
+      height: auto;
     }
 
     img {
       position: absolute;
-      right: 0;
-      max-height: 90vh;
-      max-width: 100%;
-      transform: translateY(-50%);
-      top: 50%;
-    }
 
-    &:last-child {
-      img:first-child {
+      @media (min-width: 900px) {
+        max-height: 90vh;
+        max-width: 100%;
+        right: 0;
+        transform: translateY(-50%);
+        top: 50%;
+      }
+
+      &:first-child {
         animation-delay: 0.25s;
         animation-duration: 0.75s;
         animation-fill-mode: forwards;
         animation-name: blockstackAppear1;
-        max-width: 450px;
         opacity: 0;
-        transform: translateX(-50%) translateY(-60%);
         z-index: 10;
+
+        @media (min-width: 900px) {
+          transform: translateX(-50%) translateY(-60%);
+          max-width: 450px;
+        }
       }
 
-      img:last-child {
+      &:last-child {
         animation-delay: 1.25s;
         animation-duration: 0.75s;
         animation-fill-mode: forwards;
         animation-name: blockstackAppear2;
         opacity: 0;
-        transform: translateX(-50%) translateY(-30%);
-        max-width: 371px;
         z-index: 11;
-      }
-    }
 
-    &:last-child {
-      padding-left: 0;
+        @media (min-width: 900px) {
+          transform: translateX(-50%) translateY(-30%);
+          max-width: 371px;
+        }
+      }
     }
   }
 }

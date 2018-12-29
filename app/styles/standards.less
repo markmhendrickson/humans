@@ -58,6 +58,7 @@
   letter-spacing: 1px;
   padding: 1em 4em 1em 4em;
   position: relative;
+  text-align: center;
   text-transform: uppercase;
   transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
   width: ~"calc(100% - 64px)";
@@ -195,7 +196,7 @@
   box-sizing: border-box;
   font-size: 26px;
   margin: auto;
-  padding: 0 16px;
+  padding: 0;
 
   @media (min-width: 40em) {
     font-size: 32px;
@@ -223,37 +224,61 @@
 .standard-hero {
   align-items: center;
   box-sizing: border-box;
-  display: flex;
+  display: block;
   justify-content: center;
   min-height: 100vh;
   padding: 0;
 
+  @media (min-width: 900px) {
+    display: flex;
+    padding: 2em;
+  }
+
+  @media (min-width: 1100px) and (min-height: 750px) {
+    padding: 4em;
+  }
+
   >div {
     box-sizing: border-box;
+    max-width: 600px;
+    margin: 2em auto;
     position: relative;
-    width: 50%;
+
+    @media (min-width: 900px) {
+      margin: 2em;
+      width: 50%;
+    }
 
     &.content {
-      padding: 0 96px;
       text-align: left;
     }
 
     h1 {
-      font-size: 2em;
+      font-size: 1.6em;
       line-height: 1.5em;
+      margin-bottom: 1em;
+
+      @media (min-width: 900px) {
+        font-size: 2em;
+      }
     }
 
     p {
-      font-size: 22px;
+      font-size: 18px;
 
-      &:first-of-type {
-        margin-top: 2em;
+      @media (min-width: 900px) {
+        font-size: 22px;
       }
     }
 
     >a, button {
       .standard-button-primary;
-      margin-top: 3.5em;
+      margin-top: 3em;
+      width: 100%;
+
+      @media (min-width: 900px) {
+        width: auto;
+      }
     }
   }
 }
