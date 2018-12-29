@@ -191,20 +191,17 @@
 
 .standard-h1 {
   .standard-selection;
-  font-family: "Libre Baskerville", serif;
-  font-weight: normal;
   box-sizing: border-box;
-  font-size: 26px;
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.6em;
+  font-weight: normal;
+  line-height: 1.5em;
   margin: auto;
+  margin-bottom: 1em;
   padding: 0;
 
-  @media (min-width: 40em) {
-    font-size: 32px;
-    padding: 0;
-  }
-
-  @media (min-width: 60em) {
-    font-size: 40px;
+  @media (min-width: 900px) {
+    font-size: 2em;
   }
 }
 
@@ -250,16 +247,37 @@
     }
 
     &.content {
+      animation-delay: 0.75s;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-name: contentAppear;
+      padding: 2em;
+      opacity: 0;
       text-align: left;
-    }
-
-    h1 {
-      font-size: 1.6em;
-      line-height: 1.5em;
-      margin-bottom: 1em;
 
       @media (min-width: 900px) {
-        font-size: 2em;
+        padding: 0;
+      }
+    }
+
+    &.images {
+      height: 25vh;
+
+      @media (min-width: 900px) {
+        height: auto;
+      }
+
+      img {
+        animation-duration: 0.75s;
+        animation-fill-mode: forwards;
+        left: 50%;
+        max-width: 100%;
+        position: absolute;
+        top: 0;
+
+        @media (min-width: 900px) {
+          left: 0;
+        }
       }
     }
 
@@ -295,7 +313,8 @@
 
   @media (max-width: 65em) {
     font-size: 20px;
-    margin: 16px 16px 0 16px;
+    margin: 16px 32px;
+    margin-bottom: 0;
   }
 }
 

@@ -6,16 +6,21 @@ nav.app {
   border-bottom: 1px solid @border-color;
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   left: 0;
-  padding: 1em;
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
   width: 100%;
 
   &.hidden {
     display: none;
+  }
+
+  a, span {
+    display: inline-block;
+    padding: 1em;
   }
 
   >a {
@@ -46,8 +51,10 @@ nav.app {
         color: @standard-color-link;
       }
 
-      &:not(:last-child) {
-        margin-right: 2em;
+      @media (max-width: 900px) {
+        &:not(:last-child) {
+          margin-right: 1em;
+        }
       }
     }
   }

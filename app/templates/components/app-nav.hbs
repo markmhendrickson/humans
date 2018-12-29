@@ -1,10 +1,11 @@
 {{#link-to "index" tabindex="1"}}Humans.{{/link-to}}
 <div>
   {{#if session.unauthenticated}}
-    <span onclick={{action "authenticate"}} tabindex="2">Manage existing profile</span>
+    <a title="View on GitHub" href="https://github.com/markmhx/humans"><i class="fab fa-github"></i></a>
+    <span title="Sign in" onclick={{action "authenticate"}} tabindex="2"><i class="fas fa-sign-in-alt"></i></span>
   {{else}}
-    {{#link-to "human" session.human.blockstackName tabindex="2"}}View public profile{{/link-to}}
-    {{#link-to "customize-url" tabindex="3"}}Customize URL{{/link-to}}
-    <span {{action "deauthenticate"}} tabindex="4">Sign out</span>
+    {{#link-to "human" session.human.blockstackName title="View public profile" tabindex="2" target="_blank"}}<i class="far fa-eye"></i>{{/link-to}}
+    {{#link-to "customize-url" tabindex="3" title="Customize URL"}}<i class="fas fa-cog"></i>{{/link-to}}
+    <span {{action "deauthenticate"}} tabindex="4" title="Sign out"><i class="fas fa-sign-out-alt"></i></span>
   {{/if}}
 </div>

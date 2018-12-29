@@ -28,13 +28,19 @@ div.edit-profile-welcome {
   background: white;
   box-shadow: 0 24px 40px 0 #F2F2F2;
   box-sizing: border-box;
-  left: 4em;
-  padding: 4em;
+  left: 0em;
+  padding: 3em;
   position: fixed;
   text-align: left;
-  top: 8em;
+  top: 4em;
   max-width: 26em;
   z-index: 100;
+
+  @media (min-width: 900px) {
+    left: 4em;
+    padding: 4em;
+    top: 8em;
+  }
 
   &.hidden {
     visibility: hidden;
@@ -53,6 +59,7 @@ div.edit-profile-welcome {
   button {
     .standard-button-primary;
     margin-top: 2em;
+    width: 100%;
 
     @media (min-width: 40em) {
       width: 100%;
