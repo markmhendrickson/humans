@@ -990,7 +990,7 @@
     store: Ember.inject.service(),
 
     authenticate() {
-      _npmBlockstack.default.redirectToSignIn();
+      _npmBlockstack.default.redirectToSignIn(undefined, undefined, ['publish_data']);
     },
 
     authenticated: Ember.computed(() => {
@@ -1198,7 +1198,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+96d4af72"});
+            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+26d6fe04"});
           }
         
 //# sourceMappingURL=humans.map

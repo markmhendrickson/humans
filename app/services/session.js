@@ -8,7 +8,7 @@ export default Service.extend({
   store: service(),
 
   authenticate() {
-    blockstack.redirectToSignIn();
+    blockstack.redirectToSignIn(undefined, undefined, ['publish_data']);
   },
 
   authenticated: computed(() => {
