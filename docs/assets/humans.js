@@ -1195,7 +1195,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+e7e7a991"});
+            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+ba80cf5c"});
           }
         
 //# sourceMappingURL=humans.map

@@ -249,6 +249,7 @@ li {
   padding: 0;
 }
 section {
+  overflow: auto;
   padding: 64px 0;
   position: relative;
 }
