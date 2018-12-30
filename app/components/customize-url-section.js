@@ -1,8 +1,9 @@
 import Component from '@ember/component';
+import ENV from 'humans/config/environment';
 
 export default Component.extend({
   classNames: ['customize-url-section'],
-  tagName: 'section',
-  ipAddress: '127.0.0.1',
-  domain: 'humansapp.io'
+  domain: ENV.host.domain,
+  ipAddress: ENV.host.ipAddress,
+  tagName: 'section'
 });

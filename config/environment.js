@@ -1,5 +1,7 @@
 'use strict';
 
+require('park-ranger')();
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'humans',
@@ -21,6 +23,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    host: {
+      ipAddress: process.env.hostIpAddress,
+      domain: process.env.hostDomain
     }
   };
 

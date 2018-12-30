@@ -57,6 +57,7 @@
   "dependencies": {
     "blockstack": "^18.2.0",
     "ember-browserify": "^1.2.2",
-    "p-queue": "^3.0.0"
+    "p-queue": "^3.0.0",
+    "park-ranger": "^1.0.11"
   }
 }
