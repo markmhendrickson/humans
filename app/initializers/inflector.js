@@ -1,6 +1,6 @@
 import Inflector from 'ember-inflector';
 
-export function initialize(/* application */) {
+export function initialize() {
   Inflector.inflector = new Inflector({
     irregularPairs: [
       ['human', 'humans']
