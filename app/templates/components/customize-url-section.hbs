@@ -9,29 +9,31 @@
     <li>"CNAME" record for <code>www</code> should contain <code>{{domain}}</code> (optional)</li>
   </ul>
   <p>For example, to make your profile available at <code>example.com</code> and <code>www.example.com</code>, add the following records:</p>
-  <table>
-    <thead>
-      <th>Type</th>
-      <th>Hostname</th>
-      <th>Value</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>A</td>
-        <td>example.com</td>
-        <td>{{ipAddress}}</td>
-      </tr>
-      <tr>
-        <td>TXT</td>
-        <td>example.com</td>
-        <td>blockstack={{human.blockstackName}}</td>
-      </tr>
-      <tr>
-        <td>CNAME</td>
-        <td>www</td>
-        <td>{{domain}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table">
+    <table>
+      <thead>
+        <th>Type</th>
+        <th>Hostname</th>
+        <th>Value</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A</td>
+          <td>example.com</td>
+          <td>{{ipAddress}}</td>
+        </tr>
+        <tr>
+          <td>TXT</td>
+          <td>example.com</td>
+          <td>blockstack={{human.blockstackName}}</td>
+        </tr>
+        <tr>
+          <td>CNAME</td>
+          <td>www</td>
+          <td>{{domain}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <p>Once making these changes, please wait up to 24 hours for them to take effect.</p>
 </div>

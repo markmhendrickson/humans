@@ -5,8 +5,8 @@ a {
 
 blockquote {
   .standard-selection;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: @standard-border;
+  border-top: @standard-border;
   color: rgba(0,0,0,0.75);
   font-style: italic;
   margin: 2em 0;
@@ -45,7 +45,7 @@ body {
   min-width: 320px;
   cursor: default;
   overscroll-behavior: none;
-  padding-top: 4em;
+  padding-top: 55px;
   text-rendering: geometricPrecision;
   -webkit-tap-highlight-color: transparent;
 
@@ -150,20 +150,6 @@ section {
   &.hero {
     .standard-hero;
   }
-
-  &.page {
-    margin: auto;
-    max-width: 50em;
-
-    h1 {
-      font-size: 2em;
-      margin-bottom: 1em;
-    }
-
-    p {
-      font-size: 1.2em;
-    }
-  }
 }
 
 small {
@@ -180,15 +166,22 @@ code {
 pre {
   .standard-selection;
   .standard-font-family;
-  border: 1px solid rgba(0,0,0,0.1);
+  border-bottom: @standard-border;
+  border-top: @standard-border;
   box-sizing: border-box;
   font-size: 0.9em;
   letter-spacing: inherit;
-  margin: 48px 0 56px 0;
-  padding: 16px;
+  margin: 32px 0;
+  padding: 16px 0;
   overflow: auto;
   text-align: center;
   width: 100%;
+
+  @media (min-width: 900px) {
+    border: @standard-border;
+    margin: 48px 0;
+    padding: 16px;
+  }
 }
 
 input, textarea {

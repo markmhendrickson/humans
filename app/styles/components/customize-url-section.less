@@ -1,9 +1,15 @@
 section.customize-url-section {
+  margin: auto;
+  max-width: 50em;
   padding: 2em;
   text-align: left;
 
   @media (min-width: 900px) {
     padding: 4em;
+  }
+
+  p {
+    font-size: 1.2em;
   }
 
   a {
@@ -13,23 +19,30 @@ section.customize-url-section {
   code {
     background: rgba(0,0,0,0.03);
     border-radius: 0.25em;
-    padding: 0.25em 0.75em;
+    padding: 0.25em;
   }
 
   h1 {
-    margin-bottom: 1.5em;
+    @media (min-width: 900px) {
+      margin-bottom: 1.5em;
+    }
   }
 
   pre {
-    font-size: 1.1em;
+    font-size: 1em;
+  }
+
+  div.table {
+    overflow-x: auto;
   }
 
   table {
     .standard-selection;
     background: rgba(0,0,0,0.1);
     border-spacing: 1px;
-    font-size: 1.1em;
-    margin: 40px 0 56px 0;
+    font-size: 1em;
+    margin: 40px 0 32px 0;
+    overflow-x: auto;
     width: 100%;
 
     th, td {
@@ -39,13 +52,14 @@ section.customize-url-section {
   }
 
   ul {
-    margin: 2em 4em 3em 2em;
+    margin: 2em 4em 2em 2em;
 
     li {
       .standard-paragraph;
-      font-size: inherit;
+      font-size: 1.2em;
       list-style: square;
       margin-top: 2em;
+      overflow-wrap: break-word;
 
       @media (min-width: 70em) {
         font-size: 1.2em;
