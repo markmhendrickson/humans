@@ -50,14 +50,12 @@ section.app-intro {
   .standard-hero;
 
   img.laptop-preview {
-    animation-name: laptopAppearNarrow;
     height: 100%;
     opacity: 0;
     transform: translateX(-100%) translateY(0);
     z-index: 10;
 
     @media (min-width: 900px) {
-      animation-name: laptopAppearWide;
       height: auto;
       transform: translateX(-100%) translateY(-50%);
     }
@@ -65,17 +63,33 @@ section.app-intro {
 
   img.mobile-preview {
     animation-delay: 0.75s;
-    animation-name: mobileAppearNarrow;
     height: 75%;
     opacity: 0;
     transform: translateX(25%) translateY(65%);
     z-index: 11;
 
     @media (min-width: 900px) {
-      animation-name: mobileAppearWide;
       height: auto;
       transform: translateX(220%) translateY(-20%);
       width: 25%;
+    }
+  }
+
+  &.show-images {
+    img.laptop-preview {
+      animation-name: laptopAppearNarrow;
+
+      @media (min-width: 900px) {
+        animation-name: laptopAppearWide;
+      }
+    }
+
+    img.mobile-preview {
+      animation-name: mobileAppearNarrow;
+
+      @media (min-width: 900px) {
+        animation-name: mobileAppearWide;
+      }
     }
   }
 }

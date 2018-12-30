@@ -57,14 +57,12 @@ section.blockstack-intro {
     order: 2;
 
     img.create-blockstack-id {
-      animation-name: blockstackIdAppearNarrow;
       height: 100%;
       opacity: 0;
       transform: translateX(-65%) translateY(-25%);
       z-index: 10;
 
       @media (min-width: 900px) {
-        animation-name: blockstackIdAppearWide;
         height: auto;
         transform: translateX(0) translateY(-70%);
         max-width: 450px;
@@ -73,17 +71,33 @@ section.blockstack-intro {
 
     img.create-blockstack-name {
       animation-delay: 0.75s;
-      animation-name: blockstackNameAppearNarrow;
       height: 70%;
       opacity: 0;
       transform: translateX(-30%) translateY(80%);
       z-index: 11;
 
       @media (min-width: 900px) {
-        animation-name: blockstackNameAppearWide;
         height: auto;
         transform: translateX(30%) translateY(-20%);
         max-width: 371px;
+      }
+    }
+  }
+
+  &.show-images {
+    img.create-blockstack-id {
+      animation-name: blockstackIdAppearNarrow;
+
+      @media (min-width: 900px) {
+        animation-name: blockstackIdAppearWide;
+      }
+    }
+
+    img.create-blockstack-name {
+      animation-name: blockstackNameAppearNarrow;
+
+      @media (min-width: 900px) {
+        animation-name: blockstackNameAppearWide;
       }
     }
   }
