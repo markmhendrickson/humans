@@ -4850,7 +4850,7 @@ define('humans/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('adapters/application.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'adapters/application.js should pass ESLint\n\n');
+    assert.ok(false, 'adapters/application.js should pass ESLint\n\n29:9 - Unexpected console statement. (no-console)');
   });
 
   QUnit.test('app.js', function (assert) {

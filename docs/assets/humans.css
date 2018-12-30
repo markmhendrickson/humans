@@ -1272,7 +1272,7 @@ section.cover nav a:before {
 section.customize-url-section {
   margin: auto;
   max-width: 50em;
-  padding: 2em;
+  padding: 1em;
   text-align: left;
 }
 @media (min-width: 900px) {

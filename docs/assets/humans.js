@@ -27,11 +27,14 @@
     findRecord(store, type, id) {
       return new Promise((resolve, reject) => {
         _npmBlockstack.default.getFile(`${_emberInflector.default.inflector.pluralize(type.modelName)}/${id}`, {
-          decrypt: false
-          //username: store.blockstackName
+          decrypt: false,
+          username: store.blockstackName
         }).then(file => {
           resolve(JSON.parse(file));
-        }).catch(reject);
+        }).catch(error => {
+          console.error(error);
+          reject();
+        });
       });
     },
 
@@ -1195,7 +1198,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+ba80cf5c"});
+            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+96d4af72"});
           }
         
 //# sourceMappingURL=humans.map
