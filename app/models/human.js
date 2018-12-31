@@ -18,9 +18,5 @@ export default Model.extend({
         blockstack.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
       })
     });
-  }),
-
-  profileUrl: computed('blockstackName', function() {
-    return `${window.location.origin}/${this.get('blockstackName')}`;
   })
 });

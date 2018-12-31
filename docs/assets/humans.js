@@ -27,8 +27,8 @@
     findRecord(store, type, id) {
       return new Promise((resolve, reject) => {
         _npmBlockstack.default.getFile(`${_emberInflector.default.inflector.pluralize(type.modelName)}/${id}`, {
-          decrypt: false,
-          username: store.blockstackName
+          decrypt: false
+          //username: store.blockstackName
         }).then(file => {
           resolve(JSON.parse(file));
         }).catch(error => {
@@ -159,7 +159,12 @@
     classNames: ['customize-url-section'],
     domain: _environment.default.host.domain,
     ipAddress: _environment.default.host.ipAddress,
-    tagName: 'section'
+    tagName: 'section',
+    session: Ember.inject.service(),
+
+    profileUrl: Ember.computed(function () {
+      return `https://${this.get('domain')}/${this.get('session.blockstackName')}`;
+    })
   });
 });
 ;define('humans/components/edit-profile-welcome', ['exports'], function (exports) {
@@ -814,10 +819,6 @@
           _npmBlockstack.default.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
         })
       });
-    }),
-
-    profileUrl: Ember.computed('blockstackName', function () {
-      return `${window.location.origin}/${this.get('blockstackName')}`;
     })
   });
 });
@@ -1093,7 +1094,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "LYPqlq49", "block": "{\"symbols\":[],\"statements\":[[4,\"link-to\",[\"index\"],[[\"tabindex\"],[\"1\"]],{\"statements\":[[0,\"Humans.\"]],\"parameters\":[]},null],[0,\"\\n\"],[7,\"div\"],[9],[0,\"\\n\"],[4,\"if\",[[23,[\"session\",\"unauthenticated\"]]],null,{\"statements\":[[0,\"    \"],[7,\"a\"],[11,\"title\",\"View on GitHub\"],[11,\"href\",\"https://github.com/markmhx/humans\"],[9],[7,\"i\"],[11,\"class\",\"fab fa-github\"],[9],[10],[10],[0,\"\\n    \"],[7,\"span\"],[11,\"title\",\"Sign in\"],[12,\"onclick\",[27,\"action\",[[22,0,[]],\"authenticate\"],null]],[11,\"tabindex\",\"2\"],[9],[7,\"i\"],[11,\"class\",\"fas fa-sign-in-alt\"],[9],[10],[10],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"    \"],[4,\"link-to\",[\"human\",[23,[\"session\",\"human\",\"blockstackName\"]]],[[\"title\",\"tabindex\",\"target\"],[\"View public profile\",\"2\",\"_blank\"]],{\"statements\":[[7,\"i\"],[11,\"class\",\"far fa-eye\"],[9],[10]],\"parameters\":[]},null],[0,\"\\n    \"],[4,\"link-to\",[\"customize-url\"],[[\"tabindex\",\"title\"],[\"3\",\"Customize URL\"]],{\"statements\":[[7,\"i\"],[11,\"class\",\"fas fa-cog\"],[9],[10]],\"parameters\":[]},null],[0,\"\\n    \"],[7,\"span\"],[11,\"tabindex\",\"4\"],[11,\"title\",\"Sign out\"],[3,\"action\",[[22,0,[]],\"deauthenticate\"]],[9],[7,\"i\"],[11,\"class\",\"fas fa-sign-out-alt\"],[9],[10],[10],[0,\"\\n\"]],\"parameters\":[]}],[10]],\"hasEval\":false}", "meta": { "moduleName": "humans/templates/components/app-nav.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "2RNPszYc", "block": "{\"symbols\":[],\"statements\":[[4,\"link-to\",[\"index\"],[[\"tabindex\"],[\"1\"]],{\"statements\":[[0,\"Humans.\"]],\"parameters\":[]},null],[0,\"\\n\"],[7,\"div\"],[9],[0,\"\\n\"],[4,\"if\",[[23,[\"session\",\"unauthenticated\"]]],null,{\"statements\":[[0,\"    \"],[7,\"a\"],[11,\"title\",\"View on GitHub\"],[11,\"href\",\"https://github.com/markmhx/humans\"],[9],[7,\"i\"],[11,\"class\",\"fab fa-github\"],[9],[10],[10],[0,\"\\n    \"],[7,\"span\"],[11,\"title\",\"Sign in\"],[12,\"onclick\",[27,\"action\",[[22,0,[]],\"authenticate\"],null]],[11,\"tabindex\",\"2\"],[9],[7,\"i\"],[11,\"class\",\"fas fa-sign-in-alt\"],[9],[10],[10],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[0,\"    \"],[4,\"link-to\",[\"human\",[23,[\"session\",\"blockstackName\"]]],[[\"title\",\"tabindex\",\"target\"],[\"View public profile\",\"2\",\"_blank\"]],{\"statements\":[[7,\"i\"],[11,\"class\",\"far fa-eye\"],[9],[10]],\"parameters\":[]},null],[0,\"\\n    \"],[4,\"link-to\",[\"customize-url\"],[[\"tabindex\",\"title\"],[\"3\",\"Customize URL\"]],{\"statements\":[[7,\"i\"],[11,\"class\",\"fas fa-cog\"],[9],[10]],\"parameters\":[]},null],[0,\"\\n    \"],[7,\"span\"],[11,\"tabindex\",\"4\"],[11,\"title\",\"Sign out\"],[3,\"action\",[[22,0,[]],\"deauthenticate\"]],[9],[7,\"i\"],[11,\"class\",\"fas fa-sign-out-alt\"],[9],[10],[10],[0,\"\\n\"]],\"parameters\":[]}],[10]],\"hasEval\":false}", "meta": { "moduleName": "humans/templates/components/app-nav.hbs" } });
 });
 ;define("humans/templates/components/blockstack-intro-section", ["exports"], function (exports) {
   "use strict";
@@ -1117,7 +1118,7 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "2eqGrLNn", "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[9],[0,\"\\n  \"],[7,\"h1\"],[9],[0,\"Customize your profile URL\"],[10],[0,\"\\n  \"],[7,\"p\"],[9],[0,\"Your profile is always available publicly at this address:\"],[10],[0,\"\\n  \"],[7,\"pre\"],[9],[1,[23,[\"human\",\"profileUrl\"]],false],[10],[0,\"  \"],[7,\"p\"],[9],[0,\"However, if you'd like to make your profile available on your own domain as well, simply add the following \"],[7,\"a\"],[11,\"href\",\"https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts\"],[9],[0,\"DNS records\"],[10],[0,\" to the account with which you manage the domain (e.g. Domain.com, GoDaddy, Namecheap):\"],[10],[0,\"\\n  \"],[7,\"ul\"],[9],[0,\"\\n    \"],[7,\"li\"],[9],[0,\"\\\"A\\\" record should contain \"],[7,\"code\"],[9],[1,[21,\"ipAddress\"],false],[10],[10],[0,\"\\n    \"],[7,\"li\"],[9],[0,\"\\\"TXT\\\" record should contain \"],[7,\"code\"],[9],[0,\"blockstack=\"],[1,[23,[\"human\",\"blockstackName\"]],false],[10],[10],[0,\"\\n    \"],[7,\"li\"],[9],[0,\"\\\"CNAME\\\" record for \"],[7,\"code\"],[9],[0,\"www\"],[10],[0,\" should contain \"],[7,\"code\"],[9],[1,[21,\"domain\"],false],[10],[0,\" (optional)\"],[10],[0,\"\\n  \"],[10],[0,\"\\n  \"],[7,\"p\"],[9],[0,\"For example, to make your profile available at \"],[7,\"code\"],[9],[0,\"example.com\"],[10],[0,\" and \"],[7,\"code\"],[9],[0,\"www.example.com\"],[10],[0,\", add the following records:\"],[10],[0,\"\\n  \"],[7,\"div\"],[11,\"class\",\"table\"],[9],[0,\"\\n    \"],[7,\"table\"],[9],[0,\"\\n      \"],[7,\"thead\"],[9],[0,\"\\n        \"],[7,\"th\"],[9],[0,\"Type\"],[10],[0,\"\\n        \"],[7,\"th\"],[9],[0,\"Hostname\"],[10],[0,\"\\n        \"],[7,\"th\"],[9],[0,\"Value\"],[10],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"tbody\"],[9],[0,\"\\n        \"],[7,\"tr\"],[9],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"A\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"example.com\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[1,[21,\"ipAddress\"],false],[10],[0,\"\\n        \"],[10],[0,\"\\n        \"],[7,\"tr\"],[9],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"TXT\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"example.com\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"blockstack=\"],[1,[23,[\"human\",\"blockstackName\"]],false],[10],[0,\"\\n        \"],[10],[0,\"\\n        \"],[7,\"tr\"],[9],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"CNAME\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"www\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[1,[21,\"domain\"],false],[10],[0,\"\\n        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n  \"],[10],[0,\"\\n  \"],[7,\"p\"],[9],[0,\"Once making these changes, please wait up to 24 hours for them to take effect.\"],[10],[0,\"\\n\"],[10]],\"hasEval\":false}", "meta": { "moduleName": "humans/templates/components/customize-url-section.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "R2PhgoD9", "block": "{\"symbols\":[],\"statements\":[[7,\"div\"],[9],[0,\"\\n  \"],[7,\"h1\"],[9],[0,\"Customize your profile URL\"],[10],[0,\"\\n  \"],[7,\"p\"],[9],[0,\"Your profile is always available publicly at this address:\"],[10],[0,\"\\n  \"],[7,\"pre\"],[9],[1,[21,\"profileUrl\"],false],[10],[0,\"  \"],[7,\"p\"],[9],[0,\"However, if you'd like to make your profile available on your own domain as well, simply add the following \"],[7,\"a\"],[11,\"href\",\"https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts\"],[9],[0,\"DNS records\"],[10],[0,\" to the account with which you manage the domain (e.g. Domain.com, GoDaddy, Namecheap):\"],[10],[0,\"\\n  \"],[7,\"ul\"],[9],[0,\"\\n    \"],[7,\"li\"],[9],[0,\"\\\"A\\\" record should contain \"],[7,\"code\"],[9],[1,[21,\"ipAddress\"],false],[10],[10],[0,\"\\n    \"],[7,\"li\"],[9],[0,\"\\\"TXT\\\" record should contain \"],[7,\"code\"],[9],[0,\"blockstack=\"],[1,[23,[\"session\",\"blockstackName\"]],false],[10],[10],[0,\"\\n    \"],[7,\"li\"],[9],[0,\"\\\"CNAME\\\" record for \"],[7,\"code\"],[9],[0,\"www\"],[10],[0,\" should contain \"],[7,\"code\"],[9],[1,[21,\"domain\"],false],[10],[0,\" (optional)\"],[10],[0,\"\\n  \"],[10],[0,\"\\n  \"],[7,\"p\"],[9],[0,\"For example, to make your profile available at \"],[7,\"code\"],[9],[0,\"example.com\"],[10],[0,\" and \"],[7,\"code\"],[9],[0,\"www.example.com\"],[10],[0,\", add the following records:\"],[10],[0,\"\\n  \"],[7,\"div\"],[11,\"class\",\"table\"],[9],[0,\"\\n    \"],[7,\"table\"],[9],[0,\"\\n      \"],[7,\"thead\"],[9],[0,\"\\n        \"],[7,\"th\"],[9],[0,\"Type\"],[10],[0,\"\\n        \"],[7,\"th\"],[9],[0,\"Hostname\"],[10],[0,\"\\n        \"],[7,\"th\"],[9],[0,\"Value\"],[10],[0,\"\\n      \"],[10],[0,\"\\n      \"],[7,\"tbody\"],[9],[0,\"\\n        \"],[7,\"tr\"],[9],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"A\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"example.com\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[1,[21,\"ipAddress\"],false],[10],[0,\"\\n        \"],[10],[0,\"\\n        \"],[7,\"tr\"],[9],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"TXT\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"example.com\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"blockstack=\"],[1,[23,[\"session\",\"blockstackName\"]],false],[10],[0,\"\\n        \"],[10],[0,\"\\n        \"],[7,\"tr\"],[9],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"CNAME\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[0,\"www\"],[10],[0,\"\\n          \"],[7,\"td\"],[9],[1,[21,\"domain\"],false],[10],[0,\"\\n        \"],[10],[0,\"\\n      \"],[10],[0,\"\\n    \"],[10],[0,\"\\n  \"],[10],[0,\"\\n  \"],[7,\"p\"],[9],[0,\"Once making these changes, please wait up to 24 hours for them to take effect.\"],[10],[0,\"\\n\"],[10]],\"hasEval\":false}", "meta": { "moduleName": "humans/templates/components/customize-url-section.hbs" } });
 });
 ;define("humans/templates/components/edit-profile-welcome", ["exports"], function (exports) {
   "use strict";
@@ -1198,7 +1199,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+42af1bba"});
+            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+cf14b3fa"});
           }
         
 //# sourceMappingURL=humans.map
