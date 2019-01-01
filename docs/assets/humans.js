@@ -255,7 +255,7 @@
     classNames: ['store-indicator'],
     store: Ember.inject.service(),
 
-    hasContent: Ember.computed('store.saving', 'store.savedAt', function () {
+    hasContent: Ember.computed('store.{saving,savedAt}', function () {
       return this.get('store.saving') || this.get('store.savedAt');
     })
   });
@@ -1049,7 +1049,7 @@
   });
   exports.default = _emberData.default.Store.extend({
     init: function () {
-      this.set('queue', new _npmPQueue.default());
+      this.set('queue', new _npmPQueue.default({ concurrency: 1 }));
       return this._super(arguments);
     },
 

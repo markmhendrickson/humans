@@ -3,7 +3,7 @@ import PQueue from 'npm:p-queue';
 
 export default DS.Store.extend({
   init: function() {
-    this.set('queue', new PQueue());
+    this.set('queue', new PQueue({ concurrency: 1 }));
     return this._super(arguments);
   },
 

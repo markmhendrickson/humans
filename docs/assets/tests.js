@@ -4895,7 +4895,7 @@ define('humans/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('components/store-indicator.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/store-indicator.js should pass ESLint\n\n10:15 - Use brace expansion (ember/use-brace-expansion)');
+    assert.ok(true, 'components/store-indicator.js should pass ESLint\n\n');
   });
 
   QUnit.test('controllers/application.js', function (assert) {
@@ -4915,7 +4915,7 @@ define('humans/tests/lint/app.lint-test', [], function () {
 
   QUnit.test('initializers/dns.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'initializers/dns.js should pass ESLint\n\n9:3 - Use import $ from \'jquery\'; instead of using Ember.$ (ember/new-module-imports)\n14:5 - Don\'t use jQuery without Ember Run Loop (ember/jquery-ember-run)');
+    assert.ok(false, 'initializers/dns.js should pass ESLint\n\n14:5 - Don\'t use jQuery without Ember Run Loop (ember/jquery-ember-run)');
   });
 
   QUnit.test('initializers/inflector.js', function (assert) {
