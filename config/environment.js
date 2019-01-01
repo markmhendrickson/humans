@@ -16,9 +16,11 @@ module.exports = function(environment) {
         Date: false
       }
     },
-    host: {
-      ipAddress: process.env.hostIpAddress,
-      domain: process.env.hostDomain
+    location: {
+      hostname: process.env.HUMANS_HOSTNAME,
+      ipAddress: process.env.HUMANS_IP_ADDRESS,
+      port: process.env.HUMANS_PORT,
+      protocol: process.env.HUMANS_PROTOCOL ? process.env.HUMANS_PROTOCOL : 'https'
     }
   };
 
@@ -28,6 +30,15 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+  }
+
+  if (environment === 'production') {
+    ENV.location = {
+      hostname: process.env.HUMANS_PRODUCTION_HOSTNAME,
+      ipAddress: process.env.HUMANS_PRODUCTION_IP_ADDRESS,
+      port: process.env.HUMANS_PRODUCTION_PORT,
+      protocol: process.env.HUMANS_PRODUCTION_PROTOCOL ? process.env.HUMANS_PRODUCTION_PROTOCOL : 'https'
+    }
   }
 
   return ENV;

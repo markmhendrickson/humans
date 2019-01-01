@@ -1199,7 +1199,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+cf14b3fa"});
+            require("humans/app")["default"].create({"name":"humans","version":"0.0.0+a6915fdf"});
           }
         
 //# sourceMappingURL=humans.map

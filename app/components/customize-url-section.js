@@ -5,12 +5,15 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   classNames: ['customize-url-section'],
-  domain: config.host.domain,
-  ipAddress: config.host.ipAddress,
+  location: config.location,
   tagName: 'section',
   session: service(),
 
-  profileUrl: computed(function() {
-    return `https://${this.get('domain')}/${this.get('session.blockstackName')}`;
+  host: computed('location.{hostname,port,protocol}', function() {
+    return this.get('location.port') ? `${this.get('location.hostname')}:${this.get('location.port')}` : this.get('location.hostname');
+  }),
+
+  profileUrl: computed('location.{host,protocol}', 'session.blockstackName', function() {
+    return `${this.get('location.protocol')}://${this.get('host')}/${this.get('session.blockstackName')}`;
   })
 });

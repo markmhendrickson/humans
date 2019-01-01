@@ -8,7 +8,9 @@ export default Route.extend({
   beforeModel() {
     return new Promise((resolve, reject) => {
       if (blockstack.isSignInPending()) {
-        blockstack.handlePendingSignIn().then(resolve).catch(reject);
+        blockstack.handlePendingSignIn().then(() => {
+          window.location = window.location.pathname;
+        }).catch(reject);
       } else {
         resolve();
       }

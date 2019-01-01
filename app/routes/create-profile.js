@@ -1,12 +1,3 @@
-import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import UnauthenticatedRoute from 'humans/routes/unauthenticated';
 
-export default Route.extend({
-  session: service(),
-
-  beforeModel() {
-    if (this.get('session.authenticated')) {
-      this.transitionTo('index');
-    }
-  }
-});
+export default UnauthenticatedRoute;

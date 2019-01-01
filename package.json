@@ -1,11 +1,10 @@
 {
   "name": "humans",
   "version": "0.0.0",
-  "private": true,
-  "description": "Small description for humans goes here",
-  "repository": "",
+  "description": "Create an independent profile on the web within minutes",
+  "repository": "https://github.com/markmhx/humans",
   "license": "MIT",
-  "author": "",
+  "author": "Mark McLeod Hendrickson",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -15,7 +14,11 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
-    "test": "ember test"
+    "test": "ember test",
+    "deploy": "ember build --env=production && grunt deploy",
+    "deploy-all": "grunt hoist-deploy-all",
+    "deploy-app": "grunt hoist-deploy-app",
+    "deploy-dependencies": "grunt hoist-deploy-dependencies"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
@@ -47,6 +50,9 @@
     "ember-router-scroll": "^1.0.2",
     "ember-source": "~3.5.0",
     "eslint-plugin-ember": "^5.2.0",
+    "grunt": "^1.0.3",
+    "grunt-hoist": "^1.0.4",
+    "load-grunt-tasks": "^4.0.0",
     "loader.js": "^4.7.0",
     "normalize.css": "^4.1.1",
     "qunit-dom": "^0.8.0"
