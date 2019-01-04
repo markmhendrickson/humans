@@ -1,1 +1,5 @@
-{{customize-url-section human=session.human}}
+{{#if session.blockstackName}}
+  {{customize-url-section human=session.human}}
+{{else}}
+  {{customize-url-unavailable-section}}
+{{/if}}

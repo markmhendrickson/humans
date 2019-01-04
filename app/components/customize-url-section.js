@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  classNames: ['customize-url-section'],
+  classNames: ['customize-url'],
   location: config.location,
   tagName: 'section',
   session: service(),
