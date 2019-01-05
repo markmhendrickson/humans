@@ -10,7 +10,7 @@ export default Component.extend({
   session: service(),
 
   host: computed('location.{hostname,port,protocol}', function() {
-    return this.get('location.port') ? `${this.get('location.hostname')}:${this.get('location.port')}` : this.get('location.hostname');
+    return this.get('location.port') !== 80 ? `${this.get('location.hostname')}:${this.get('location.port')}` : this.get('location.hostname');
   }),
 
   profileUrl: computed('location.{host,protocol}', 'session.blockstackName', function() {

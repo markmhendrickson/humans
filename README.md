@@ -1,7 +1,39 @@
-# humans
+# Humans.
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Humans is an application for creating independent profiles on the web as powered by [Blockstack](https://blockstack.org/) and [Ember](https://emberjs.com/).
+
+The app is hosted by its original creator [Mark Hendrickson](https://markmhendrickson.com/) at [https://humans.name](https://humans.name).
+Anyone can use that instance for free to create their public profile within minutes while maintaining complete control over profile data with a new or existing Blockstack ID.
+
+Once created, profiles can be shared easily using either the app's provided URL (e.g. [humans.name/markmhendrickson.id](https://humans.name/markmhendrickson.id)) or the domain owned by the user as configured with DNS records (e.g. [human.markmhendrickson.com](https://human.markmhendrickson.com)).
+
+The app's codebase is also available here for hosting and modification by others. Profiles created with one instance of the codebase will become instantly available to all other instances given the distributed identity and storage solutions provided by Blockstack. No particular host will own accounts on behalf of users and data portability is established by design.
+
+## Screenshots
+
+### Homepage
+
+![Home](public/images/screenshots/home.png)
+
+### Create profile
+
+![Create profile](public/images/screenshots/create-profile.png)
+
+### Edit profile welcome
+
+![Edit profile welcome](public/images/screenshots/edit-profile-welcome.png)
+
+### Edit profile
+
+![Edit profile](public/images/screenshots/edit-profile.png)
+
+### Configure URL
+
+![Configure URL](public/images/screenshots/configure-url.png)
+
+### View public profile
+
+![View public profile](public/images/screenshots/view-profile.png)
 
 ## Prerequisites
 
@@ -17,6 +49,29 @@ You will need the following things properly installed on your computer.
 * `git clone <repository-url>` this repository
 * `cd humans`
 * `npm install`
+
+## Environment variables
+
+The following environment variables are managed by [Park Ranger](https://github.com/markmhx/park-ranger).
+
+These are used for running the app:
+
+* `HUMANS_HOSTNAME` hostname for app (optional, defaults to `localhost`)
+* `HUMANS_IP_ADDRESS` IP address for app (optional, defaults to `127.0.0.1`)
+* `HUMANS_PORT` port for app (optional, defaults to `4200`)
+* `HUMANS_PROTOCOL` protocol for app (optional, defaults to `http`)
+* `HUMANS_SEGMENT_WRITE_KEY` [Segment](http://segment.com) write key for app (optional)
+
+These are used for deployment:
+
+* `HUMANS_PRODUCTION_HOSTNAME` hostname for deployed app (required)
+* `HUMANS_PRODUCTION_IP_ADDRESS` IP address for deployed app (required)
+* `HUMANS_PRODUCTION_PORT` port for deployed app (optional, defaults to `80`)
+* `HUMANS_PRODUCTION_PROTOCOL` protocol for deployed app (optional, defaults to `https`)
+* `HUMANS_PRODUCTION_SEGMENT_WRITE_KEY` [Segment](http://segment.com) write key for deployed app (optional)
+* `HOIST_DEST_DIR` directory for deployment server (required)
+* `HOIST_DEST_HOST` host for deployment server (required)
+* `HOIST_DEST_USER` user for deployment server (required)
 
 ## Running / Development
 
@@ -46,7 +101,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+* `npm run deploy`
 
 ## Further Reading / Useful Links
 

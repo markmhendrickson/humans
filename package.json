@@ -15,10 +15,7 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "ember test",
-    "deploy": "ember build --env=production && grunt deploy",
-    "deploy-all": "grunt hoist-deploy-all",
-    "deploy-app": "grunt hoist-deploy-app",
-    "deploy-dependencies": "grunt hoist-deploy-dependencies"
+    "deploy": "ember build --env=production && grunt deploy"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
