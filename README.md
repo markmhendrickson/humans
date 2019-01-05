@@ -5,7 +5,7 @@ Humans is an application for creating independent profiles on the web as powered
 The app is hosted by its original creator [Mark Hendrickson](https://markmhendrickson.com/) at [https://humans.name](https://humans.name).
 Anyone can use that instance for free to create their public profile within minutes while maintaining complete control over profile data with a new or existing Blockstack ID.
 
-Once created, profiles can be shared easily using either the app's provided URL (e.g. [humans.name/markmhendrickson.id](https://humans.name/markmhendrickson.id)) or the domain owned by the user as configured with DNS records (e.g. [human.markmhendrickson.com](https://human.markmhendrickson.com)).
+Once created, profiles can be shared easily using either the app's provided URL (e.g. [humans.name/markmhendrickson.id](https://humans.name/markmhendrickson.id)) or the domain owned by the user as configured with DNS records (e.g. [human.markmhendrickson.com](http://human.markmhendrickson.com)).
 
 The app's codebase is also available here for hosting and modification by others. Profiles created with one instance of the codebase will become instantly available to all other instances given the distributed identity and storage solutions provided by Blockstack. No particular host will own accounts on behalf of users and data portability is established by design.
 
