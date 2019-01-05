@@ -15,7 +15,10 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "ember test",
-    "deploy": "ember build --env=production && grunt deploy"
+    "deploy": "ember build --env=production && grunt deploy",
+    "deploy-all": "grunt hoist-deploy-all",
+    "deploy-app": "grunt hoist-deploy-app",
+    "deploy-dependencies": "grunt hoist-deploy-dependencies"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
@@ -49,7 +52,7 @@
     "ember-source": "~3.5.0",
     "eslint-plugin-ember": "^5.2.0",
     "grunt": "^1.0.3",
-    "grunt-hoist": "^1.0.4",
+    "grunt-hoist": "^1.0.5",
     "load-grunt-tasks": "^4.0.0",
     "loader.js": "^4.7.0",
     "normalize.css": "^4.1.1",
@@ -59,7 +62,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
-    "blockstack": "^18.2.0",
+    "blockstack": "markmhx/blockstack.js",
     "ember-browserify": "^1.2.2",
     "ember-cli-segment": "^3.0.0",
     "p-queue": "^3.0.0",

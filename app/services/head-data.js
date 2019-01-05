@@ -18,7 +18,6 @@ export default HeadData.extend({
     if (!this.get('title')) { return; }
 
     next(() => {
-      console.log('track!');
       this.get('segment').trackPageView();
     });
   })
