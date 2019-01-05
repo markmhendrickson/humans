@@ -9,6 +9,8 @@ Once created, profiles can be shared easily using either the app's provided URL 
 
 The app's codebase is also available here for hosting and modification by others. Profiles created with one instance of the codebase will become instantly available to all other instances given the distributed identity and storage solutions provided by Blockstack. No particular host will own accounts on behalf of users and data portability is established by design.
 
+Content support is currently quite limited but will expand over time to match the range and capabilities of [Neotoma's personal web app](https://github.com/neotoma/personal-web) as demonstrated by [markmhendrickson.com](https://markmhendrickson.com) and [rachelgillum.com](https://rachelgillum.com).
+
 ## Screenshots
 
 ### Homepage
