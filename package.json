@@ -31,6 +31,7 @@
     "ember-cli-cors": "0.0.2",
     "ember-cli-dependency-checker": "^3.0.0",
     "ember-cli-eslint": "^4.2.3",
+    "ember-cli-head": "^0.4.1",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
     "ember-cli-inject-live-reload": "^1.8.2",
@@ -63,6 +64,7 @@
   "dependencies": {
     "blockstack": "^18.2.0",
     "ember-browserify": "^1.2.2",
+    "ember-cli-segment": "^3.0.0",
     "p-queue": "^3.0.0",
     "park-ranger": "^1.0.11"
   }

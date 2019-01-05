@@ -1,10 +1,7 @@
 import Route from '@ember/routing/route';
 import blockstack from 'npm:blockstack';
-import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  session: service(),
-
   beforeModel() {
     return new Promise((resolve, reject) => {
       if (blockstack.isSignInPending()) {

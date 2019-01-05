@@ -1,3 +1,7 @@
 import AuthenticatedRoute from 'humans/routes/authenticated';
 
-export default AuthenticatedRoute;
+export default AuthenticatedRoute.extend({
+  beforeModel() {
+    this.set('headData.title', 'Customize URL');
+  }
+});

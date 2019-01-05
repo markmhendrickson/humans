@@ -1,10 +1,18 @@
 import Route from '@ember/routing/route';
 import blockstack from 'npm:blockstack';
 import config from 'humans/config/environment';
-import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  nav: service(),
+  actions: {
+    willTransition() {
+      this.set('nav.hidden', false);
+    }
+  },
+
+  afterModel(model) {
+    this.set('headData.title', model.get('name'));
+    this.set('nav.hidden', true);
+  },
 
   model(params) {
     let blockstackName = params.blockstack_name ? params.blockstack_name : config.blockstackName;
@@ -14,15 +22,5 @@ export default Route.extend({
         this.store.findRecord(blockstackName, 'human', info.address).then(resolve).catch(reject);
       });
     });
-  },
-
-  afterModel() {
-    this.set('nav.hidden', true);
-  },
-
-  actions: {
-    willTransition() {
-      this.set('nav.hidden', false);
-    }
   }
 });

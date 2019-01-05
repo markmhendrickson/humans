@@ -21,6 +21,10 @@ module.exports = function(environment) {
       ipAddress: process.env.HUMANS_IP_ADDRESS,
       port: process.env.HUMANS_PORT,
       protocol: process.env.HUMANS_PROTOCOL ? process.env.HUMANS_PROTOCOL : 'https'
+    },
+    segment: {
+      defaultPageTrack: false,
+      WRITE_KEY: process.env.HUMANS_SEGMENT_WRITE_KEY
     }
   };
 
@@ -39,6 +43,8 @@ module.exports = function(environment) {
       port: process.env.HUMANS_PRODUCTION_PORT,
       protocol: process.env.HUMANS_PRODUCTION_PROTOCOL ? process.env.HUMANS_PRODUCTION_PROTOCOL : 'https'
     }
+
+    ENV.segment.WRITE_KEY = process.env.HUMANS_PRODUCTION_SEGMENT_WRITE_KEY;
   }
 
   return ENV;
