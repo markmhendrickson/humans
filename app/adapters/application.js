@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import blockstack from 'npm:blockstack';
 import Inflector from 'ember-inflector';
+import config from 'humans/config/environment';
 
 export default DS.JSONAPIAdapter.extend({
   createRecord(store, type, snapshot) {
@@ -21,6 +22,7 @@ export default DS.JSONAPIAdapter.extend({
   findRecord(store, type, id) {
     return new Promise((resolve, reject) => {
       blockstack.getFile(`${Inflector.inflector.pluralize(type.modelName)}/${id}`, {
+        app: `${config.location.protocol}://${config.location.hostname}`,
         decrypt: false,
         username: store.blockstackName
       }).then((file) => {
