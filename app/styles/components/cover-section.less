@@ -1,20 +1,20 @@
 section.cover {
   .standard-hero;
   .standard-fadein;
-  display: flex;
+  flex-wrap: wrap;
 
   >div {
+    max-width: unset;
+    padding: 1em;
     width: 100%;
   }
 
   h1 {
     .standard-h1;
-    margin: 0 32px;
   }
 
   div.subheader {
     .standard-subheader;
-    margin: 32px;
   }
 
   h1, div.subheader {
@@ -28,57 +28,8 @@ section.cover {
     }
   }
 
-  img {
-    display: none;
-    max-height: 850px;
-    margin: auto;
-    margin-top: -1px;
-    width: 100%;
-    object-fit: cover;
-    object-position: 50% 100%;
-    z-index: 1;
-
-    @media (max-width: 65em) {
-      margin-top: 48px;
-    }
-
-    @media (min-width: 1600px) {
-      height: 850px;
-      width: 1400px;
-    }
-  }
-
-  &.hasImage img {
-    display: block;
-  }
-
-  @media (max-width: 69.9em) {
-    &.hasNoImage img {
-      display: block;
-    }
-  }
-
-  nav {
-    border-bottom: @standard-border;
-    border-top: @standard-border;
-    display: flex;
-    justify-content: center;
-    margin-top: 56px;
-    overflow: hidden;
-
-    @media (max-width: 65em) {
-      display: none;
-    }
-
-    a {
-      .standard-link;
-      .standard-font-family;
-      color: black;
-      font-size: 14px;
-      letter-spacing: 1px;
-      padding: 32px;
-      text-transform: uppercase;
-      transition: color 0.25s, transform 0.25s;
-    }
+  div.editable-image {
+    margin-top: 2em;
+    padding-bottom: 56.25%;
   }
 }

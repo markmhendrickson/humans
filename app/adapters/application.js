@@ -21,14 +21,19 @@ export default DS.JSONAPIAdapter.extend({
 
   findRecord(store, type, id) {
     return new Promise((resolve, reject) => {
-      blockstack.getFile(`${Inflector.inflector.pluralize(type.modelName)}/${id}`, {
-        app: `${config.location.protocol}://${config.location.hostname}`,
+      let options = {
         decrypt: false,
         username: store.blockstackName
-      }).then((file) => {
+      };
+
+      if (config.location.hostname !== window.location.hostname) {
+        options.app = `${config.location.protocol}://${config.location.hostname}`;
+      }
+
+      blockstack.getFile(`${Inflector.inflector.pluralize(type.modelName)}/${id}`, options).then((file) => {
         resolve(JSON.parse(file));
       }).catch((error) => {
-        console.error(error);
+        console.error(`No record found for type ${type.modelName} and id ${id}`, error);
         reject();
       });
     });

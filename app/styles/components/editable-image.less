@@ -1,0 +1,64 @@
+@keyframes blurIn {
+  from {
+    filter: blur(4em);
+    opacity: 0;
+  }
+
+  to {
+    filter: none;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background: rgba(0,0,0,0.025);
+  }
+
+  50% {
+    background: rgba(0,0,0,0.05);
+  }
+
+  100% {
+    background: rgba(0,0,0,0.025);
+  }
+}
+
+div.editable-image {
+  align-items: center;
+  background: rgba(0,0,0,0.025);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  &:not(.editable).empty {
+    display: none;
+  }
+
+  &.editable.empty form {
+    //display: block;
+  }
+
+  &.loading {
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-name: pulse;
+  }
+
+  &.loaded img {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: blurIn;
+  }
+
+  img {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    object-position: 50% 100%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

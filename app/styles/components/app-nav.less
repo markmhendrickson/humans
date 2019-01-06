@@ -60,10 +60,10 @@ nav.app {
   }
 }
 
-nav.app ~ section {
+nav.app:not(.hidden) ~ section {
   margin-top: 55px;
 }
 
-nav.app ~ section.hero {
+nav.app:not(.hidden) ~ section.hero {
   min-height: ~"calc(100vh - 55px)";
 }
