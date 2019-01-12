@@ -7,12 +7,7 @@ export default Component.extend({
   classNames: ['app'],
   nav: service(),
   session: service(),
-  store: service(),
   tagName: 'nav',
-
-  showSave: computed('session.human.hasDirtyAttributes', function() {
-    return (this.get('session.human.hasDirtyAttributes') && !this.get('store.isSaving'));
-  }),
 
   actions: {
     authenticate() {
@@ -21,10 +16,6 @@ export default Component.extend({
 
     deauthenticate() {
       this.get('session').deauthenticate();
-    },
-
-    saveChanges() {
-      this.get('session.human').save();
     }
   }
 });

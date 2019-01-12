@@ -1,16 +1,33 @@
 div.store-indicator {
-  background: white;
-  bottom: 0;
-  padding: 1em;
+  background: rgba(255,255,255,0.9);
+  border-right: none;
+  border-radius: 0 0 0 2em;
+  top: 55px;
   position: fixed;
-  left: 0;
+  right: 0;
   z-index: 100;
-  text-align: center;
-  transform: translateY(100%);
+  transform: translateX(100%);
   transition: transform 0.25s;
-  width: 100%;
 
   &.shown {
-    transform: translateY(0%);
+    transform: translateX(0%);
+  }
+
+  i {
+    line-height: 1em;
+    margin-right: 0.5em;
+  }
+
+  div {
+    line-height: 1em;
+    padding: 1.5em 2.5em;
+
+    &.option {
+      .standard-font-family-bold;
+      border-right: none;
+      border-radius: 2em 0 0 2em;
+      color: @standard-color-link;
+      cursor: pointer;
+    }
   }
 }

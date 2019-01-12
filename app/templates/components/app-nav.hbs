@@ -7,10 +7,6 @@
 {{else}}
   <h1>Humans.</h1>
 
-  {{#if showSave}}
-    <span {{action "saveChanges"}} title="Save changes"><i class="fas fa-save"></i> Save changes</span>
-  {{/if}}
-
   {{#link-to "index" tabindex="2" title="Edit profile"}}<i class="fas fa-pencil-alt"></i>{{/link-to}}
 
   {{#if session.blockstackName}}

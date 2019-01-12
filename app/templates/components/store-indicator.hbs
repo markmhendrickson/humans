@@ -1,5 +1,7 @@
-{{#if store.saving}}
-  Saving changes...
+{{#if session.human.isSaving}}
+  <div>Saving changes...</div>
+{{else if session.human.hasDirtyAttributes}}
+  <div class="option" {{action "saveChanges"}} title="Save changes"><i class="fas fa-save"></i> Save changes</div>
 {{else if store.savedAt}}
-  Changes saved!
+  <div>Changes saved!</div>
 {{/if}}
