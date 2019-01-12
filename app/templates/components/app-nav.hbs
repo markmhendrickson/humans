@@ -1,13 +1,23 @@
-{{#link-to "index" tabindex="1"}}Humans.{{/link-to}}
-<div>
-  {{#if session.unauthenticated}}
-    <a title="View on GitHub" href="https://github.com/markmhx/humans"><i class="fab fa-github"></i></a>
-    <span title="Sign in" onclick={{action "authenticate"}} tabindex="2"><i class="fas fa-sign-in-alt"></i></span>
-  {{else}}
-    {{#if session.blockstackName}}
-      {{#link-to "human" session.blockstackName title="View public profile" tabindex="2" target="_blank"}}<i class="far fa-eye"></i>{{/link-to}}
-    {{/if}}
-    {{#link-to "customize-url" tabindex="3" title="Customize URL"}}<i class="fas fa-cog"></i>{{/link-to}}
-    <span {{action "deauthenticate"}} tabindex="4" title="Sign out"><i class="fas fa-sign-out-alt"></i></span>
+{{#if session.unauthenticated}}
+  {{#link-to "index" tabindex="1"}}Humans.{{/link-to}}
+
+  <a title="View on GitHub" href="https://github.com/markmhx/humans"><i class="fab fa-github"></i></a>
+
+  <span title="Sign in" onclick={{action "authenticate"}} tabindex="2"><i class="fas fa-sign-in-alt"></i></span>
+{{else}}
+  <h1>Humans.</h1>
+
+  {{#if showSave}}
+    <span {{action "saveChanges"}} title="Save changes"><i class="fas fa-save"></i> Save changes</span>
   {{/if}}
-</div>
+
+  {{#link-to "index" tabindex="2" title="Edit profile"}}<i class="fas fa-pencil-alt"></i>{{/link-to}}
+
+  {{#if session.blockstackName}}
+    {{#link-to "human" session.blockstackName title="View public profile" tabindex="3" target="_blank"}}<i class="far fa-eye"></i>{{/link-to}}
+  {{/if}}
+
+  {{#link-to "customize-url" tabindex="4" title="Customize URL"}}<i class="fas fa-cog"></i>{{/link-to}}
+
+  <span {{action "deauthenticate"}} tabindex="5" title="Sign out"><i class="fas fa-sign-out-alt"></i></span>
+{{/if}}

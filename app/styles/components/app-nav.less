@@ -3,16 +3,27 @@ nav.app {
   animation-fill-mode: forwards;
   animation-name: fadeIn;
   background: white;
-  border-bottom: 1px solid @border-color;
+  border-color: @border-color;
+  border-style: solid;
+  border-width: 0;
+  border-bottom-width: 1px;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-end;
   left: 0;
   position: fixed;
   top: 0;
   z-index: 1000;
   width: 100%;
+
+  @media (max-width: 900px) {
+    border-bottom: none;
+    border-top-width: 1px;
+    bottom: 0;
+    justify-content: space-evenly;
+    top: auto;
+  }
 
   &.hidden {
     display: none;
@@ -21,6 +32,18 @@ nav.app {
   a, span {
     display: inline-block;
     padding: 1em;
+  }
+
+  h1 {
+    all: unset;
+    display: none;
+    font-family: "Libre Baskerville", serif;
+    margin-right: auto;
+    padding: 1em;
+
+    @media (min-width: 900px) {
+      display: inline-block;
+    }
   }
 
   >a {
@@ -39,29 +62,33 @@ nav.app {
     }
   }
 
-  div {
-    margin-left: auto;
+  a, span {
+    .standard-link;
+    .standard-font-family;
+    color: black;
 
-    a, span {
-      .standard-link;
-      .standard-font-family;
-      color: black;
+    &:hover {
+      color: @standard-color-link;
+    }
 
-      &:hover {
-        color: @standard-color-link;
-      }
-
-      @media (max-width: 900px) {
-        &:not(:last-child) {
-          margin-right: 1em;
-        }
+    @media (max-width: 899px) {
+      &:not(:last-child) {
+        margin-right: 1em;
       }
     }
   }
 }
 
-nav.app:not(.hidden) ~ section {
-  margin-top: 55px;
+@media (max-width: 899px) {
+  nav.app:not(.hidden) ~ section:last-of-type {
+    margin-bottom: 55px;
+  }
+}
+
+@media (min-width: 900px) {
+  nav.app:not(.hidden) ~ section:first-of-type {
+    margin-top: 55px;
+  }
 }
 
 nav.app:not(.hidden) ~ section.hero {

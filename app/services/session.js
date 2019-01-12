@@ -19,7 +19,7 @@ export default Service.extend({
     blockstack.signUserOut(window ? window.location.origin : null);
   },
 
-  human: computed('findOrCreateHuman', function() {
+  human: computed('findOrCreateHuman.content', function() {
     return this.get('findOrCreateHuman.content') ? this.get('findOrCreateHuman.content') : this.get('findOrCreateHuman');
   }),
 

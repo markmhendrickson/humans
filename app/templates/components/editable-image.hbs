@@ -1,3 +1,16 @@
 {{#if url}}
-  <img contenteditable="true" src="{{url}}" />
+  <img src="{{url}}" />
+{{/if}}
+
+{{#if editable}}
+  <input onchange={{action "onchange"}} type="file" />
+
+  {{#if url}}
+    {{menu-ul options=options}}
+  {{else}}
+    <button>
+      <i class="fas fa-upload"></i>
+      <span>{{uploadLabel}}</span>
+    </button>
+  {{/if}}
 {{/if}}

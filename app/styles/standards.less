@@ -62,7 +62,7 @@
   position: relative;
   text-align: center;
   text-transform: uppercase;
-  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s;
+  transition: color 0.25s, border 0.25s, transform 0.25s, background 0.25s, opacity 0.25s;
   width: ~"calc(100% - 64px)";
 
   &:focus {
@@ -251,6 +251,16 @@
       @media (min-width: 900px) {
         padding: 0;
       }
+
+      >a, button {
+        .standard-button-primary;
+        margin-top: 3em;
+        width: 100%;
+
+        @media (min-width: 900px) {
+          width: auto;
+        }
+      }
     }
 
     &.images {
@@ -279,16 +289,6 @@
 
       @media (min-width: 900px) {
         font-size: 22px;
-      }
-    }
-
-    >a, button {
-      .standard-button-primary;
-      margin-top: 3em;
-      width: 100%;
-
-      @media (min-width: 900px) {
-        width: auto;
       }
     }
   }
