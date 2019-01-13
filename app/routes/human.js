@@ -11,7 +11,10 @@ export default Route.extend({
 
   afterModel(model) {
     this.set('headData.title', model.get('name'));
-    this.set('nav.hidden', true);
+
+    if (this.get('session.human.id') !== model.get('id')) {
+      this.set('nav.hidden', true);
+    }
   },
 
   model(params) {

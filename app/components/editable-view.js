@@ -33,10 +33,6 @@ export default Component.extend({
 
   keyUp: function() {
     this.set('value', this.$().text());
-
-    if (this.get('model')) {
-      this.get('store').queueSave(this.get('model'));
-    }
   },
 
   processValue: function() {

@@ -5,8 +5,10 @@ import { computed } from '@ember/object';
 import blockstack from 'npm:blockstack';
 
 export default Model.extend({
+  coverImageUrl: attr('string'),
   description: attr('string'),
   name: attr('string'),
+  updatedAt: attr('date'),
 
   blockstackName: computed('blockstackNames.length', function() {
     return this.get('blockstackNames.firstObject');

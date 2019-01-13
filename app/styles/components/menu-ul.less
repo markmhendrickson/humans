@@ -1,0 +1,32 @@
+ul.menu {
+  li {
+    background: rgba(255,255,255,0.9);
+    border-radius: 2em 0 0 2em;
+    cursor: pointer;
+    line-height: 1em;
+    padding: 1em;
+    padding-left: 1.5em;
+
+    &:not(:first-child) {
+      margin-top: 0.5em;
+    }
+
+    &:hover {
+      color: @standard-color-link;
+    }
+
+    @media (hover: hover) {
+      &.toggle {
+        display: none;
+      }
+    }
+
+    i {
+      display: inline-block;
+    }
+
+    span {
+      display: none;
+    }
+  }
+}

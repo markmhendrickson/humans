@@ -3,24 +3,42 @@ nav.app {
   animation-fill-mode: forwards;
   animation-name: fadeIn;
   background: white;
-  border-bottom: 1px solid @border-color;
+  border-color: @border-color;
+  border-style: solid;
+  border-width: 0;
+  border-bottom-width: 1px;
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-wrap: no-wrap;
+  justify-content: flex-end;
   left: 0;
   position: fixed;
   top: 0;
   z-index: 1000;
   width: 100%;
 
+  @media (max-width: 900px) {
+    border-bottom: none;
+    border-top-width: 1px;
+    bottom: 0;
+    justify-content: space-evenly;
+    top: auto;
+  }
+
   &.hidden {
     display: none;
   }
 
-  a, span {
-    display: inline-block;
+  h1 {
+    all: unset;
+    display: none;
+    font-family: "Libre Baskerville", serif;
+    margin-right: auto;
     padding: 1em;
+
+    @media (min-width: 900px) {
+      display: inline-block;
+    }
   }
 
   >a {
@@ -28,42 +46,54 @@ nav.app {
     font-family: "Libre Baskerville", serif;
     outline: none;
 
-    &:focus {
-      .standard-highlight-hover;
-    }
-
     @media (hover: hover) {
-      &:active, &:focus, &:hover {
+      &:hover {
         .standard-highlight-hover;
       }
     }
   }
 
-  div {
-    margin-left: auto;
+  a, span {
+    .standard-link;
+    .standard-font-family;
+    color: black;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 1em;
+    width: 100%;
 
-    a, span {
-      .standard-link;
-      .standard-font-family;
-      color: black;
+    @media (min-width: 900px) {
+      padding: 1em 1.5em;
+      width: unset;
+    }
 
-      &:hover {
-        color: @standard-color-link;
-      }
-
-      @media (max-width: 900px) {
-        &:not(:last-child) {
-          margin-right: 1em;
+    @media (hover: hover) {
+      &:active, &:focus, &:hover {
+        &:before {
+          transform: scaleX(0);
         }
       }
+    }
+
+    &.active {
+      .standard-highlight-hover;
+      cursor: default;
     }
   }
 }
 
-nav.app ~ section {
-  margin-top: 55px;
+@media (max-width: 899px) {
+  nav.app:not(.hidden) ~ section:last-of-type {
+    margin-bottom: 55px;
+  }
 }
 
-nav.app ~ section.hero {
+@media (min-width: 900px) {
+  nav.app:not(.hidden) ~ section:first-of-type {
+    margin-top: 55px;
+  }
+}
+
+nav.app:not(.hidden) ~ section.hero {
   min-height: ~"calc(100vh - 55px)";
 }
