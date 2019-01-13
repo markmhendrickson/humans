@@ -18,12 +18,19 @@ export default Component.extend({
   },
 
   savingChanged: observer('session.human.isSaving', function() {
-    if (this.get('session.human.isSaving')) { return; }
+    if (this.get('session.human.isSaving')) {
+      this.set('hasSaved', true);
+      return;
+    }
 
     this.set('savedRecently', true);
 
     run.later(() => {
       this.set('savedRecently', false);
+
+      run.later(() => {
+        this.set('hasSaved', false);
+      }, 250);
     }, this.get('timeout'));
   }),
 
