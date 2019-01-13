@@ -28,7 +28,7 @@ export default Component.extend({
     }, {
       action: () => {
         if(window.confirm(this.get('deleteConfirmation'))) {
-          this.set('url', undefined);
+          this.set('url', null);
         }
       },
       icon: 'fas fa-trash-alt',

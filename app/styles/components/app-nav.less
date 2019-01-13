@@ -9,7 +9,7 @@ nav.app {
   border-bottom-width: 1px;
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap;
   justify-content: flex-end;
   left: 0;
   position: fixed;
@@ -29,11 +29,6 @@ nav.app {
     display: none;
   }
 
-  a, span {
-    display: inline-block;
-    padding: 1em;
-  }
-
   h1 {
     all: unset;
     display: none;
@@ -51,12 +46,8 @@ nav.app {
     font-family: "Libre Baskerville", serif;
     outline: none;
 
-    &:focus {
-      .standard-highlight-hover;
-    }
-
     @media (hover: hover) {
-      &:active, &:focus, &:hover {
+      &:hover {
         .standard-highlight-hover;
       }
     }
@@ -66,15 +57,27 @@ nav.app {
     .standard-link;
     .standard-font-family;
     color: black;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 1em;
+    width: 100%;
 
-    &:hover {
-      color: @standard-color-link;
+    @media (min-width: 900px) {
+      padding: 1em 1.5em;
+      width: unset;
     }
 
-    @media (max-width: 899px) {
-      &:not(:last-child) {
-        margin-right: 1em;
+    @media (hover: hover) {
+      &:active, &:focus, &:hover {
+        &:before {
+          transform: scaleX(0);
+        }
       }
+    }
+
+    &.active {
+      .standard-highlight-hover;
+      cursor: default;
     }
   }
 }

@@ -1,33 +1,62 @@
 div.store-indicator {
   background: rgba(255,255,255,0.9);
   border-right: none;
-  border-radius: 0 0 0 2em;
-  top: 55px;
+  opacity: 0;
   position: fixed;
   right: 0;
+  text-align: right;
+  top: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.25s, transform 0.25s;
+  width: 100%;
   z-index: 100;
-  transform: translateX(100%);
-  transition: transform 0.25s;
+
+  @media (min-width: 900px) {
+    position: fixed;
+    top: 55px;
+  }
 
   &.shown {
+    opacity: 1;
     transform: translateX(0%);
   }
 
   i {
     line-height: 1em;
     margin-right: 0.5em;
+
+    &.fa-spinner {
+      animation: 0.75s linear 0s infinite normal spin;
+    }
   }
 
   div {
+    .standard-font-family-bold;
+    color: rgba(0,0,0,0.5);
+    display: inline-block;
     line-height: 1em;
-    padding: 1.5em 2.5em;
+    padding: 1em;
 
     &.option {
-      .standard-font-family-bold;
-      border-right: none;
       border-radius: 2em 0 0 2em;
+      border-right: none;
       color: @standard-color-link;
       cursor: pointer;
+      transition: transform 0.25s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
+}
+
+@media (max-width: 899px) {
+  div.store-indicator.shown ~ section:first-of-type {
+    margin-top: 55px;
+  }
+}
+
+div.store-indicator.shown ~ section.hero {
+  min-height: ~"calc(100vh - 55px)";
 }

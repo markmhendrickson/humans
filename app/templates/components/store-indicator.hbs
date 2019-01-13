@@ -1,7 +1,16 @@
 {{#if session.human.isSaving}}
-  <div>Saving changes...</div>
+  <div>
+    <i class="fas fa-check fa-spinner"></i>
+    <span>Publishing...</span>
+  </div>
 {{else if session.human.hasDirtyAttributes}}
-  <div class="option" {{action "saveChanges"}} title="Save changes"><i class="fas fa-save"></i> Save changes</div>
-{{else if store.savedAt}}
-  <div>Changes saved!</div>
+  <div class="option" {{action "saveChanges"}} title="Publish changes">
+    <i class="fas fa-save"></i>
+    <span>Publish changes</span>
+  </div>
+{{else}}
+  <div>
+    <i class="fas fa-check"></i>
+    <span>Published!</span>
+  </div>
 {{/if}}

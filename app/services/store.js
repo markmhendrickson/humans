@@ -9,11 +9,7 @@ export default DS.Store.extend({
 
   queueSave: function(record) {
     this.get('queue').add(() => {
-      record.save().finally(() => {
-        this.get('queue').onIdle().then(() => {
-          this.set('savedAt', Date.now());
-        });
-      });
+      record.save();
     });
   },
 

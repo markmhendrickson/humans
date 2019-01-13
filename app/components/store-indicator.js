@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 
@@ -8,27 +8,26 @@ export default Component.extend({
   classNames: ['store-indicator'],
   session: service(),
   store: service(),
+  timeout: 5000,
 
   actions: {
     saveChanges() {
+      this.set('session.human.updatedAt', new Date());
       this.get('store').queueSave(this.get('session.human'));
     }
   },
 
-  didInsertElement: function() {
-    this.tick();
-  },
+  savingChanged: observer('session.human.isSaving', function() {
+    if (this.get('session.human.isSaving')) { return; }
 
-  tick: function() {
-    var nextTick = run.later(this, () => {
-      this.set('shown', (this.get('session.human.hasDirtyAttributes') || this.get('session.human.isSaving') || (this.get('store.savedAt') && this.get('store.savedAt') > Date.now() - 5000)));
-      this.tick();
-    }, 1000);
+    this.set('savedRecently', true);
 
-    this.set('nextTick', nextTick);
-  },
+    run.later(() => {
+      this.set('savedRecently', false);
+    }, this.get('timeout'));
+  }),
 
-  willDestroyElement: function() {
-    Ember.run.cancel(this.get('nextTick'));
-  }
+  shown: computed('savedRecently', 'session.human.hasDirtyAttributes', 'session.human.isSaving', function() {
+    return (this.get('session.human.hasDirtyAttributes') || this.get('session.human.isSaving') || this.get('savedRecently'));
+  })
 });
