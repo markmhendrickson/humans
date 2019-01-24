@@ -30,7 +30,7 @@
 }
 
 .standard-drop-caps {
-  p:first-of-type::first-letter {
+  >p:first-of-type::first-letter {
     .standard-font-family-bold;
     font-family: "Libre Baskerville", serif;
     float: left;
@@ -167,7 +167,10 @@
   letter-spacing: 0.5px;
   line-height: 1.5em;
   margin: 0;
-  margin-top: 1em;
+
+  &:not(:first-child) {
+    margin-top: 2em;
+  }
 
   &:last-of-type {
     margin-bottom: 0;
@@ -183,39 +186,58 @@
   }
 }
 
-.standard-h1 {
+.standard-header {
   .standard-selection;
   box-sizing: border-box;
+  color: black;
   font-family: "Libre Baskerville", serif;
-  font-size: 1.6em;
   font-weight: normal;
   line-height: 1.5em;
   margin: auto;
   margin-bottom: 1em;
   padding: 0;
+}
+
+.standard-h1 {
+  .standard-header;
+  font-size: 28px;
 
   @media (min-width: 900px) {
-    font-size: 2em;
+    font-size: 32px;
   }
 }
 
 .standard-h2 {
-  font-family: "Libre Baskerville", serif;
-  font-weight: normal;
-  color: rgba(0,0,0,0.75);
-  font-size: 26px;
-  line-height: 1.2em;
-  margin: 0 32px;
+  .standard-header;
+  font-size: 24px;
 
   @media (min-width: 40em) {
-    font-size: 2em;
+    font-size: 28px;
+  }
+}
+
+.standard-h3 {
+  .standard-header;
+  font-size: 20px;
+
+  @media (min-width: 40em) {
+    font-size: 24px;
+  }
+}
+
+.standard-h4 {
+  .standard-header;
+  font-size: 18px;
+
+  @media (min-width: 40em) {
+    font-size: 22px;
   }
 }
 
 .standard-hero {
   align-items: center;
   box-sizing: border-box;
-  display: block;
+  display: flex;
   justify-content: center;
   min-height: 100vh;
   padding: 0;
@@ -232,7 +254,6 @@
   >div {
     box-sizing: border-box;
     max-width: 600px;
-    margin: 2em auto;
     position: relative;
 
     @media (min-width: 900px) {

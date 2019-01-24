@@ -3,49 +3,67 @@ import Ember from 'ember';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { once } from '@ember/runloop';
+import BalloonEditor from 'npm:@ckeditor/ckeditor5-build-balloon';
+import showdown from 'npm:showdown';
+import striptags from 'npm:striptags';
+
+let converter = new showdown.Converter();
 
 /**
  * Component adapted from https://github.com/KasperTidemann/ember-contenteditable-view/blob/master/ember-contenteditable-view.js
  */
 export default Component.extend({
-  attributeBindings: ['contenteditable', 'placeholder', 'spellcheck'],
-  editable: false,
-  isUserTyping: false,
+  attributeBindings: ['contenteditable', 'dataText:data-text', 'placeholder', 'spellcheck'],
+  classNameBindings: ['empty'],
   store: service(),
 
-  contenteditable: computed(function() {
-    return this.get('editable') ? 'true' : 'false';
+  contenteditable: computed('editable', function() {
+    return this.get('editable');
+  }),
+
+  dataText: computed('placeholder', function() {
+    return this.get('placeholder');
   }),
 
   didInsertElement: function() {
-    return this.setContent();
-  },
-
-  focusOut: function() {
-    return this.set('isUserTyping', false);
-  },
-
-  keyDown: function(event) {
-    if (!event.metaKey) {
-      return this.set('isUserTyping', true);
+    if (this.get('richEditor') && this.get('editable')) {
+      BalloonEditor.create(this.element, {
+        toolbar: {
+          items: [
+            'heading',
+            'bold',
+            'italic',
+            'bulletedList',
+            'numberedList'
+          ]
+        }
+      }).catch(console.error);
     }
+
+    this.$().html(this.get('richEditor') ? converter.makeHtml(this.get('value')) : this.get('value'));
   },
 
-  keyUp: function() {
-    this.set('value', this.$().text());
+  init: function() {
+    ['keyUp', 'focusOut', 'click'].forEach((action) => {
+      this.set(action, this.setValue);
+    });
+
+    return this._super(arguments);
   },
 
-  processValue: function() {
-    if (!this.get('isUserTyping') && this.get('value')) {
-      return this.setContent();
+  setValue() {
+    let val;
+
+    if (this.get('richEditor')) {
+      val = striptags(converter.makeMarkdown(this.$().html())).trim();
+
+      if (val.length === 0) {
+        val = null;
+      }
+    } else {
+      val = this.$().text();
     }
-  },
 
-  setContent: function() {
-    return this.$().html(Ember.Handlebars.Utils.escapeExpression(this.get('value')));
-  },
-
-  valueObserver: (function() {
-    once(this, 'processValue');
-  }).observes('value', 'isUserTyping')
+    this.set('value', val);
+  }
 });

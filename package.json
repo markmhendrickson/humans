@@ -62,6 +62,7 @@
     "node": "6.* || 8.* || >= 10.*"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-balloon": "^11.2.0",
     "async": "^2.6.1",
     "blockstack": "markmhx/blockstack.js",
     "data-uri-to-buffer": "^2.0.0",
@@ -69,6 +70,8 @@
     "ember-cli-segment": "^3.0.0",
     "mime-types": "^2.1.21",
     "p-queue": "^3.0.0",
-    "park-ranger": "^1.0.11"
+    "park-ranger": "^1.0.11",
+    "showdown": "^1.9.0",
+    "striptags": "^3.1.1"
   }
 }

@@ -8,6 +8,7 @@ export default Model.extend({
   coverImageUrl: attr('string'),
   description: attr('string'),
   name: attr('string'),
+  overview: attr('string'),
   updatedAt: attr('date'),
 
   blockstackName: computed('blockstackNames.length', function() {

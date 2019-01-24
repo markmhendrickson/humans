@@ -1,12 +1,14 @@
 section.cover {
-  .standard-hero;
   .standard-fadein;
   flex-wrap: wrap;
 
-  >div {
-    max-width: unset;
-    padding: 1em;
-    width: 100%;
+  &:not(.has-overview):not(.editable) {
+    .standard-hero;
+
+    >div {
+      max-width: unset;
+      width: 100%;
+    }
   }
 
   h1 {
@@ -29,7 +31,12 @@ section.cover {
   }
 
   div.editable-image {
-    margin-top: 2em;
+    margin-top: 4em;
     padding-bottom: 56.25%;
   }
+}
+
+section.cover + section {
+  border-top: none;
+  padding-top: 0;
 }
