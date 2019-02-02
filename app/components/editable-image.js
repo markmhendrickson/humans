@@ -1,13 +1,11 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 export default Component.extend({
   classNames: ['editable-image'],
   classNameBindings: ['editable', 'state', 'empty:empty:notEmpty'],
   deleteConfirmation: 'Are you sure you want to delete this image?',
   uploadLabel: 'Upload',
-  store: service(),
 
   didInsertElement() {
     if (this.get('url')) {

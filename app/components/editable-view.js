@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import Ember from 'ember';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 import { once } from '@ember/runloop';
 import BalloonEditor from 'npm:@ckeditor/ckeditor5-build-balloon';
 import showdown from 'npm:showdown';
@@ -15,7 +14,6 @@ let converter = new showdown.Converter();
 export default Component.extend({
   attributeBindings: ['contenteditable', 'dataText:data-text', 'placeholder', 'spellcheck'],
   classNameBindings: ['empty'],
-  store: service(),
 
   contenteditable: computed('editable', function() {
     return this.get('editable');

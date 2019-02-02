@@ -1,0 +1,25 @@
+{{#if header}}
+  <h2>{{header}}</h2>
+{{/if}}
+
+{{#if listings}}
+  <div>
+    <div>
+      <ul>
+        {{#each listings as |listing|}}
+          {{component listingLi descriptionProperty=descriptionProperty format=format linkListings=linkListings linkUrl=linkUrl listing=listing modelName=modelName}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{else}}
+  <div class="no-listings">No {{pluralModelName}}</div>
+{{/if}}
+
+{{#if showViewAll}}
+  {{#if viewAllContext}}
+    {{#link-to viewAllLink viewAllContext class="view-all"}}{{viewAllLabel}}{{/link-to}}
+  {{else}}
+    {{#link-to viewAllLink class="view-all"}}{{viewAllLabel}}{{/link-to}}
+  {{/if}}
+{{/if}}

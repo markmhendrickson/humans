@@ -1,13 +1,9 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 export default Component.extend({
   classNameBindings: ['nav.hidden:hidden'],
   classNames: ['app'],
-  headData: service(),
-  nav: service(),
-  session: service(),
   tagName: 'nav',
 
   options: computed('headData.title', 'session.authenticated', 'session.blockstackName', function() {
