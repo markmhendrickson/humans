@@ -1,13 +1,10 @@
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
-import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 
 export default Component.extend({
   classNameBindings: ['shown'],
   classNames: ['store-indicator'],
-  session: service(),
-  store: service(),
   timeout: 5000,
 
   actions: {
