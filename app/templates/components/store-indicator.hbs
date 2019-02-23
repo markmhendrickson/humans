@@ -3,7 +3,7 @@
     <i class="fas fa-check fa-spinner"></i>
     <span>Publishing...</span>
   </div>
-{{else if session.human.hasDirtyAttributes}}
+{{else if hasChanges}}
   <div class="option" {{action "saveChanges"}} title="Publish changes">
     <i class="fas fa-save"></i>
     <span>Publish changes</span>

@@ -21,5 +21,9 @@ export default Model.extend({
         blockstack.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
       })
     });
+  }),
+
+  hasContent: computed('coverImageUrl', 'description', 'name', function() {
+    return (this.get('coverImageUrl') || this.get('description') || this.get('name'));
   })
 });

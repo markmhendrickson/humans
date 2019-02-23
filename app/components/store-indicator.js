@@ -17,6 +17,10 @@ export default Component.extend({
     }
   },
 
+  hasChanges: computed('session.human.{hasDirtyAttributes,hasContent,isNew}', function() {
+    return this.get('session.human.hasDirtyAttributes') && (this.get('session.human.hasContent') || !this.get('session.human.isNew'));
+  }),
+
   savingChanged: observer('session.human.isSaving', function() {
     if (this.get('session.human.isSaving')) {
       this.set('hasSaved', true);
