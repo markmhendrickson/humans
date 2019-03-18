@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   classNameBindings: ['hidden'],
+  classNames: ['edit-profile-welcome'],
   dismissed: false,
 
   hidden: computed('dismissed', 'cookies', function() {
