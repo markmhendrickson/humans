@@ -1,0 +1,114 @@
+section.post {
+  .standard-fadein;
+
+  h1 {
+    .standard-h1;
+    .standard-selection;
+    outline: none;
+
+    &[contenteditable]:empty:before {
+      .standard-placeholder;
+      content: attr(placeholder);
+      display: block;
+    }
+  }
+
+  &.hasNoBody {
+    div.body {
+      display: none;
+
+      &.editable {
+        color: rgba(0,0,0,0.5);
+        display: block;
+
+        &:before {
+          content: attr(data-text);
+          cursor: text;
+          left: 0;
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  div.body, div.excerpt {
+    @font-size: 1.25em;
+    border: none !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+    font-size: @font-size;
+    margin: auto;
+    max-width: (50 / @font-size);
+    outline: none;
+    padding: 32px 16px;
+    text-align: left;
+
+    @media (min-width: 40em) {
+      margin-top: 32px;
+      padding: 32px;
+    }
+
+    @media (min-width: 45em) {
+      @font-size: 1.375em;
+      max-width: (60 / @font-size);
+    }
+
+    @media (min-width: 70em) {
+      @font-size: 1.375em;
+      font-size: @font-size;
+      margin-top: 64px;
+      max-width: (50 / @font-size);
+      padding: 0 0 64px 0;
+    }
+
+    a {
+      .standard-inline-link;
+      .standard-font-family-bold;
+    }
+
+    strong a {
+      font-weight: 800;
+    }
+
+    h1 {
+      .standard-font-family;
+      border-top: 1px solid @border-color;
+      font-size: 1.6em;
+      margin: 2em 0;
+      padding: 2em 1em 0 1em;
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    p {
+      .standard-paragraph;
+      max-width: 60em;
+
+      &:first-child {
+        margin-top: 0 !important;
+      }
+    }
+
+    ul, ol {
+      .standard-font-family;
+      margin: 1em 0 2em 0;
+      padding: 0 1em 0 1em;
+
+      @media (min-width: 40em) {
+        margin: 2em 0 3em 0;
+        padding: 0 2em 0 2em;
+      }
+
+      li {
+        line-height: 1.45em;
+        list-style: square;
+        margin-top: 2em;
+      }
+    }
+  }
+}

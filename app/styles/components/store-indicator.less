@@ -1,5 +1,4 @@
 div.store-indicator {
-  background: rgba(255,255,255,0.9);
   border-right: none;
   opacity: 0;
   position: fixed;
@@ -9,11 +8,11 @@ div.store-indicator {
   transform: translateY(-100%);
   transition: opacity 0.25s, transform 0.25s;
   width: 100%;
-  z-index: 100;
+  z-index: 1001;
 
   @media (min-width: 900px) {
     position: fixed;
-    top: 55px;
+    top: 55px; // @standard-nav-height;
   }
 
   &.shown {
@@ -53,10 +52,10 @@ div.store-indicator {
 
 @media (max-width: 899px) {
   div.store-indicator.shown ~ section:first-of-type {
-    margin-top: 55px;
+    margin-top: @standard-nav-height;
   }
 }
 
 div.store-indicator.shown ~ section.hero {
-  min-height: ~"calc(100vh - 55px)";
+  min-height: ~"calc(100vh - @standard-nav-height)";
 }

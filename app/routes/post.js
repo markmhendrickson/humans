@@ -3,18 +3,19 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model(params) {
-    let post = this.store.findRecord(this.get('session.blockstackName'), 'post', params.post_id, { include: 'image' });
-
-    if (!post) {
-      post = this.store.createRecord('post', {
-        id: params.post_id
+    return new Promise((resolve, reject) => {
+      this.store.findRecord(this.get('session.blockstackName'), 'post', params.post_id).then(resolve).catch((error) => {
+        resolve(this.store.createRecord('post', {
+          id: params.post_id,
+          author: this.get('session.human')
+        }));
       });
-    }
-
-    return post;
+    });
   },
 
   setupController(controller, post) {
+    controller.set('model', post);
+
     this.set('headData.model', {
       articleAuthor: post.get('author.name'),
       articleModifiedTime: post.get('updatedAt'),

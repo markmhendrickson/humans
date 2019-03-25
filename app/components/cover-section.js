@@ -6,7 +6,7 @@ export default Component.extend({
   classNames: ['cover'],
   tagName: 'section',
 
-  hero: computed('human.overview', 'editable', function() {
+  hero: computed('human.overview', 'nav.editable', function() {
     return (!this.get('human.overview') && !this.get('editable'));
   })
 });

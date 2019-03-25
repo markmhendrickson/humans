@@ -8,6 +8,24 @@ import mime from 'npm:mime-types';
 
 let appOrigin = `${config.location.protocol}://${config.location.hostname}`;
 
+let getFile = function(store, path, done) {
+  let options = {
+    decrypt: false,
+    username: store.blockstackName
+  };
+
+  if (config.location.hostname !== window.location.hostname) {
+    options.app = appOrigin;
+  }
+
+  blockstack.getFile(path, options).then((file) => {
+    done(null, JSON.parse(file));
+  }).catch((error) => {
+    console.error(`No record found at path ${path}`, error);
+    done(error);
+  });
+};
+
 export default DS.JSONAPIAdapter.extend({
   createRecord(store, type, snapshot) {
     let doc = {};
@@ -59,22 +77,57 @@ export default DS.JSONAPIAdapter.extend({
     });
   },
 
-  findRecord(store, type, id) {
+  findAll(store, type, sinceToken, snapshotRecordArray) {
     return new Promise((resolve, reject) => {
-      let options = {
-        decrypt: false,
-        username: store.blockstackName
+      let getPaths = function(done) {
+        let paths = [];
+
+        let promise = blockstack.listFiles((path) => {
+          if (path.indexOf(Inflector.inflector.pluralize(type.modelName)) === 0) {
+            paths.push(path);
+          }
+
+          return true;
+        });
+
+        promise.then(() => {
+          done(null, paths);
+        });
       };
 
-      if (config.location.hostname !== window.location.hostname) {
-        options.app = appOrigin;
-      }
+      let getFiles = function(paths, done) {
+        async.map(paths, (path, done) => {
+          getFile(store, path, done);
+        }, done);
+      };
 
-      blockstack.getFile(`${Inflector.inflector.pluralize(type.modelName)}/${id}`, options).then((file) => {
-        resolve(JSON.parse(file));
-      }).catch((error) => {
-        console.error(`No record found for type ${type.modelName} and id ${id}`, error);
-        reject();
+      async.waterfall([getPaths, getFiles], (error, files) => {
+        if (error) {
+          console.error(`Failed to findAll for type ${type.modelName}`, error);
+          reject(error);
+        } else {
+          let doc = {
+            data: []
+          };
+
+          files.forEach((file) => {
+            doc.data.push(file.data);
+          });
+
+          resolve(doc);
+        }
+      });
+    });
+  },
+
+  findRecord(store, type, id) {
+    return new Promise((resolve, reject) => {
+      getFile(store, `${Inflector.inflector.pluralize(type.modelName)}/${id}`, (error, file) => {
+        if (file) {
+          resolve(file);
+        } else {
+          reject();
+        }
       });
     });
   },

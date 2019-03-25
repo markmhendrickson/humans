@@ -1,0 +1,13 @@
+{{#if linkListing}}
+  {{#if linkUrl}}
+    <a href="{{listing.url}}">
+      {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
+    </a>
+  {{else}}
+    {{#link-to modelName listing.id}}
+      {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
+    {{/link-to}}
+  {{/if}}
+{{else}}
+  {{listing-interior-div linkListings=linkListings listing=listing modelName=modelName descriptionProperty=descriptionProperty}}
+{{/if}}

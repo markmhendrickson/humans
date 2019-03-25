@@ -13,7 +13,7 @@ let converter = new showdown.Converter();
  */
 export default Component.extend({
   attributeBindings: ['contenteditable', 'dataText:data-text', 'placeholder', 'spellcheck'],
-  classNameBindings: ['empty'],
+  classNameBindings: ['className', 'editable:editable:notEditable'],
 
   contenteditable: computed('editable', function() {
     return this.get('editable');

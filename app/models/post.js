@@ -7,13 +7,17 @@ export default DS.Model.extend({
   createdAt: DS.attr('date'),
   description: DS.attr('string'),
   excerpt: DS.attr('string'),
-  image: DS.belongsTo('image'),
+  //image: DS.belongsTo('image'),
   publishedAt: DS.attr('date'),
   subtitle: DS.attr('string'),
   title: DS.attr('string'),
   updatedAt: DS.attr('date'),
 
-  hasHeaderImage: computed('image.url', 'image.type', function() {
+  hasContent: computed('body', 'title', function() {
+    return (this.get('body') && this.get('title'));
+  }),
+
+  hasHeaderImage: computed('image.{type,url}', function() {
     return (this.get('image.url') && this.get('image.type') !== 'logo');
   })
 });

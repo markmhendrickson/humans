@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import orientation from 'personal-web/utils/orientation';
+import orientation from 'humans/utils/orientation';
 
 export default DS.Model.extend({
   description: DS.attr('string'),

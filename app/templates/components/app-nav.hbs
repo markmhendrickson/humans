@@ -1,15 +1,12 @@
-<div>Humans.</div>
+{{#if nav.editable}}
+  {{editable-image class="image" deleteConfirmation="Are you sure you want to delete your photo?" model=session.human uploadLabel="Upload photo" url=session.human.imageUrl title="Upload photo"}}
+{{else}}
+  {{#link-to 'index' class="image"}}<img src="{{session.human.imageUrl}}" />{{/link-to}}
+{{/if}}
 
-{{#each options as |o|}}
-  {{#if o.action}}
-    <span title="{{o.title}}" onclick={{action o.action}}><i class="{{o.icon}}"></i></span>
-  {{else if o.route}}
-    {{#if o.param}}
-      {{#link-to o.route o.param title=o.title target=o.target}}<i class="{{o.icon}}"></i>{{/link-to}}
-    {{else}}
-      {{#link-to o.route title=o.title target=o.target}}<i class="{{o.icon}}"></i>{{/link-to}}
-    {{/if}}
-  {{else if o.href}}
-    <a title="{{o.title}}" href="{{o.href}}"><i class="{{o.icon}}"></i></a>
-  {{/if}}
-{{/each}}
+  <div class="full-name">{{#link-to "index"}}{{fullName}}{{/link-to}}</div>
+
+  <div class="mode">
+    <span title="Edit mode" {{action "toggleMode" true}}><i class="fas fa-pencil-alt"></i></span>
+    <span title="View mode" {{action "toggleMode" false}}><i class="far fa-eye"></i></span>
+  </div>

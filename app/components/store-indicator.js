@@ -9,17 +9,22 @@ export default Component.extend({
 
   actions: {
     saveChanges() {
-      this.set('session.human.updatedAt', new Date());
-      this.get('store').queueSave(this.get('session.human'));
+      if (this.get('model.isNew')) {
+        this.set('model.createdAt', new Date());
+        this.set('model.publishedAt', new Date());
+      }
+
+      this.set('model.updatedAt', new Date());
+      this.get('store').queueSave(this.get('model'));
     }
   },
 
-  hasChanges: computed('session.human.{hasDirtyAttributes,hasContent,isNew}', function() {
-    return this.get('session.human.hasDirtyAttributes') && (this.get('session.human.hasContent') || !this.get('session.human.isNew'));
+  hasChanges: computed('model.{hasDirtyAttributes,hasContent,isNew}', function() {
+    return this.get('model.hasDirtyAttributes') && (this.get('model.hasContent') || !this.get('model.isNew'));
   }),
 
-  savingChanged: observer('session.human.isSaving', function() {
-    if (this.get('session.human.isSaving')) {
+  savingChanged: observer('model.isSaving', function() {
+    if (this.get('model.isSaving')) {
       this.set('hasSaved', true);
       return;
     }
@@ -35,7 +40,7 @@ export default Component.extend({
     }, this.get('timeout'));
   }),
 
-  shown: computed('savedRecently', 'session.human.hasDirtyAttributes', 'session.human.isSaving', function() {
-    return (this.get('session.human.hasDirtyAttributes') || this.get('session.human.isSaving') || this.get('savedRecently'));
+  shown: computed('savedRecently', 'model.hasDirtyAttributes', 'model.isSaving', function() {
+    return (this.get('model.hasDirtyAttributes') || this.get('model.isSaving') || this.get('savedRecently'));
   })
 });

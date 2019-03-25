@@ -9,11 +9,27 @@
         {{#each listings as |listing|}}
           {{component listingLi descriptionProperty=descriptionProperty format=format linkListings=linkListings linkUrl=linkUrl listing=listing modelName=modelName}}
         {{/each}}
+        {{#if editable}}
+          <li class="hasNoImage hasHeader">
+            <a href="/{{pluralModelName}}/{{uniq-id}}">
+              <div class="interior">
+                <div class="content">
+                  <div>
+                    <div class="header"><i class="fas fa-plus-circle"></i></div>
+                    <div class="description">Add {{modelName}}</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        {{/if}}
       </ul>
     </div>
   </div>
 {{else}}
-  <div class="no-listings">No {{pluralModelName}}</div>
+  {{#unless editable}}
+    <div class="no-listings">No {{pluralModelName}}</div>
+  {{/unless}}
 {{/if}}
 
 {{#if showViewAll}}

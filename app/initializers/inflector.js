@@ -3,7 +3,8 @@ import Inflector from 'ember-inflector';
 export function initialize() {
   Inflector.inflector = new Inflector({
     irregularPairs: [
-      ['human', 'humans']
+      ['human', 'humans'],
+      ['post', 'posts']
     ]
   });
 }

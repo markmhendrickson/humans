@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
-import capitalize from 'personal-web/utils/capitalize';
+import capitalize from 'humans/utils/capitalize';
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -23,7 +23,7 @@ export default Component.extend({
   },
 
   header: computed('modelName', function() {
-    return pluralize(capitalize(this.get('modelName')));
+    return capitalize(pluralize(this.get('modelName')));
   }),
 
   id: computed('pluralModelName', function() {
@@ -34,7 +34,7 @@ export default Component.extend({
     this._super(...arguments);
 
     if (!this.get('listings')) {
-      this.findAll(this.get('modelName'), {
+      this.get('store').findAll(this.get('modelName'), {
         limit: this.get('limit'),
         sort: this.get('sort') ? this.get('sort') : '-publishedAt,-createdAt,-id'
       }).then((listings) => {

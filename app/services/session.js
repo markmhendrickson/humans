@@ -29,8 +29,6 @@ export default Service.extend({
     return DS.PromiseObject.create({
       promise: new Promise((resolve) => {
         this.get('store').findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch(() => {
-          this.get('store').unloadRecord(this.get('store').getReference('human', this.get('userId')).internalModel); // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
-
           resolve(this.get('store').createRecord('human', {
             id: this.get('userId')
           }));

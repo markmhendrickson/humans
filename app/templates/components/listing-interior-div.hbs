@@ -1,0 +1,20 @@
+{{#if hasImage}}
+  <img src="{{imageUrl}}" class="{{listing.imageType}}"  />
+{{/if}}
+{{#if hasContent}}
+  <div class="content">
+    <div>
+      {{#if hasHeader}}
+        <div class="header">{{header}}</div>
+      {{else}}
+        <div class="body">{{compiled-markdown markdown=listing.body}}</div>
+      {{/if}}
+
+      {{#if linkDescription}}
+        <div class="description">{{#link-to modelName listing.id}}{{listing-description listing property=descriptionProperty}}{{/link-to}}</div>
+      {{else}}
+        <div class="description">{{listing-description listing property=descriptionProperty}}</div>
+      {{/if}}
+    </div>
+  </div>
+{{/if}}
