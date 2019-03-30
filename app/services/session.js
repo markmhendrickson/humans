@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
-import blockstack from 'npm:blockstack';
+import blockstack from 'blockstack';
 import { inject as service } from '@ember/service';
 
 export default Service.extend({

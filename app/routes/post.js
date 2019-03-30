@@ -1,7 +1,10 @@
 import config from 'humans/config/environment';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  router: service(),
+
   model(params) {
     return new Promise((resolve, reject) => {
       this.store.findRecord(this.get('session.blockstackName'), 'post', params.post_id).then(resolve).catch((error) => {
@@ -21,7 +24,7 @@ export default Route.extend({
       articleAuthor: post.get('author.name'),
       articleModifiedTime: post.get('updatedAt'),
       articlePublishedTime: post.get('publishedAt'),
-      canonicalUrl: `${config.location.protocol}://${config.location.host}/${this.router.generate('post', post.get('id'))}`,
+      canonicalUrl: `${config.location.protocol}://${config.location.host}/${this.get('router').urlFor('post', post)}`,
       description: post.get('excerpt'),
       imageUrl: post.get('imageUrl'),
       title: post.get('title'),

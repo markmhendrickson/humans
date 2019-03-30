@@ -1,10 +1,10 @@
 import DS from 'ember-data';
-import blockstack from 'npm:blockstack';
+import blockstack from 'blockstack';
 import Inflector from 'ember-inflector';
 import config from 'humans/config/environment';
-import dataUriToBuffer from 'npm:data-uri-to-buffer';
-import async from 'npm:async';
-import mime from 'npm:mime-types';
+import dataUriToBuffer from 'data-uri-to-buffer';
+import async from 'async';
+import mime from 'mime-types';
 
 let appOrigin = `${config.location.protocol}://${config.location.hostname}`;
 
@@ -79,7 +79,11 @@ export default DS.JSONAPIAdapter.extend({
 
   deleteRecord(store, type, snapshot) {
     return new Promise((resolve, reject) => {
-      blockstack.deleteFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`).then(resolve).catch(reject);
+      blockstack.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, '{}', {
+        encrypt: false
+      }).then(() => {
+        resolve();
+      }).catch(reject);
     });
   },
 

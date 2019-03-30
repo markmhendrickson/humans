@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import blockstack from 'npm:blockstack';
+import blockstack from 'blockstack';
 
 export default Route.extend({
   beforeModel() {

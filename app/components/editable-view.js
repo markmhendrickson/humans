@@ -2,9 +2,9 @@ import Component from '@ember/component';
 import Ember from 'ember';
 import { computed } from '@ember/object';
 import { once } from '@ember/runloop';
-import BalloonEditor from 'npm:@ckeditor/ckeditor5-build-balloon';
-import showdown from 'npm:showdown';
-import striptags from 'npm:striptags';
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
+import showdown from 'showdown';
+import striptags from 'striptags';
 
 let converter = new showdown.Converter();
 

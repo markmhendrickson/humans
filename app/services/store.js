@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import PQueue from 'npm:p-queue';
+import PQueue from 'p-queue';
 
 export default DS.Store.extend({
   editable: true,
@@ -42,7 +42,6 @@ export default DS.Store.extend({
 
         if (query['sort']) {
           if (query['sort'].indexOf('-') === 0) {
-            console.log(query['sort']);
             records = records.sortBy(query['sort'].substring(1)).reverse();
           } else {
             records = records.sortBy(query['sort']);

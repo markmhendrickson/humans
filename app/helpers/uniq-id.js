@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import uniqid from 'npm:uniqid';
+import uniqid from 'uniqid';
 
 export function uniqId(params) {
   return uniqid();

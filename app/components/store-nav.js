@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   classNameBindings: [
@@ -22,6 +23,10 @@ export default Component.extend({
     return (this.get('model.isSaving') && this.get('model.isDeleted'));
   }),
 
+  isNotDeleted: computed('model.isDeleted', function() {
+    return !this.get('model.isDeleted');
+  }),
+
   isSaving: computed('model.isSaving', 'model.isDeleted', function() {
     return (this.get('model.isSaving') && !this.get('model.isDeleted'));
   }),
@@ -35,11 +40,13 @@ export default Component.extend({
     this.set('savedRecently', true);
 
     run.later(() => {
-      this.set('savedRecently', false);
+      if (!this.get('isDestroyed')) {
+        this.set('savedRecently', false);
 
-      run.later(() => {
-        this.set('hasSaved', false);
-      }, 250);
+        run.later(() => {
+          this.set('hasSaved', false);
+        }, 250);
+      }
     }, this.get('timeout'));
   }),
 
@@ -58,7 +65,13 @@ export default Component.extend({
 
     delete() {
       this.get('model').destroyRecord().then(() => {
-        this.get('router').transitionTo('index');
+        this.set('model.destroyed', true);
+
+        let then = () => {
+          this.get('model').unloadRecord();
+        };
+
+        this.get('router').transitionTo('index').then(then).catch(then);
       });
     },
 

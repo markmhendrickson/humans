@@ -71,20 +71,40 @@ nav.store {
       margin-bottom: 1em;
 
       &.delete {
-        border-color: #ff0000;
-        opacity: 0.25;
+        border-color: #ffbcbc;
+        transition: border-color 0.25s;
 
         &::before {
-          color: #ff0000;
+          color: #ffbcbc;
           content: "\f2ed";
+          transition: color 0.25s;
         }
 
         &:hover {
-          opacity: 1;
+          border-color: #ff0000;
+
+          &::before {
+            color: #ff0000;
+          }
 
           &::after {
             content: "Delete";
           }
+        }
+      }
+
+      &.delete.deleting {
+        border-color: #ffbcbc;
+        cursor: default;
+
+        &::before {
+          animation: 0.75s linear 0s infinite normal spin;
+          color: #ffbcbc;
+          content: "\f110";
+        }
+
+        &:hover::after {
+          content: "Deleting...";
         }
       }
 
