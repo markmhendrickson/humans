@@ -6,12 +6,9 @@
   <div>
     <div>
       <ul>
-        {{#each listings as |listing|}}
-          {{component listingLi descriptionProperty=descriptionProperty format=format linkListings=linkListings linkUrl=linkUrl listing=listing modelName=modelName}}
-        {{/each}}
         {{#if editable}}
           <li class="hasNoImage hasHeader">
-            <a href="/{{pluralModelName}}/{{uniq-id}}">
+            {{#link-to modelName (uniq-id)}}
               <div class="interior">
                 <div class="content">
                   <div>
@@ -20,9 +17,15 @@
                   </div>
                 </div>
               </div>
-            </a>
+            {{/link-to}}
           </li>
         {{/if}}
+
+        {{#each listings as |listing|}}
+          {{#if listing.hasContent}}
+            {{component listingLi descriptionProperty=descriptionProperty format=format linkListings=linkListings linkUrl=linkUrl listing=listing modelName=modelName}}
+          {{/if}}
+        {{/each}}
       </ul>
     </div>
   </div>

@@ -2,6 +2,8 @@ import DS from 'ember-data';
 import PQueue from 'npm:p-queue';
 
 export default DS.Store.extend({
+  editable: true,
+
   createRecord(modelName, inputProperties) {
     // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
     let record = this.getReference(modelName, inputProperties.id);
@@ -27,5 +29,32 @@ export default DS.Store.extend({
   findRecord(blockstackName, modelName, id, options) {
     this.set('blockstackName', blockstackName);
     return this._super(modelName, id, options);
+  },
+
+  query(type, query) {
+    return new Promise((resolve, reject) => {
+      this.findAll(type).then((records) => {
+        if (query['filter']) {
+          Object.keys(query['filter']).forEach((key) => {
+            records = records.filterBy(key, query['filter'][key]);
+          });
+        }
+
+        if (query['sort']) {
+          if (query['sort'].indexOf('-') === 0) {
+            console.log(query['sort']);
+            records = records.sortBy(query['sort'].substring(1)).reverse();
+          } else {
+            records = records.sortBy(query['sort']);
+          }
+        }
+
+        if (query['limit']) {
+          records = records.slice(0, query['limit']);
+        }
+
+        resolve(records);
+      }).catch(reject);
+    });
   }
 });

@@ -1,7 +1,8 @@
 {{#if hasImage}}
   <img src="{{imageUrl}}" class="{{listing.imageType}}"  />
 {{/if}}
-{{#if hasContent}}
+
+{{#if listing.hasContent}}
   <div class="content">
     <div>
       {{#if hasHeader}}

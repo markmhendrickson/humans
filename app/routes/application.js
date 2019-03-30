@@ -12,9 +12,5 @@ export default Route.extend({
         resolve();
       }
     });
-  },
-
-  model() {
-    return this.get('session.human');
   }
 });

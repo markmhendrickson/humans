@@ -1,0 +1,25 @@
+nav.settings {
+  position: fixed;
+  right: 0;
+  text-align: right;
+  bottom: 0;
+  margin: 1.5em;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 1001;
+
+  a {
+    .standard-icon;
+    .standard-icon-outlined;
+    .standard-tooltip;
+    display: block;
+    width: 3em;
+
+    &::before {
+      content: "\f013";
+    }
+
+    &:hover::after {
+      content: "View settings";
+    }
+  }
+}

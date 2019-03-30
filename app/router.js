@@ -15,8 +15,9 @@ Router.map(function() {
     this.route('create-profile');
     this.route('customize-url');
   }
-  this.route('post', { path: '/posts/:post_id' });
+  this.route('post', { path: '/posts/:post_id' });
   this.route('posts');
+  this.route('settings');
 });
 
 export default Router;

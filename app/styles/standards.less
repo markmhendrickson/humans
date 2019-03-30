@@ -341,3 +341,34 @@
   animation-name: fadeIn;
   opacity: 0;
 }
+
+.standard-tooltip {
+  position: relative;
+
+  &:hover::after {
+    background: rgba(0,0,0,0.9);
+    border-radius: 1em;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    right: 64px;
+    padding: 1em 2em;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+  }
+}
+
+.standard-tooltip-right {
+  .standard-tooltip;
+
+  &:hover::after {
+    right: unset;
+    left: 64px;
+  }
+}
+
+@import (reference) "standard-icons.less";
+@import (reference) "standard-listings.less";

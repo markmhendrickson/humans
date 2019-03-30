@@ -14,7 +14,7 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
 
   hasContent: computed('body', 'title', function() {
-    return (this.get('body') && this.get('title'));
+    return (this.get('body') || this.get('title'));
   }),
 
   hasHeaderImage: computed('image.{type,url}', function() {

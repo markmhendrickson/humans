@@ -10,8 +10,8 @@ export function initialize() {
     session: service(),
     store: service(),
 
-    editable: computed('nav.editable', function() {
-      return this.get('nav.editable');
+    editable: computed('store.editable', function() {
+      return this.get('store.editable');
     })
   });
 }

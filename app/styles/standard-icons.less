@@ -1,0 +1,21 @@
+.standard-icon {
+  &:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+}
+
+.standard-icon-outlined {
+  .standard-icon;
+  border: 2px solid #ececec;
+  border-radius: 50%;
+  padding-bottom: 100%;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

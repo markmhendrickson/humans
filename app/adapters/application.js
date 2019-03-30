@@ -77,7 +77,13 @@ export default DS.JSONAPIAdapter.extend({
     });
   },
 
-  findAll(store, type, sinceToken, snapshotRecordArray) {
+  deleteRecord(store, type, snapshot) {
+    return new Promise((resolve, reject) => {
+      blockstack.deleteFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`).then(resolve).catch(reject);
+    });
+  },
+
+  findAll(store, type) {
     return new Promise((resolve, reject) => {
       let getPaths = function(done) {
         let paths = [];

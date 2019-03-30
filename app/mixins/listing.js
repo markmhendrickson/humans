@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
-  date: Ember.computed('listing.createdAt', 'listing.publishedAt', function() {
+export default Mixin.create({
+  date: computed('listing.{createdAt,publishedAt}', function() {
     if (this.get('listing.publishedAt')) {
       return this.get('listing.publishedAt');
     } else if (this.get('listing.createdAt')) {
@@ -9,19 +10,15 @@ export default Ember.Mixin.create({
     }
   }),
 
-  hasContent: Ember.computed('date', 'listing.{body,description}', 'header', function() {
-    return ((this.get('date') || this.get('listing.description')) && (this.get('listing.body') || this.get('header')));
-  }),
-
-  hasImage: Ember.computed('imageUrl', function() {
+  hasImage: computed('imageUrl', function() {
     return (this.get('imageUrl'));
   }),
 
-  hasHeader: Ember.computed('header', function() {
+  hasHeader: computed('header', function() {
     return (this.get('header'));
   }),
 
-  header: Ember.computed('listing.name', 'listing.title', function() {
+  header: computed('listing.{name,title}', function() {
     if (this.get('listing.name')) {
       return this.get('listing.name');
     } else if (this.get('listing.title')) {
@@ -29,7 +26,7 @@ export default Ember.Mixin.create({
     }
   }),
 
-  imageUrl: Ember.computed('listing.imageUrl', 'listing.thumbImageUrl', function() {
+  imageUrl: computed('listing.{imageUrl,thumbImageUrl}', function() {
     if (this.get('listing.thumbImageUrl')) {
       return this.get('listing.thumbImageUrl');
     } else if (this.get('listing.imageUrl')) {
@@ -37,11 +34,11 @@ export default Ember.Mixin.create({
     }
   }),
 
-  linkDescription: Ember.computed('hasHeader', 'linkListings', function() {
+  linkDescription: computed('hasHeader', 'linkListings', function() {
     return (!this.get('hasHeader') && this.get('linkListings'));
   }),
 
-  linkListing: Ember.computed('hasContent', 'hasHeader', 'linkListings', function() {
+  linkListing: computed('hasContent', 'hasHeader', 'linkListings', function() {
     return ((this.get('hasHeader') || !this.get('hasContent')) && this.get('linkListings'));
   })
 });

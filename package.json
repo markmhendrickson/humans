@@ -27,7 +27,7 @@
     "ember-ajax": "^3.1.0",
     "ember-cli": "~3.5.0",
     "ember-cli-app-version": "^3.2.0",
-    "ember-cli-babel": "^6.16.0",
+    "ember-cli-babel": "^7.7.3",
     "ember-cli-cors": "0.0.2",
     "ember-cli-dependency-checker": "^3.0.0",
     "ember-cli-eslint": "^4.2.3",
@@ -65,7 +65,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-balloon": "^11.2.0",
     "async": "^2.6.1",
-    "blockstack": "markmhx/blockstack.js",
+    "blockstack": "^19.0.1",
     "data-uri-to-buffer": "^2.0.0",
     "ember-browserify": "^1.2.2",
     "ember-cli-segment": "^3.0.0",

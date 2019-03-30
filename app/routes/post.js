@@ -7,7 +7,8 @@ export default Route.extend({
       this.store.findRecord(this.get('session.blockstackName'), 'post', params.post_id).then(resolve).catch((error) => {
         resolve(this.store.createRecord('post', {
           id: params.post_id,
-          author: this.get('session.human')
+          author: this.get('session.human'),
+          createdAt: new Date()
         }));
       });
     });

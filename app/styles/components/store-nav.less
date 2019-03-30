@@ -1,0 +1,137 @@
+nav.store {
+  position: fixed;
+  right: 0;
+  text-align: right;
+  top: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 1001;
+
+  @media (min-width: 900px) {
+    position: fixed;
+    top: 0;
+  }
+
+  div.mode, div.options {
+    margin: 1.5em;
+    width: 3em;
+
+    div {
+      .standard-tooltip;
+      cursor: pointer;
+      text-align: center;
+
+      &:before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+      }
+    }
+  }
+
+  div.mode {
+    div {
+      background: #ececec;
+      border: 2px solid #ececec;
+      color: #a9a9a9;
+      padding: 1.5em 0;
+
+      &.edit {
+        border-radius: 1em 1em 0 0;
+
+        &::before {
+          content: "\f5ad";
+        }
+
+        &:hover::after {
+          content: "Edit mode";
+        }
+      }
+
+      &.view {
+        border-radius: 0 0 1em 1em;
+
+        &::before {
+          content: "\f06e";
+        }
+
+        &:hover::after {
+          content: "View mode";
+        }
+      }
+    }
+  }
+
+  &.editMode div.mode div.edit, &.viewMode div.mode div.view {
+    background: white;
+    color: black;
+  }
+
+  div.options {
+    div {
+      .standard-icon-outlined;
+      margin-bottom: 1em;
+
+      &.delete {
+        border-color: #ff0000;
+        opacity: 0.25;
+
+        &::before {
+          color: #ff0000;
+          content: "\f2ed";
+        }
+
+        &:hover {
+          opacity: 1;
+
+          &::after {
+            content: "Delete";
+          }
+        }
+      }
+
+      &.save {
+        border-color: @standard-color-link;
+
+        &::before {
+          color: @standard-color-link;
+          content: "\f0c7";
+        }
+
+        &:hover::after {
+          content: "Save";
+        }
+      }
+
+      &.save.saving {
+        border-color: #ececec;
+        color: #848484;
+        cursor: default;
+
+        &::before {
+          animation: 0.75s linear 0s infinite normal spin;
+          color: inherit;
+          content: "\f110";
+        }
+
+        &:hover::after {
+          content: "Saving...";
+        }
+      }
+
+      &.save.saved {
+        border-color: #00bf00;
+        color: #00bf00;
+        cursor: default;
+
+        &::before {
+          color: inherit;
+          content: "\f00c";
+        }
+
+        &:hover::after {
+          content: "Saved";
+        }
+      }
+    }
+  }
+}
+

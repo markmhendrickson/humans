@@ -34,9 +34,9 @@ export default Component.extend({
     this._super(...arguments);
 
     if (!this.get('listings')) {
-      this.get('store').findAll(this.get('modelName'), {
+      this.get('store').query(this.get('modelName'), {
         limit: this.get('limit'),
-        sort: this.get('sort') ? this.get('sort') : '-publishedAt,-createdAt,-id'
+        sort: this.get('sort') ? this.get('sort') : '-createdAt'
       }).then((listings) => {
         this.set('listings', listings);
       }).catch(() => {

@@ -1,0 +1,46 @@
+nav.human-image {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+
+  &.empty a.image:before {
+    content: "\f015";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  a.image {
+    .standard-tooltip-right;
+    border: 2px solid #ececec;
+    border-radius: 50%;
+    display: block;
+    height: 3em;
+    margin: 1.5em;
+    position: relative;
+    width: 3em;
+
+    &:hover::after {
+      content: "Go home";
+    }
+
+    button {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    ul {
+      display: none;
+    }
+  }
+}

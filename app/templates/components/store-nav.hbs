@@ -1,0 +1,20 @@
+<div class="mode">
+  <div class="edit" title="Edit mode" {{action "toggleMode" true}}></div>
+  <div class="view" title="View mode" {{action "toggleMode" false}}></div>
+</div>
+
+<div class="options">
+  {{#if isSaving}}
+    <div class="save saving"></div>
+  {{else if hasChanges}}
+    <div class="save" {{action "save"}}></div>
+  {{else if hasSaved}}
+    <div class="save saved"></div>
+  {{/if}}
+
+  {{#if isDeleting}}
+    <div class="delete deleting"></div>
+  {{else if showDelete}}
+    <div class="delete" {{action "delete"}}></div>
+  {{/if}}
+</div>
