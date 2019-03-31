@@ -39,7 +39,11 @@ export default Component.extend({
         sort: this.get('sort') ? this.get('sort') : '-createdAt'
       }).then((listings) => {
         this.set('listings', listings);
-      }).catch(() => {
+      }).catch((error) => {
+        if (error) {
+          console.error(error);
+        }
+
         Ember.Logger.log(`${this.get('modelName')} listings-section initialized empty`);
       });
     }

@@ -121,7 +121,9 @@ export default DS.JSONAPIAdapter.extend({
           };
 
           files.forEach((file) => {
-            doc.data.push(file.data);
+            if (file.data) {
+              doc.data.push(file.data);
+            }
           });
 
           resolve(doc);
