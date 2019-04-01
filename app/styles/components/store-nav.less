@@ -2,18 +2,24 @@ nav.store {
   position: fixed;
   right: 0;
   text-align: right;
-  top: 0;
+  bottom: 0;
   transition: opacity 0.25s, transform 0.25s;
   z-index: 1001;
 
   @media (min-width: 900px) {
+    bottom: unset;
     position: fixed;
     top: 0;
   }
 
   div.mode, div.options {
+    display: none;
     margin: 1.5em;
     width: 3em;
+
+    @media (min-width: 900px) {
+      display: block;
+    }
 
     div {
       .standard-tooltip;
@@ -28,6 +34,10 @@ nav.store {
   }
 
   div.mode {
+    &.shown {
+      display: block;
+    }
+
     div {
       background: #ececec;
       border: 2px solid #ececec;
@@ -152,6 +162,29 @@ nav.store {
         }
       }
     }
+  }
+
+  div.toggle {
+    .standard-icon-outlined;
+    margin: 1.5em;
+    padding-bottom: 50%;
+    width: 3em;
+
+    @media (min-width: 900px) {
+      display: none;
+    }
+
+    &::before {
+      content: "\f142";
+    }
+  }
+
+  &.shown div.toggle::before {
+    content: "\f00d";
+  }
+
+  &.shown div.mode, &.shown div.options {
+    display: block;
   }
 }
 

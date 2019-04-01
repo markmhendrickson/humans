@@ -1,11 +1,16 @@
 nav.settings {
   position: fixed;
-  right: 0;
+  left: 0;
   text-align: right;
   bottom: 0;
   margin: 1.5em;
   transition: opacity 0.25s, transform 0.25s;
   z-index: 1001;
+
+  @media (min-width: 900px) {
+    left: unset;
+    right: 0;
+  }
 
   a {
     .standard-icon;

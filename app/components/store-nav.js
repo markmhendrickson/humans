@@ -8,6 +8,7 @@ export default Component.extend({
     'model.hasDirtyAttributes:hasDirtyAttributes',
     'model.isSaving:isSaving',
     'savedRecently',
+    'shown',
     'store.editable:editMode:viewMode'
   ],
   classNames: ['store'],
@@ -77,6 +78,10 @@ export default Component.extend({
 
     toggleMode(editable) {
       this.set('store.editable', editable);
+    },
+
+    toggleShown() {
+      this.toggleProperty('shown');
     },
 
     save() {
