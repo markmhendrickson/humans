@@ -2,12 +2,12 @@
   <h2>{{header}}</h2>
 {{/if}}
 
-{{#if listings}}
+{{#if showListings}}
   <div>
     <div>
       <ul>
         {{#if editable}}
-          <li class="hasNoImage hasHeader">
+          <li class="add has-no-image has-header">
             {{#link-to modelName (uniq-id)}}
               <div class="interior">
                 <div class="content">
@@ -29,10 +29,10 @@
       </ul>
     </div>
   </div>
-{{else}}
-  {{#unless editable}}
-    <div class="no-listings">No {{pluralModelName}}</div>
-  {{/unless}}
+{{/if}}
+
+{{#if showNoListings}}
+  <div class="no-listings">No {{pluralModelName}}</div>
 {{/if}}
 
 {{#if showViewAll}}

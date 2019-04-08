@@ -7,9 +7,11 @@ export default Component.extend({
   attributeBindings: ['id'],
   classNameBindings: [
     'carousel',
-    'hideNoListings',
+    'editable',
+    'hideNoListings:hide-no-listings',
     'limit:limited',
-    'listings.length:hasListings:hasNoListings',
+    'listings.length:has-listings:has-no-listings',
+    'loaded',
     'pluralModelName'
   ],
   classNames: 'listings',
@@ -39,6 +41,7 @@ export default Component.extend({
         sort: this.get('sort') ? this.get('sort') : '-createdAt'
       }).then((listings) => {
         this.set('listings', listings);
+        this.set('loaded', true);
       }).catch((error) => {
         if (error) {
           console.error(error);
@@ -51,6 +54,14 @@ export default Component.extend({
 
   pluralModelName: computed('modelName', function() {
     return this.get('modelName') ? pluralize(this.get('modelName')) : undefined;
+  }),
+
+  showListings: computed('editable', 'listings.[]', function() {
+    return this.get('editable') || this.get('listings.length');
+  }),
+
+  showNoListings: computed('editable', 'listings.[]', function() {
+    return !this.get('editable') && !this.get('listings.length');
   }),
 
   showViewAll: computed('limit', 'hideViewAll', function() {

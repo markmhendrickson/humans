@@ -2,7 +2,7 @@
   padding-left: 0;
   padding-right: 0;
 
-  &.hideNoListings.hasNoListings {
+  &:not(.loaded), &:not(.editable).hide-no-listings.has-no-listings {
     display: none;
   }
 
@@ -187,7 +187,13 @@
         border-top: 1px solid rgba(0,0,0,0.05);
       }
 
-      &.hasImage div.content {
+      &.add div.header, &.add div.description {
+        color: @standard-color-link;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      &.has-image div.content {
         height: 163px;
 
         @media (min-width: 40em) {
@@ -195,7 +201,7 @@
         }
       }
 
-      &.hasNoImage.hasHeader div.content > div {
+      &.has-no-image.has-header div.content > div {
         padding: 40px 0;
 
         @media (min-width: 40em) {
@@ -207,14 +213,14 @@
         }
       }
 
-      &.hasImage.hasHeader div.content > div {
+      &.has-image.has-header div.content > div {
         position: absolute;
         height: auto;
         top: 50%;
         transform: translateY(-50%);
       }
 
-      &.hasHeader div.content div.description {
+      &.has-header div.content div.description {
         border-top: none;
         bottom: auto;
         left: auto;
@@ -225,16 +231,6 @@
         @media (min-width: 40em) {
           font-size: 16px;
           margin-top: 24px;
-        }
-      }
-
-      &.imageOnly {
-        div.content {
-          display: none;
-        }
-
-        img {
-          height: 100%;
         }
       }
     }
@@ -258,7 +254,7 @@
           width: 496px;
         }
 
-        &.hasNoImage.hasHeader div.content > div {
+        &.has-no-image.has-header div.content > div {
           position: absolute;
           height: auto;
           padding: 0;

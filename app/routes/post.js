@@ -19,17 +19,7 @@ export default Route.extend({
 
   setupController(controller, post) {
     controller.set('model', post);
-
-    this.set('headData.model', {
-      articleAuthor: post.get('author.name'),
-      articleModifiedTime: post.get('updatedAt'),
-      articlePublishedTime: post.get('publishedAt'),
-      canonicalUrl: `${config.location.protocol}://${config.location.host}/${this.get('router').urlFor('post', post)}`,
-      description: post.get('excerpt'),
-      imageUrl: post.get('imageUrl'),
-      title: post.get('title'),
-      type: 'article'
-    });
+    this.set('headData.title', post.get('title'));
   },
 
   actions: {
