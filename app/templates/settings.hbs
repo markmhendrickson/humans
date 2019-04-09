@@ -1,4 +1,11 @@
 {{human-image-nav model=session.human}}
 {{store-nav model=session.human}}
 
+{{header-section header="Settings"}}
 {{human-image-section human=session.human}}
+
+{{#if session.blockstackName}}
+  {{customize-url-section human=session.human}}
+{{else}}
+  {{customize-url-unavailable-section}}
+{{/if}}

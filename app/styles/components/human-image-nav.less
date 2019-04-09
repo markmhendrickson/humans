@@ -1,41 +1,54 @@
 nav.human-image {
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-  animation-name: fadeIn;
+  .standard-fadein;
+  .standard-tooltip-right;
+  cursor: pointer;
+  display: none;
   left: 0;
   position: fixed;
   top: 0;
   z-index: 1000;
 
-  &.empty a.image:before {
-    content: "\f015";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
+  &:hover::after {
+    content: "Home";
   }
 
-  a.image {
-    .standard-tooltip-right;
+  &.has-name:hover::after {
+    content: attr(data-name);
+  }
+
+  @media (min-width: 50em) {
+    &.is-loaded {
+      display: block;
+    }
+  }
+
+  &.empty a {
     border: 2px solid #ececec;
+
+    &:before {
+      content: "\f015";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
+  a {
     border-radius: 50%;
     display: block;
     height: 3em;
     margin: 1.5em;
-    position: relative;
     width: 3em;
-
-    &:hover::after {
-      content: "Go home";
-    }
 
     button {
       display: none;
     }
 
     img {
+      border-radius: 50%;
       width: 100%;
     }
 

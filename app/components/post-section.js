@@ -2,7 +2,10 @@ import Component from '@ember/component';
 import { observer } from '@ember/object';
 
 export default Component.extend({
-  classNameBindings: ['post.body:hasBody:hasNoBody'],
+  classNameBindings: [
+    'post.author.name:is-loaded:is-not-loaded',
+    'post.body:hasBody:hasNoBody'
+   ],
   classNames: ['post'],
   tagName: 'section',
 

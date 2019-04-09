@@ -1,11 +1,38 @@
 section.human-image {
-  width: 25%;
+  margin: auto;
+  max-width: 50em;
+  text-align: left;
+
+  @media (max-width: 899px) {
+    padding: 2em 1em;
+  }
 
   div.editable-image {
-    padding-bottom: 100%;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 2em;
+    padding-bottom: 10em;
+    width: 10em;
+
+    @media (min-width: 900px) {
+      margin-top: 4em;
+    }
 
     img {
       opacity: 1;
+    }
+  }
+
+  @media (min-width: 700px) {
+    display: flex;
+
+    div.content {
+      padding-right: 2em;
+      width: ~"calc(100% - 10em)";
+    }
+
+    div.editable-image {
+      margin-top: 0;
     }
   }
 }

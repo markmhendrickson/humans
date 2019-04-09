@@ -202,10 +202,14 @@
 
 .standard-h1 {
   .standard-header;
-  font-size: 28px;
+  @font-size: 1.75em;
+  font-size: @font-size;
+  max-width: (50 / @font-size);
 
   @media (min-width: 900px) {
-    font-size: 32px;
+    @font-size: 2em;
+    font-size: @font-size;
+    max-width: (50 / @font-size);
   }
 }
 
@@ -366,7 +370,7 @@
 
   &:hover::after {
     right: unset;
-    left: 64px;
+    left: ~"calc(100%)";
   }
 }
 

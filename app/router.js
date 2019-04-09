@@ -13,7 +13,6 @@ Router.map(function() {
   } else {
     this.route('human', { path: '/:blockstack_name' });
     this.route('create-profile');
-    this.route('customize-url');
   }
   this.route('post', { path: '/posts/:post_id' });
   this.route('posts');

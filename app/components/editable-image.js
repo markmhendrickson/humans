@@ -4,7 +4,12 @@ import { computed } from '@ember/object';
 export default Component.extend({
   attributeBindings: ['title'],
   classNames: ['editable-image'],
-  classNameBindings: ['editable', 'state', 'empty:empty:notEmpty'],
+  classNameBindings: [
+    'empty:empty:notEmpty',
+    'editable',
+    'small',
+    'state'
+   ],
   deleteConfirmation: 'Are you sure you want to delete this image?',
   uploadLabel: 'Upload',
 

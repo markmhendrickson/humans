@@ -11,15 +11,17 @@ export default DS.Model.extend({
   overview: DS.attr('string'),
   updatedAt: DS.attr('date'),
 
-  blockstackName: computed('blockstackNames.length', function() {
+  blockstackName: computed('blockstackNames.firstObject', function() {
     return this.get('blockstackNames.firstObject');
   }),
 
   blockstackNames: computed('id', function() {
-    return DS.PromiseArray.create({
-      promise: new Promise((resolve, reject) => {
-        blockstack.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
-      })
+    new Promise((resolve, reject) => {
+      return DS.PromiseArray.create({
+        promise: new Promise((resolve, reject) => {
+          blockstack.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
+        })
+      });
     });
   }),
 
