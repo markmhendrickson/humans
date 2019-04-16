@@ -1,39 +1,41 @@
 <div>
   <h2>Customize your profile URL</h2>
-  <p>Your profile is always available publicly at this address:</p>
-  <pre>{{profileUrl}}</pre>
-  <p>However, if you'd like to make your profile available on your own domain as well, simply add the following <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts">DNS records</a> to the account with which you manage the domain (e.g. Domain.com, GoDaddy, Namecheap):</p>
-  <ul>
-    <li>"A" record should contain <code>{{location.ipAddress}}</code></li>
-    <li>"TXT" record should contain <code>blockstack={{session.blockstackName}}</code></li>
-    <li>"CNAME" record for <code>www</code> should contain <code>{{location.hostname}}</code> (optional)</li>
-  </ul>
-  <p>For example, to make your profile available at <code>http://example.com</code> and <code>http://www.example.com</code>, add the following records:</p>
-  <div class="table">
-    <table>
-      <thead>
-        <th>Type</th>
-        <th>Hostname</th>
-        <th>Value</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>A</td>
-          <td>example.com</td>
-          <td>{{location.ipAddress}}</td>
-        </tr>
-        <tr>
-          <td>TXT</td>
-          <td>example.com</td>
-          <td>blockstack={{session.blockstackName}}</td>
-        </tr>
-        <tr>
-          <td>CNAME</td>
-          <td>www</td>
-          <td>{{location.hostname}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="interior">
+    <p>Your profile is always available publicly at this address:</p>
+    <pre>{{profileUrl}}</pre>
+    <p>However, if you'd like to make your profile available on your own domain as well, simply add the following <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts">DNS records</a> to the account with which you manage the domain (e.g. Domain.com, GoDaddy, Namecheap):</p>
+    <ul>
+      <li>"A" record should contain <code>{{location.ipAddress}}</code></li>
+      <li>"TXT" record should contain <code>blockstack={{session.blockstackName}}</code></li>
+      <li>"CNAME" record for <code>www</code> should contain <code>{{location.hostname}}</code> (optional)</li>
+    </ul>
+    <p>For example, to make your profile available at <code>http://example.com</code> and <code>http://www.example.com</code>, add the following records:</p>
+    <div class="table">
+      <table>
+        <thead>
+          <th>Type</th>
+          <th>Hostname</th>
+          <th>Value</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>example.com</td>
+            <td>{{location.ipAddress}}</td>
+          </tr>
+          <tr>
+            <td>TXT</td>
+            <td>example.com</td>
+            <td>blockstack={{session.blockstackName}}</td>
+          </tr>
+          <tr>
+            <td>CNAME</td>
+            <td>www</td>
+            <td>{{location.hostname}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Once making these changes, please wait up to 24 hours for them to take effect.</p>
   </div>
-  <p>Once making these changes, please wait up to 24 hours for them to take effect.</p>
 </div>

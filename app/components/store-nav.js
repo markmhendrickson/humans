@@ -56,14 +56,6 @@ export default Component.extend({
   }),
 
   actions: {
-    authenticate() {
-      this.get('session').authenticate();
-    },
-
-    deauthenticate() {
-      this.get('session').deauthenticate();
-    },
-
     delete() {
       this.get('model').destroyRecord().then(() => {
         this.set('model.destroyed', true);
