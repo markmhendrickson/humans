@@ -16,12 +16,10 @@ export default DS.Model.extend({
   }),
 
   blockstackNames: computed('id', function() {
-    new Promise((resolve, reject) => {
-      return DS.PromiseArray.create({
-        promise: new Promise((resolve, reject) => {
-          blockstack.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
-        })
-      });
+    return DS.PromiseArray.create({
+      promise: new Promise((resolve, reject) => {
+        blockstack.config.network.getNamesOwned(this.get('id')).then(resolve).catch(reject);
+      })
     });
   }),
 

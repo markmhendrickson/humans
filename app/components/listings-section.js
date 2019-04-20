@@ -36,10 +36,11 @@ export default Component.extend({
     this._super(...arguments);
 
     if (!this.get('listings')) {
-      this.get('store').query(this.get('modelName'), {
+      this.get('store').query(this.get('human.blockstackName'), this.get('modelName'), {
         limit: this.get('limit'),
         sort: this.get('sort') ? this.get('sort') : '-createdAt'
       }).then((listings) => {
+        console.log('listings', listings.get('length'));
         this.set('listings', listings);
         this.set('loaded', true);
       }).catch((error) => {
@@ -54,6 +55,10 @@ export default Component.extend({
 
   pluralModelName: computed('modelName', function() {
     return this.get('modelName') ? pluralize(this.get('modelName')) : undefined;
+  }),
+
+  routeName: computed('', function() {
+    return `human.${this.get('modelName')}`;
   }),
 
   showListings: computed('editable', 'listings.[]', function() {
@@ -73,6 +78,6 @@ export default Component.extend({
   }),
 
   viewAllLink: computed('pluralModelName', function() {
-    return this.get('pluralModelName');
+    return `humans.${this.get('pluralModelName')}`;
   })
 });

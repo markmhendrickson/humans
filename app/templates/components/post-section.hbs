@@ -1,8 +1,8 @@
 {{editable-view editable=editable tagName="h1" model=post placeholder="Title" spellcheck=true value=post.title}}
 
 <div class="meta">
-  by {{#link-to "human" post.author.blockstackName}}{{post.author.name}}{{/link-to}}
-  on {{moment-format post.createdAt 'MMMM d, YYYY'}}
+  <span class="author">by {{#link-to "human" post.human.blockstackName}}{{post.human.name}}{{/link-to}}</span>
+  <span class="created-at">on {{moment-format post.createdAt 'MMMM d, YYYY'}}</span>
 </div>
 
 {{editable-view className="body" editable=editable model=post placeholder="Once upon a time..." richEditor=true spellcheck=true value=post.body}}

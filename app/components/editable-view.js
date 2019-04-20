@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import Ember from 'ember';
 import { computed } from '@ember/object';
+import { observer } from '@ember/object';
 import { once } from '@ember/runloop';
 import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
 import showdown from 'showdown';
@@ -24,7 +25,7 @@ export default Component.extend({
   }),
 
   didInsertElement: function() {
-    if (this.get('richEditor') && this.get('editable')) {
+    if (this.get('richEditor')) {
       BalloonEditor.create(this.element, {
         toolbar: {
           items: [
@@ -32,13 +33,17 @@ export default Component.extend({
             'bold',
             'italic',
             'bulletedList',
-            'numberedList'
+            'numberedList',
+            'link'
           ]
         }
+      }).then((editor) => {
+        this.set('editor', editor);
+        this.setHtml();
       }).catch(console.error);
     }
 
-    this.$().html(this.get('richEditor') ? converter.makeHtml(this.get('value')) : this.get('value'));
+    this.setHtml();
   },
 
   init: function() {
@@ -49,11 +54,31 @@ export default Component.extend({
     return this._super(arguments);
   },
 
+  changeHtml: observer('editable', 'richEditor', function() {
+    this.setHtml();
+  }),
+
+  setHtml() {
+    if (this.get('richEditor') && this.get('editable')) {
+      if (this.get('editor')) {
+        this.get('editor').isReadOnly = false;
+      }
+
+      this.$().html(converter.makeHtml(this.get('value')));
+    } else {
+      if (this.get('editor')) {
+        this.get('editor').isReadOnly = true;
+      }
+
+      this.$().html(this.get('value'));
+    }
+  },
+
   setValue() {
     let val;
 
     if (this.get('richEditor')) {
-      val = striptags(converter.makeMarkdown(this.$().html())).trim();
+      val = converter.makeMarkdown(this.$().html()).trim();
 
       if (val.length === 0) {
         val = null;

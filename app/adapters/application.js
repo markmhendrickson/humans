@@ -28,8 +28,9 @@ let getFile = function(store, path, done) {
 
 export default DS.JSONAPIAdapter.extend({
   createRecord(store, type, snapshot) {
-    let doc = {};
-    let serializer = store.serializerFor(type.modelName);
+    let adapter = this,
+      doc = {},
+      serializer = store.serializerFor(type.modelName);
 
     serializer.serializeIntoHash(doc, type, snapshot, { includeId: true });
 
@@ -66,7 +67,17 @@ export default DS.JSONAPIAdapter.extend({
         }).catch(done);
       }
 
-      async.series([saveAssets, saveRecord], (error) => {
+      let saveIndex = function(done) {
+        adapter.findAll(store, type, true).then((records) => {
+          blockstack.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(records.data.map((r) => `${Inflector.inflector.pluralize(type.modelName)}/${r.id}`)), {
+            encrypt: false
+          }).then(() => {
+            done();
+          }).catch(done);
+        }).catch(done);
+      }
+
+      async.series([saveAssets, saveRecord, saveIndex], (error) => {
         if (error) {
           console.error('Failed to create record', error);
           reject(error);
@@ -87,22 +98,29 @@ export default DS.JSONAPIAdapter.extend({
     });
   },
 
-  findAll(store, type) {
+  findAll(store, type, uselistFiles) {
     return new Promise((resolve, reject) => {
       let getPaths = function(done) {
-        let paths = [];
+        let paths = [],
+          promise;
 
-        let promise = blockstack.listFiles((path) => {
-          if (path.indexOf(Inflector.inflector.pluralize(type.modelName)) === 0) {
-            paths.push(path);
-          }
+        if (uselistFiles) {
+          promise = blockstack.listFiles((path) => {
+            if (path.indexOf(Inflector.inflector.pluralize(type.modelName)) === 0) {
+              paths.push(path);
+            }
 
-          return true;
-        });
+            return true;
+          });
 
-        promise.then(() => {
-          done(null, paths);
-        });
+          promise.then(() => {
+            done(null, paths);
+          });
+        } else {
+          getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, file) => {
+            done(null, file);
+          });
+        }
       };
 
       let getFiles = function(paths, done) {
@@ -112,6 +130,7 @@ export default DS.JSONAPIAdapter.extend({
       };
 
       async.waterfall([getPaths, getFiles], (error, files) => {
+        console.log('files', files.get('length'));
         if (error) {
           console.error(`Failed to findAll for type ${type.modelName}`, error);
           reject(error);

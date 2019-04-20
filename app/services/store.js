@@ -1,8 +1,9 @@
 import DS from 'ember-data';
 import PQueue from 'p-queue';
+import { inject as service } from '@ember/service';
 
 export default DS.Store.extend({
-  editable: true,
+  session: service(),
 
   createRecord(modelName, inputProperties) {
     // fix for https://github.com/locks/ember-localstorage-adapter/issues/219
@@ -17,6 +18,8 @@ export default DS.Store.extend({
 
   init: function() {
     this.set('queue', new PQueue({ concurrency: 1 }));
+    this.set('editable', this.get('session.authenticated'));
+
     return this._super(arguments);
   },
 
@@ -31,9 +34,9 @@ export default DS.Store.extend({
     return this._super(modelName, id, options);
   },
 
-  query(type, query) {
+  query(blockstackName, type, query) {
     return new Promise((resolve, reject) => {
-      this.findAll(type).then((records) => {
+      this.findAll(type, { reload: true }).then((records) => {
         if (query['filter']) {
           Object.keys(query['filter']).forEach((key) => {
             records = records.filterBy(key, query['filter'][key]);
@@ -52,6 +55,7 @@ export default DS.Store.extend({
           records = records.slice(0, query['limit']);
         }
 
+        console.log('records', records.get('length'));
         resolve(records);
       }).catch(reject);
     });

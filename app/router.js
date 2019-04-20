@@ -11,11 +11,14 @@ Router.map(function() {
   if (config.blockstackName) {
     this.route('human', { path: '/' });
   } else {
-    this.route('human', { path: '/:blockstack_name' });
+    this.route('human', { path: '/:blockstack_name' }, function() {
+      this.route('post', { path: 'posts/:id' });
+      this.route('posts', { path: 'posts' });
+    });
+
     this.route('create-profile');
   }
-  this.route('post', { path: '/posts/:post_id' });
-  this.route('posts');
+
   this.route('settings');
 });
 

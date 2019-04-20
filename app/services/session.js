@@ -28,7 +28,7 @@ export default Service.extend({
 
     return DS.PromiseObject.create({
       promise: new Promise((resolve) => {
-        this.get('store').findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch(() => {
+        this.store.findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch(() => {
           resolve(this.get('store').createRecord('human', {
             id: this.get('userId')
           }));

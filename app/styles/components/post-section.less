@@ -58,6 +58,7 @@ section.post {
     border-bottom: 1px solid rgba(0,0,0,0.05) !important;
     box-shadow: none !important;
     box-sizing: border-box;
+    cursor: text;
     font-size: @font-size;
     margin: auto;
     max-width: (50 / @font-size);
@@ -116,6 +117,8 @@ section.post {
 
     ul, ol {
       .standard-font-family;
+      .standard-selection;
+      cursor: text;
       margin: 1em 0 2em 0;
       padding: 0 1em 0 1em;
 
@@ -125,7 +128,7 @@ section.post {
       }
 
       li {
-        line-height: 1.45em;
+        line-height: 1.5em;
         list-style: square;
         margin-top: 2em;
       }

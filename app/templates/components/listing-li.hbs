@@ -4,7 +4,7 @@
       {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
     </a>
   {{else}}
-    {{#link-to modelName listing.id}}
+    {{#link-to routeName listing.human.blockstackName listing}}
       {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
     {{/link-to}}
   {{/if}}

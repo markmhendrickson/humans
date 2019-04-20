@@ -22,7 +22,11 @@ export default Route.extend({
 
     return new Promise((resolve, reject) => {
       blockstack.config.network.getNameInfo(blockstackName).then((info) => {
-        this.store.findRecord(blockstackName, 'human', info.address).then(resolve).catch(reject);
+        this.store.findRecord(blockstackName, 'human', info.address).then((human) => {
+          human.get('blockstackNames').then(() => {
+            resolve(human);
+          });
+        }).catch(reject);
       });
     });
   }

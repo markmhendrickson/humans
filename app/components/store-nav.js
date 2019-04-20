@@ -9,7 +9,8 @@ export default Component.extend({
     'model.isSaving:isSaving',
     'savedRecently',
     'shown',
-    'store.editable:editMode:viewMode'
+    'store.editable:editMode:viewMode',
+    'session.human:shown:hidden'
   ],
   classNames: ['store'],
   router: service(),
