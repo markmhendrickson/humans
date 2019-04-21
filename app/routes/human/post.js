@@ -14,7 +14,7 @@ export default Route.extend({
             createdAt: new Date()
           }));
         } else {
-          this.intermediateTransitionTo('not-found', error);
+          reject();
         }
       });
     });
@@ -35,8 +35,11 @@ export default Route.extend({
     error(error) {
       if (error) {
         console.error(error);
-        this.intermediateTransitionTo('not-found', error);
       }
+
+      console.log('hhhh');
+
+      this.intermediateTransitionTo('not-found', { path: undefined });
     }
   }
 });

@@ -20,6 +20,7 @@ Router.map(function() {
   }
 
   this.route('settings');
+  this.route('not-found', { path: '*path' });
 });
 
 export default Router;

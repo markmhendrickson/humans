@@ -41,8 +41,10 @@ export default Service.extend({
     return !blockstack.isUserSignedIn();
   }),
 
-  userData: computed(() => {
-    return blockstack.loadUserData();
+  userData: computed('authenticated', function() {
+    if (this.get('authenticated')) {
+      return blockstack.loadUserData();
+    }
   }),
 
   userId: computed('userData', function() {

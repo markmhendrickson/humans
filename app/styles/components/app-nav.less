@@ -45,7 +45,7 @@ nav.app {
     color: @standard-color-link;
   }
 
-  div.title {
+  a.title {
     display: none;
     font-family: "Libre Baskerville", serif;
     margin-right: auto;
@@ -70,7 +70,8 @@ nav.app {
 
     @media (hover: hover) {
       &:hover {
-        .standard-highlight-hover;
+        color: @standard-color-link;
+
       }
     }
   }
@@ -102,18 +103,14 @@ nav.app {
   }
 }
 
-@media (max-width: 899px) {
-  nav.app:not(.hidden) ~ section:last-of-type {
-    margin-bottom: @standard-nav-height;
-  }
-}
-
-@media (min-width: 900px) {
-  nav.app:not(.hidden) ~ section:first-of-type {
-    margin-top: @standard-nav-height;
-  }
-}
-
 nav.app:not(.hidden) ~ section.hero {
-  min-height: ~"calc(100vh - @standard-nav-height)";
+  min-height: 100vh;
+}
+
+body {
+  padding-bottom: 6em;
+
+  @media (min-width: 900px) {
+    padding-bottom: 0;
+  }
 }
