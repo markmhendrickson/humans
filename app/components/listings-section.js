@@ -40,7 +40,6 @@ export default Component.extend({
         limit: this.get('limit'),
         sort: this.get('sort') ? this.get('sort') : '-createdAt'
       }).then((listings) => {
-        console.log('listings', listings.get('length'));
         this.set('listings', listings);
         this.set('loaded', true);
       }).catch((error) => {

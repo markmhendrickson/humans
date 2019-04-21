@@ -2,7 +2,7 @@
 
 <div class="meta">
   <span class="author">by {{#link-to "human" post.human.blockstackName}}{{post.human.name}}{{/link-to}}</span>
-  <span class="created-at">on {{moment-format post.createdAt 'MMMM d, YYYY'}}</span>
+  <span class="created-at">on {{moment-format post.createdAt 'MMMM D, YYYY'}}</span>
 </div>
 
 {{editable-view className="body" editable=editable model=post placeholder="Once upon a time..." richEditor=true spellcheck=true value=post.body}}

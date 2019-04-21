@@ -130,7 +130,6 @@ export default DS.JSONAPIAdapter.extend({
       };
 
       async.waterfall([getPaths, getFiles], (error, files) => {
-        console.log('files', files.get('length'));
         if (error) {
           console.error(`Failed to findAll for type ${type.modelName}`, error);
           reject(error);

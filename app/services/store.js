@@ -55,7 +55,6 @@ export default DS.Store.extend({
           records = records.slice(0, query['limit']);
         }
 
-        console.log('records', records.get('length'));
         resolve(records);
       }).catch(reject);
     });
