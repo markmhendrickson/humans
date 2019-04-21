@@ -38,10 +38,6 @@ nav.store {
   }
 
   div.mode {
-    &.shown {
-      display: block;
-    }
-
     div {
       background: #ececec;
       border: 2px solid #ececec;
@@ -72,6 +68,10 @@ nav.store {
         }
       }
     }
+  }
+
+  &.options-shown div.mode, &.options-shown div.options {
+    display: block;
   }
 
   &.editMode div.mode div.edit, &.viewMode div.mode div.view {
@@ -183,12 +183,8 @@ nav.store {
     }
   }
 
-  &.shown div.toggle::before {
+  &.options-shown div.toggle::before {
     content: "\f00d";
-  }
-
-  &.shown div.mode, &.shown div.options {
-    display: block;
   }
 }
 

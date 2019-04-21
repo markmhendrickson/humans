@@ -8,11 +8,12 @@ export default Component.extend({
     'model.hasDirtyAttributes:hasDirtyAttributes',
     'model.isSaving:isSaving',
     'savedRecently',
-    'shown',
+    'optionsShown',
     'store.editable:editMode:viewMode',
     'session.human:shown:hidden'
   ],
   classNames: ['store'],
+  optionsShown: true,
   router: service(),
   tagName: 'nav',
   timeout: 5000,
@@ -73,8 +74,8 @@ export default Component.extend({
       this.set('store.editable', editable);
     },
 
-    toggleShown() {
-      this.toggleProperty('shown');
+    toggleOptions() {
+      this.toggleProperty('optionsShown');
     },
 
     save() {
