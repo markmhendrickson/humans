@@ -19,23 +19,25 @@ export default Service.extend({
     blockstack.signUserOut(window ? window.location.origin : null);
   },
 
-  human: computed('findOrCreateHuman.content', function() {
-    return this.get('findOrCreateHuman.content') ? this.get('findOrCreateHuman.content') : this.get('findOrCreateHuman');
-  }),
+  generateHuman() {
+    return new Promise((resolve, reject) => {
+      if (!this.get('authenticated')) { return resolve(); }
 
-  findOrCreateHuman: computed('authenticated', function() {
-    if (!this.get('authenticated')) { return; }
-
-    return DS.PromiseObject.create({
-      promise: new Promise((resolve) => {
-        this.store.findRecord(this.get('blockstackName'), 'human', this.get('userId')).then(resolve).catch(() => {
-          resolve(this.get('store').createRecord('human', {
-            id: this.get('userId')
-          }));
-        });
-      })
+      this.store.findRecord(this.get('blockstackName'), 'human', this.get('userId')).then((human) => {
+        this.set('human', human);
+        resolve(human);
+      }).catch(() => {
+        this.get('store').createRecord('human', {
+          id: this.get('userId')
+        }).then((human) => {
+          this.set('human', human);
+          human.get('blockstackNames').then(() => {
+            resolve(human);
+          });
+        }).catch(reject);
+      });
     });
-  }),
+  },
 
   unauthenticated: computed(() => {
     return !blockstack.isUserSignedIn();

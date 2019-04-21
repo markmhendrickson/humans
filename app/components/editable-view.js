@@ -59,18 +59,18 @@ export default Component.extend({
   }),
 
   setHtml() {
-    if (this.get('richEditor') && this.get('editable')) {
-      if (this.get('editor')) {
-        this.get('editor').isReadOnly = false;
-      }
-
+    if (this.get('richEditor')) {
       this.$().html(converter.makeHtml(this.get('value')));
     } else {
-      if (this.get('editor')) {
+      this.$().html(this.get('value'));
+    }
+
+    if (this.get('editor')) {
+      if (this.get('richEditor') && this.get('editable')) {
+        this.get('editor').isReadOnly = false;
+      } else {
         this.get('editor').isReadOnly = true;
       }
-
-      this.$().html(this.get('value'));
     }
   },
 

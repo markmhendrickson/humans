@@ -9,7 +9,7 @@ export default Route.extend({
           window.location = window.location.pathname;
         }).catch(reject);
       } else {
-        resolve();
+        this.get('session').generateHuman().then(resolve).catch(reject);
       }
     });
   }

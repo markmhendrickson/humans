@@ -37,8 +37,6 @@ export default Route.extend({
         console.error(error);
       }
 
-      console.log('hhhh');
-
       this.intermediateTransitionTo('not-found', { path: undefined });
     }
   }

@@ -1,7 +1,7 @@
 import UnauthenticatedRoute from 'humans/routes/unauthenticated';
 
 export default UnauthenticatedRoute.extend({
-  beforeModel() {
+  afterModel() {
     this.set('headData.title', 'Create profile');
   }
 });

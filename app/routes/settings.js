@@ -1,4 +1,4 @@
-import Route from '@ember/routing/route';
+import AuthenticatedRoute from 'humans/routes/authenticated';
 
-export default Route.extend({
+export default AuthenticatedRoute.extend({
 });
