@@ -67,17 +67,27 @@ export default DS.JSONAPIAdapter.extend({
         }).catch(done);
       }
 
-      let saveIndex = function(done) {
-        adapter.findAll(store, type, true).then((records) => {
-          blockstack.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(records.data.map((r) => `${Inflector.inflector.pluralize(type.modelName)}/${r.id}`)), {
-            encrypt: false
-          }).then(() => {
-            done();
-          }).catch(done);
+      let getIndex = function(done) {
+        getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, index) => {
+          if (error || !index.data) {
+            index = { data: [] };
+          }
+
+          done(error, index);
+        });
+      }
+
+      let updateIndex = function(index, done) {
+        index.data.push(doc);
+
+        blockstack.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(index), {
+          encrypt: false
+        }).then(() => {
+          done();
         }).catch(done);
       }
 
-      async.series([saveAssets, saveRecord, saveIndex], (error) => {
+      async.waterfall([saveAssets, saveRecord, getIndex, updateIndex], (error) => {
         if (error) {
           console.error('Failed to create record', error);
           reject(error);
@@ -100,7 +110,7 @@ export default DS.JSONAPIAdapter.extend({
 
   findAll(store, type, uselistFiles) {
     return new Promise((resolve, reject) => {
-      let getPaths = function(done) {
+      let getRecords = function(done) {
         let paths = [],
           promise;
 
@@ -117,19 +127,13 @@ export default DS.JSONAPIAdapter.extend({
             done(null, paths);
           });
         } else {
-          getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, file) => {
-            done(null, file);
+          getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, index) => {
+            done(null, index.data);
           });
         }
       };
 
-      let getFiles = function(paths, done) {
-        async.map(paths, (path, done) => {
-          getFile(store, path, done);
-        }, done);
-      };
-
-      async.waterfall([getPaths, getFiles], (error, files) => {
+      async.waterfall([getRecords], (error, files) => {
         if (error) {
           console.error(`Failed to findAll for type ${type.modelName}`, error);
           reject(error);

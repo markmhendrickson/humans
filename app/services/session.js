@@ -1,4 +1,3 @@
-import DS from 'ember-data';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 import blockstack from 'blockstack';
