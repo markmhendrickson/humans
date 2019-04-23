@@ -10,18 +10,6 @@ export default Route.extend({
       }
 
       this.intermediateTransitionTo('not-found', { path: undefined });
-    },
-
-    willTransition() {
-      this.set('nav.hidden', false);
-    }
-  },
-
-  afterModel(model) {
-    this.set('headData.title', model.get('name'));
-
-    if (this.get('session.human.id') !== model.get('id')) {
-      this.set('nav.hidden', true);
     }
   },
 
@@ -31,7 +19,7 @@ export default Route.extend({
     return new Promise((resolve, reject) => {
       blockstack.config.network.getNameInfo(blockstackName).then((info) => {
         this.store.findRecord(blockstackName, 'human', info.address).then(resolve).catch(reject);
-      });
+      }).catch(reject);
     });
   }
 });

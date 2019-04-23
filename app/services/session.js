@@ -30,9 +30,7 @@ export default Service.extend({
           id: this.get('userId')
         }).then((human) => {
           this.set('human', human);
-          human.get('blockstackNames').then(() => {
-            resolve(human);
-          });
+          resolve(human);
         }).catch(reject);
       });
     });

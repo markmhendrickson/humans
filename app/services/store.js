@@ -33,15 +33,7 @@ export default DS.Store.extend({
     this.set('blockstackName', blockstackName);
 
     return new Promise((resolve, reject) => {
-      this._super(modelName, id, options).then((record) => {
-        if (modelName === 'human') {
-          record.get('blockstackNames').then(() => {
-            resolve(record);
-          });
-        } else {
-          resolve(record);
-        }
-      }).catch(reject);
+      this._super(modelName, id, options).then(resolve).catch(reject);
     });
   },
 
