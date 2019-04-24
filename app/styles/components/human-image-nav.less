@@ -1,5 +1,4 @@
 nav.human-image {
-  .standard-fadein;
   .standard-tooltip-right;
   display: none;
   left: 0;
@@ -48,17 +47,14 @@ nav.human-image {
 
     img {
       border-radius: 50%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 100%;
       width: 100%;
     }
 
     ul {
       display: none;
     }
-  }
-}
-
-body.human-index {
-  nav.human-image {
-    display: none;
   }
 }

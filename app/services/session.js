@@ -20,18 +20,18 @@ export default Service.extend({
 
   generateHuman() {
     return new Promise((resolve, reject) => {
-      if (!this.get('authenticated')) { return resolve(); }
+      if (!this.get('authenticated')) { return reject(); }
 
       this.store.findRecord(this.get('blockstackName'), 'human', this.get('userId')).then((human) => {
         this.set('human', human);
         resolve(human);
       }).catch(() => {
-        this.get('store').createRecord('human', {
+        let human = this.get('store').createRecord('human', {
           id: this.get('userId')
-        }).then((human) => {
-          this.set('human', human);
-          resolve(human);
-        }).catch(reject);
+        });
+
+        this.set('human', human);
+        resolve(human);
       });
     });
   },

@@ -22,7 +22,7 @@ export default Route.extend({
   },
 
   afterModel(model) {
-    if (model.get('name').trim()) {
+    if (model && model.get('name') && model.get('name').trim()) {
       this.set('headData.title', model.get('name'));
     } else {
       this.get('headData').setDefaultTitle();

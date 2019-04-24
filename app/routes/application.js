@@ -16,7 +16,6 @@ export default Route.extend({
           } else {
             resolve();
           }
-
         }).catch(reject);
       } else {
         resolve();

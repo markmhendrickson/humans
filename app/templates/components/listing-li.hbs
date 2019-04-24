@@ -4,9 +4,15 @@
       {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
     </a>
   {{else}}
-    {{#link-to routeName listing.human.blockstackName listing}}
-      {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
-    {{/link-to}}
+    {{#if blockstackName}}
+      {{#link-to routeName listing}}
+        {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
+      {{/link-to}}
+    {{else}}
+      {{#link-to routeName listing.human.blockstackName listing}}
+        {{listing-interior-div descriptionProperty=descriptionProperty linkListings=linkListings listing=listing modelName=modelName}}
+      {{/link-to}}
+    {{/if}}
   {{/if}}
 {{else}}
   {{listing-interior-div linkListings=linkListings listing=listing modelName=modelName descriptionProperty=descriptionProperty}}

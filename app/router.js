@@ -9,19 +9,21 @@ const Router = EmberRouter.extend(RouterScroll, {
 
 Router.map(function() {
   if (config.blockstackName) {
-    this.route('human', { path: '/' });
+    this.route('human', { path: '/' }, function() {
+      this.route('post', { path: '/posts/:id' });
+    });
   } else {
     this.route('human', { path: ':blockstack_name' }, function() {
       this.route('index', { path: '/' });
       this.route('post', { path: '/posts/:id' });
-      this.route('posts', { path: '/posts' });
     });
 
     this.route('create-profile');
     this.route('settings');
-    this.route('not-found', { path: '*path' });
+    this.route('register-blockstack-name');
   }
 
+  this.route('not-found', { path: '*path' });
 });
 
 export default Router;

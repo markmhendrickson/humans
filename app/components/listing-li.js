@@ -1,8 +1,10 @@
 import Ember from 'ember';
 import ListingMixin from 'humans/mixins/listing';
 import { computed } from '@ember/object';
+import config from 'humans/config/environment';
 
 export default Ember.Component.extend(ListingMixin, {
+  blockstackName: config.blockstackName,
   classNameBindings: [
     'format',
     'hasContent:has-content:has-no-content',

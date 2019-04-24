@@ -1,7 +1,9 @@
 import Component from '@ember/component';
 import { observer } from '@ember/object';
+import config from 'humans/config/environment';
 
 export default Component.extend({
+  blockstackName: config.blockstackName,
   classNameBindings: [
     'post.body:hasBody:hasNoBody'
    ],

@@ -14,9 +14,13 @@ export default Route.extend({
   },
 
   model(params) {
-    let blockstackName = params.blockstack_name ? params.blockstack_name : config.blockstackName;
-
     return new Promise((resolve, reject) => {
+      let blockstackName = params.blockstack_name ? params.blockstack_name : config.blockstackName;
+
+      if (!blockstackName) {
+        return reject();
+      }
+
       blockstack.config.network.getNameInfo(blockstackName).then((info) => {
         this.store.findRecord(blockstackName, 'human', info.address).then(resolve).catch(reject);
       }).catch(reject);

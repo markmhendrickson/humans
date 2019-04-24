@@ -1,8 +1,7 @@
 {{head-layout}}
 
-{{#if session}}
-  {{human-image-nav model=session.human}}
+{{#unless blockstackName}}
   {{settings-nav}}
-{{/if}}
+{{/unless}}
 
 {{outlet}}

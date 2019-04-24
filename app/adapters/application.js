@@ -68,7 +68,7 @@ export default DS.JSONAPIAdapter.extend({
 
       let getIndex = function(done) {
         getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, index) => {
-          if (error || !index.data) {
+          if (error || !index || !index.data) {
             index = { data: [] };
           }
 
@@ -164,7 +164,7 @@ export default DS.JSONAPIAdapter.extend({
           });
         } else {
           getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, index) => {
-            done(null, index.data);
+            done(null, index ? index.data : []);
           });
         }
       };
