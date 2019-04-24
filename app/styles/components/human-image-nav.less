@@ -20,17 +20,23 @@ nav.human-image {
     }
   }
 
-  &.empty a {
-    border: 2px solid #ececec;
+  &.empty {
+    a {
+      border: 2px solid #ececec;
 
-    &:before {
-      content: "\f015";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translateX(-50%) translateY(-50%);
+      &:before {
+        content: "\f015";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+
+    img {
+      display: none;
     }
   }
 
