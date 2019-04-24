@@ -22,7 +22,7 @@ export default Component.extend({
     return this.get('model.hasDirtyAttributes') && (this.get('model.hasContent') || !this.get('model.isNew'));
   }),
 
-  isDeleting: computed('model.isSaving', 'model.isDeleting', function() {
+  isDeleting: computed('model.{isSaving,isDeleting}', function() {
     return (this.get('model.isSaving') && this.get('model.isDeleted'));
   }),
 
@@ -30,7 +30,7 @@ export default Component.extend({
     return !this.get('model.isDeleted');
   }),
 
-  isSaving: computed('model.isSaving', 'model.isDeleted', function() {
+  isSaving: computed('model.{isSaving,isDeleted}', function() {
     return (this.get('model.isSaving') && !this.get('model.isDeleted'));
   }),
 
@@ -62,11 +62,11 @@ export default Component.extend({
       this.get('model').destroyRecord().then(() => {
         this.set('model.destroyed', true);
 
-        let then = () => {
+        let done = () => {
           this.get('model').unloadRecord();
         };
 
-        this.get('router').transitionTo('index').then(then).catch(then);
+        this.get('router').transitionTo('index').then(done).catch(done);
       });
     },
 

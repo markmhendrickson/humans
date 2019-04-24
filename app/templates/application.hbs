@@ -1,4 +1,8 @@
 {{head-layout}}
-{{settings-nav}}
+
+{{#if session}}
+  {{human-image-nav model=session.human}}
+  {{settings-nav}}
+{{/if}}
 
 {{outlet}}

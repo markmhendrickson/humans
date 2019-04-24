@@ -3,7 +3,6 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model(params) {
-
     return new Promise((resolve, reject) => {
       let human = this.modelFor('human');
 

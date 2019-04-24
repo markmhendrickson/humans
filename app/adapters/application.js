@@ -28,8 +28,7 @@ let getFile = function(store, path, done) {
 
 export default DS.JSONAPIAdapter.extend({
   createRecord(store, type, snapshot) {
-    let adapter = this,
-      doc = {},
+    let doc = {},
       serializer = store.serializerFor(type.modelName);
 
     serializer.serializeIntoHash(doc, type, snapshot, { includeId: true });
@@ -100,11 +99,48 @@ export default DS.JSONAPIAdapter.extend({
 
   deleteRecord(store, type, snapshot) {
     return new Promise((resolve, reject) => {
-      blockstack.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, '{}', {
-        encrypt: false
-      }).then(() => {
-        resolve();
-      }).catch(reject);
+      let deleteRecord = function(done) {
+        blockstack.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, '{}', {
+          encrypt: false
+        }).then(() => {
+          done();
+        }).catch((error) => {
+          done(error);
+        });
+      }
+
+      let getIndex = function(done) {
+        getFile(store, `indices/${Inflector.inflector.pluralize(type.modelName)}`, (error, index) => {
+          if (error || !index.data) {
+            index = { data: [] };
+          }
+
+          done(error, index);
+        });
+      }
+
+      let updateIndex = function(index, done) {
+        index.data = index.data.filter((doc) => {
+          return (doc) ? doc.data.id !== snapshot.id : false;
+        });
+
+        blockstack.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(index), {
+          encrypt: false
+        }).then(() => {
+          done();
+        }).catch((error) => {
+          console.error('Failed to updateIndex', error);
+        });
+      }
+
+      async.waterfall([deleteRecord, getIndex, updateIndex], (error) => {
+        if (error) {
+          console.error('Failed to delete record', error);
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
     });
   },
 

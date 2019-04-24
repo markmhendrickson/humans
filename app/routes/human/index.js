@@ -17,11 +17,15 @@ export default Route.extend({
     }
   },
 
-  setupController(model, controller) {
-    controller.set('model', this.modelFor('human'));
+  model() {
+    return this.modelFor('human');
   },
 
   afterModel(model) {
-    this.set('headData.title', this.get('model.name'));
+    if (model.get('name').trim()) {
+      this.set('headData.title', model.get('name'));
+    } else {
+      this.get('headData').setDefaultTitle();
+    }
   }
 });
