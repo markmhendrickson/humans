@@ -15,7 +15,7 @@ export default Service.extend({
   }),
 
   deauthenticate() {
-    blockstack.signUserOut(window ? window.location.origin : null);
+    blockstack.signUserOut((window && window.location) ? window.location.origin : null);
   },
 
   generateHuman() {

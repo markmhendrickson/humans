@@ -2,7 +2,7 @@ import $ from 'jquery';
 import config from 'humans/config/environment';
 
 export function initialize(app) {
-  if (!window || window.location.hostname === config.location.hostname) { return; }
+  if (!window || !window.location || window.location.hostname === config.location.hostname) { return; }
 
   app.deferReadiness();
 
