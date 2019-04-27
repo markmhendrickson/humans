@@ -1,1 +1,10 @@
-price_banner: The {product} costs {price, number, USD}
+errors:
+  not_found: 404 Not Found
+labels:
+  edit_mode: Edit mode
+  sign_out: Sign out
+  toggle_options: Toggle options
+  view_mode: View mode
+sections:
+  register_blockstack_name:
+    header: Register Blockstack username

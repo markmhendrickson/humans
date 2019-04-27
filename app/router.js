@@ -23,7 +23,7 @@ Router.map(function() {
     this.route('register-blockstack-name');
   }
 
-  this.route('not-found', { path: '*path' });
+  this.route('not-found', { path: '*path' });
 });
 
 export default Router;

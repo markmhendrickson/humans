@@ -1,5 +1,4 @@
 import { computed } from '@ember/object';
-import blockstack from 'blockstack';
 import DS from 'ember-data';
 
 export default DS.Model.extend({

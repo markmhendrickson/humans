@@ -2,6 +2,7 @@ import { computed } from '@ember/object';
 import { pluralize } from 'ember-inflector';
 import capitalize from 'humans/utils/capitalize';
 import Component from '@ember/component';
+import Ember from 'ember';
 
 export default Component.extend({
   attributeBindings: ['id'],

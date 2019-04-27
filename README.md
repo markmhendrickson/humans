@@ -11,32 +11,6 @@ The app's codebase is also available here for hosting and modification by others
 
 Content support is currently quite limited but will expand over time to match the range and capabilities of [Neotoma's personal web app](https://github.com/neotoma/personal-web) as demonstrated by [markmhendrickson.com](https://markmhendrickson.com) and [rachelgillum.com](https://rachelgillum.com).
 
-## Screenshots
-
-### Homepage
-
-![Home](public/images/screenshots/home.png)
-
-### Create profile
-
-![Create profile](public/images/screenshots/create-profile.png)
-
-### Edit profile welcome
-
-![Edit profile welcome](public/images/screenshots/edit-profile-welcome.png)
-
-### Edit profile
-
-![Edit profile](public/images/screenshots/edit-profile.png)
-
-### Configure URL
-
-![Configure URL](public/images/screenshots/configure-url.png)
-
-### View public profile
-
-![View public profile](public/images/screenshots/view-profile.png)
-
 ## Prerequisites
 
 You will need the following things properly installed on your computer.

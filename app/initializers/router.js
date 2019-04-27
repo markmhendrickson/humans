@@ -9,9 +9,9 @@ export function initialize() {
     session: service(),
 
     init() {
-      this._super.apply(this, arguments);
+      this._super(...arguments)
 
-      this.router.on('routeWillChange', (transition) => {
+      this.router.on('routeWillChange', () => {
         this.get('headData').clear();
       })
     }

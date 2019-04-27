@@ -39,7 +39,7 @@ export default DS.Store.extend({
 
   query(blockstackName, type, query) {
     return new Promise((resolve, reject) => {
-      this.findAll(type, { reload: true }).then((records) => {
+      this.findAll(type, { reload: true }).then((records) => {
         if (query['filter']) {
           Object.keys(query['filter']).forEach((key) => {
             records = records.filterBy(key, query['filter'][key]);

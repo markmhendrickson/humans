@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Helper from '@ember/component/helper';
+import { inject } from '@ember/service';
 
-export default Ember.Helper.extend({
-  intl: Ember.inject.service(),
+export default Helper.extend({
+  intl: inject.service(),
 
   compute([listing], options) {
     if (listing && listing.get('description') && (!options.property || options.property === 'description')) {

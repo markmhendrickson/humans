@@ -1,6 +1,6 @@
 <div class="mode">
-  <div class="edit" title="Edit mode" {{action "toggleMode" true}}></div>
-  <div class="view" title="View mode" {{action "toggleMode" false}}></div>
+  <div class="edit" title={{t "labels.edit_mode"}} {{action "toggleMode" true}}></div>
+  <div class="view" title={{t "labels.view_mode"}} {{action "toggleMode" false}}></div>
 </div>
 
 {{#unless model.destroyed}}
@@ -23,4 +23,4 @@
   </div>
 {{/unless}}
 
-<div class="toggle" title="Toggle options" {{action "toggleOptions"}}></div>
+<div class="toggle" title={{t "labels.toggle_options"}} {{action "toggleOptions"}}></div>

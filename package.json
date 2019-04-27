@@ -77,7 +77,6 @@
     "p-queue": "^4.0.0",
     "park-ranger": "^1.0.11",
     "showdown": "^1.9.0",
-    "striptags": "^3.1.1",
     "uniqid": "^5.0.3"
   }
 }

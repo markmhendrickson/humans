@@ -1,9 +1,9 @@
 {{#if model.blockstackName}}
   {{#if blockstackName}}
-    {{#link-to "human"}}<img src="{{model.imageUrl}}" />{{/link-to}}
+    {{#link-to "human"}}<img src={{model.imageUrl}} />{{/link-to}}
   {{else}}
-    {{#link-to "human" model.blockstackName}}<img src="{{model.imageUrl}}" />{{/link-to}}
+    {{#link-to "human" model.blockstackName}}<img src={{model.imageUrl}} />{{/link-to}}
   {{/if}}
 {{else}}
-  {{#link-to "index"}}<img src="{{model.imageUrl}}" />{{/link-to}}
+  {{#link-to "index"}}<img src={{model.imageUrl}} />{{/link-to}}
 {{/if}}

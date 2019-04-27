@@ -1,6 +1,4 @@
 import Route from '@ember/routing/route';
-import blockstack from 'blockstack';
-import config from 'humans/config/environment';
 
 export default Route.extend({
   actions: {

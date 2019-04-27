@@ -9,7 +9,7 @@ export default Component.extend({
   location: config.location,
 
   hidden: computed('dismissed', 'cookies', function() {
-    return (!this.get('session.authenticated') || this.get('dismissed') || this.get('cookies').read('aeditProfileWelcomeHidden') === 'true');
+    return (!this.get('session.authenticated') || this.get('dismissed') || this.get('cookies').read('aeditProfileWelcomeHidden') === 'true');
   }),
 
   actions: {
