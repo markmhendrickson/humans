@@ -15,5 +15,11 @@ export default Component.extend({
 
   showImages: computed('imagesLoaded', function() {
     return (this.get('imagesLoaded') == 2);
-  })
+  }),
+
+  actions: {
+    authenticate() {
+      this.get('session').authenticate();
+    }
+  }
 });

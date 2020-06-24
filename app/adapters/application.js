@@ -1,10 +1,26 @@
 import DS from 'ember-data';
-import blockstack from 'blockstack';
+import { AppConfig, UserSession } from 'blockstack';
 import Inflector from 'ember-inflector';
 import config from 'humans/config/environment';
 import dataUriToBuffer from 'data-uri-to-buffer';
 import async from 'async';
 import mime from 'mime-types';
+
+const appConfig = new AppConfig(['store_write', 'publish_data']);
+const userSession = new UserSession({ appConfig });
+
+const authOptions = {
+  redirectTo: '/',
+  finished: ({ userSession }) => {
+    console.log('done!');
+    location.reload();
+  },
+  userSession: userSession,
+  appDetails: {
+    name: 'Humans',
+    icon: `${window.location.origin}/favicon.ico`,
+  },
+};
 
 let appOrigin = `${config.location.protocol}://${config.location.hostname}`;
 
@@ -14,11 +30,7 @@ let getFile = function(store, path, done) {
     username: store.blockstackName
   };
 
-  if (config.location.hostname !== window.location.hostname) {
-    options.app = appOrigin;
-  }
-
-  blockstack.getFile(path, options).then((file) => {
+  userSession.getFile(path, options).then((file) => {
     done(null, JSON.parse(file));
   }).catch((error) => {
     console.error(`No record found at path ${path}`, error);
@@ -40,7 +52,7 @@ export default DS.JSONAPIAdapter.extend({
             mediaType = doc.data.attributes[property].substring(5, doc.data.attributes[property].indexOf(';')),
             path = `assets/${pluralType}-${snapshot.id}-${property}.${mime.extension(mediaType)}`;
 
-          blockstack.putFile(path, dataUriToBuffer(doc.data.attributes[property]), {
+          userSession.putFile(path, dataUriToBuffer(doc.data.attributes[property]), {
             encrypt: false
           }).then((url) => {
             if (url) {
@@ -59,7 +71,7 @@ export default DS.JSONAPIAdapter.extend({
       }
 
       let saveRecord = function(done) {
-        blockstack.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, JSON.stringify(doc), {
+        userSession.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, JSON.stringify(doc), {
           encrypt: false
         }).then(() => {
           done();
@@ -79,7 +91,7 @@ export default DS.JSONAPIAdapter.extend({
       let updateIndex = function(index, done) {
         index.data.push(doc);
 
-        blockstack.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(index), {
+        userSession.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(index), {
           encrypt: false
         }).then(() => {
           done();
@@ -100,7 +112,7 @@ export default DS.JSONAPIAdapter.extend({
   deleteRecord(store, type, snapshot) {
     return new Promise((resolve, reject) => {
       let deleteRecord = function(done) {
-        blockstack.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, '{}', {
+        userSession.putFile(`${Inflector.inflector.pluralize(type.modelName)}/${snapshot.id}`, '{}', {
           encrypt: false
         }).then(() => {
           done();
@@ -124,7 +136,7 @@ export default DS.JSONAPIAdapter.extend({
           return (doc) ? doc.data.id !== snapshot.id : false;
         });
 
-        blockstack.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(index), {
+        userSession.putFile(`indices/${Inflector.inflector.pluralize(type.modelName)}`, JSON.stringify(index), {
           encrypt: false
         }).then(() => {
           done();
@@ -151,7 +163,7 @@ export default DS.JSONAPIAdapter.extend({
           promise;
 
         if (uselistFiles) {
-          promise = blockstack.listFiles((path) => {
+          promise = userSession.listFiles((path) => {
             if (path.indexOf(Inflector.inflector.pluralize(type.modelName)) === 0) {
               paths.push(path);
             }

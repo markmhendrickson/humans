@@ -6,7 +6,7 @@ export default Component.extend({
 
   actions: {
     authenticate() {
-      this.get('session').authenticate();
+      this.get('session').authenticate(true);
     }
   }
 });

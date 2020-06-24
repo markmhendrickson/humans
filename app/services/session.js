@@ -1,21 +1,37 @@
 import Service from '@ember/service';
 import { computed } from '@ember/object';
-import blockstack from 'blockstack';
+import { AppConfig, UserSession } from 'blockstack';
 import { inject as service } from '@ember/service';
+import { showBlockstackConnect } from '@blockstack/connect';
+
+const appConfig = new AppConfig(['store_write', 'publish_data']);
+const userSession = new UserSession({ appConfig });
+
+const authOptions = {
+  redirectTo: '/',
+  finished: ({ userSession }) => {
+    location.reload();
+  },
+  userSession: userSession,
+  appDetails: {
+    name: 'Humans',
+    icon: `${window.location.origin}/favicon.ico`,
+  },
+};
 
 export default Service.extend({
   store: service(),
 
-  authenticate() {
-    blockstack.redirectToSignIn(undefined, undefined, ['store_write', 'publish_data', 'email']);
+  authenticate(signIn) {
+    showBlockstackConnect({...authOptions, ...{ sendToSignIn : signIn } });
   },
 
   authenticated: computed(() => {
-    return blockstack.isUserSignedIn();
+    return userSession.isUserSignedIn();
   }),
 
   deauthenticate() {
-    blockstack.signUserOut((window && window.location) ? window.location.origin : null);
+    userSession.signUserOut((window && window.location) ? window.location.origin : null);
   },
 
   generateHuman() {
@@ -37,12 +53,12 @@ export default Service.extend({
   },
 
   unauthenticated: computed(() => {
-    return !blockstack.isUserSignedIn();
+    return !userSession.isUserSignedIn();
   }),
 
   userData: computed('authenticated', function() {
     if (this.get('authenticated')) {
-      return blockstack.loadUserData();
+      return userSession.loadUserData();
     }
   }),
 
