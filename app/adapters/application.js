@@ -1,26 +1,10 @@
 import DS from 'ember-data';
-import { AppConfig, UserSession } from 'blockstack';
+import userSession from 'humans/services/user-session';
 import Inflector from 'ember-inflector';
 import config from 'humans/config/environment';
 import dataUriToBuffer from 'data-uri-to-buffer';
 import async from 'async';
 import mime from 'mime-types';
-
-const appConfig = new AppConfig(['store_write', 'publish_data']);
-const userSession = new UserSession({ appConfig });
-
-const authOptions = {
-  redirectTo: '/',
-  finished: ({ userSession }) => {
-    console.log('done!');
-    location.reload();
-  },
-  userSession: userSession,
-  appDetails: {
-    name: 'Humans',
-    icon: `${window.location.origin}/favicon.ico`,
-  },
-};
 
 let appOrigin = `${config.location.protocol}://${config.location.hostname}`;
 

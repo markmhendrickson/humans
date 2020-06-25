@@ -1,29 +1,27 @@
 import Service from '@ember/service';
 import { computed } from '@ember/object';
-import { AppConfig, UserSession } from 'blockstack';
+import userSession from 'humans/services/user-session';
 import { inject as service } from '@ember/service';
 import { showBlockstackConnect } from '@blockstack/connect';
-
-const appConfig = new AppConfig(['store_write', 'publish_data']);
-const userSession = new UserSession({ appConfig });
-
-const authOptions = {
-  redirectTo: '/',
-  finished: ({ userSession }) => {
-    location.reload();
-  },
-  userSession: userSession,
-  appDetails: {
-    name: 'Humans',
-    icon: `${window.location.origin}/favicon.ico`,
-  },
-};
 
 export default Service.extend({
   store: service(),
 
-  authenticate(signIn) {
-    showBlockstackConnect({...authOptions, ...{ sendToSignIn : signIn } });
+  authenticate(sendToSignIn) {
+    let authOptions = {
+      redirectTo: '/',
+      finished: ({ userSession }) => {
+        window.location.reload();
+      },
+      userSession: userSession,
+      sendToSignIn: sendToSignIn ? true : false,
+      appDetails: {
+        name: 'Humans',
+        icon: `${window.location.origin}/favicon.ico`,
+      },
+    };
+
+    showBlockstackConnect(authOptions);
   },
 
   authenticated: computed(() => {
