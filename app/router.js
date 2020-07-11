@@ -18,7 +18,6 @@ Router.map(function() {
       this.route('post', { path: '/posts/:id' });
     });
 
-    this.route('create-profile');
     this.route('settings');
     this.route('register-blockstack-name');
   }
