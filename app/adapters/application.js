@@ -68,7 +68,7 @@ export default DS.JSONAPIAdapter.extend({
             index = { data: [] };
           }
 
-          done(error, index);
+          done(null, index);
         });
       }
 
