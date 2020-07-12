@@ -9,16 +9,16 @@ export default Service.extend({
 
   authenticate(sendToSignIn) {
     let authOptions = {
-      redirectTo: '/',
-      finished: ({ userSession }) => {
-        window.location.reload();
-      },
-      userSession: userSession,
-      sendToSignIn: sendToSignIn ? true : false,
       appDetails: {
         name: 'Humans',
         icon: `${window.location.origin}/favicon.ico`,
       },
+      finished: ({ userSession }) => {
+        window.location.reload();
+      },
+      redirectTo: '/',
+      sendToSignIn: sendToSignIn ? true : false,
+      userSession: userSession
     };
 
     showBlockstackConnect(authOptions);
